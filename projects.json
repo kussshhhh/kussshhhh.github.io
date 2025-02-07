@@ -1,0 +1,101 @@
+{
+    "projects": [
+      {
+        "id": "nodes-roadmap",
+        "title": "Nodes",
+        "description": "A dynamic learning roadmap generator with an interactive graph-based UI. Key features and technical details:\n\n• Generates comprehensive roadmaps for learning any topic using Large Language Models (Mixtral 8x7b and Gemini Pro)\n• Implements a novel Breadth-First Search (BFS) approach for LLM interaction, contrasting with traditional Depth-First Search methods, resulting in more structured and interconnected learning paths\n• Features a dynamic, force-directed graph visualization that automatically adjusts and reorganizes based on the JSON response from the LLM\n• Enables interactive node expansion where users can click on any topic node to drill down into subtopics\n• Implements a chat interface for each node, allowing users to ask specific questions about any subtopic\n• Uses IndexDB for client-side storage, ensuring all user data and progress remains local to their device\n• Built with React for the frontend, implementing complex state management for the interactive graph\n• Utilizes Flask (Python) backend for LLM integration and API handling\n• Employs custom JSON parsing and validation to ensure consistent graph structure\n• Features responsive design that adapts the graph visualization to different screen sizes",
+        "technologies": [
+          "React",
+          "Flask",
+          "Python",
+          "IndexDB",
+          "Mixtral 8x7b",
+          "Gemini Pro",
+          "Force-directed Graph",
+          "BFS Algorithm"
+        ],
+        "githubLink": "https://github.com/kussshhhh/nodes",
+        "deployedLink": "https://nodes-five.vercel.app/",
+        "userCount": "20,000+ visits, 200 weekly recurring users"
+      },
+      {
+        "id": "splitty-receipt",
+        "title": "Splitty",
+        "description": "An advanced receipt splitting application that automates expense sharing through computer vision. Key features and technical details:\n\n• Implements automated receipt scanning and parsing using computer vision\n• Utilizes a custom fine-tuned version of Gemini Vision for accurate receipt text extraction and JSON generation\n• Features an intuitive drag-and-drop interface for assigning expenses to different users\n• Implements a dual-mode system: cloud-based (using fine-tuned Gemini) or privacy-focused local mode (using Moondream 2B model)\n• Built with React frontend featuring complex state management for the drag-and-drop functionality\n• Uses Flask backend for API handling and image processing\n• Implements SQLite database for efficient data persistence and retrieval\n• Features deterministic verification algorithms to double-check all split calculations\n• Includes comprehensive error handling for various receipt formats and image qualities\n• Provides detailed itemized breakdown of expenses and shares\n• Implements local processing option using Moondream (2B parameters) for privacy-conscious users\n• Features automatic text extraction and structured data conversion to JSON format",
+        "technologies": [
+          "React",
+          "Flask",
+          "Python",
+          "SQLite",
+          "Gemini Vision (Fine-tuned)",
+          "Moondream 2B",
+          "Computer Vision",
+          "Drag-and-Drop API"
+        ],
+        "githubLink": "https://github.com/kussshhhh/splitty",
+        "deployedLink": "https://splitty-six.vercel.app/",
+        "userCount": "na"
+      },
+      {
+        "id": "book-recommender",
+        "title": "Book Recommender",
+        "description": "An intelligent book recommendation system leveraging advanced NLP and machine learning techniques. Key features and technical details:\n\n• Engineered a sophisticated recommendation engine using vector embeddings for precise book similarity matching\n• Implemented cosine similarity algorithms to analyze multiple book features including genre, themes, writing style, and plot elements\n• Integrated Gemini API for enhanced natural language understanding and processing of book descriptions\n• Developed custom NLP pipelines for processing and analyzing book descriptions, reviews, and metadata\n• Created feature extraction algorithms to identify key book characteristics for matching\n• Implemented vector-based similarity search for efficient recommendation generation\n• Built a system that considers both content-based and semantic similarity for recommendations\n• Developed preprocessing pipelines for cleaning and standardizing book data\n• Implemented optimization techniques for handling large-scale book databases",
+        "technologies": [
+          "Python",
+          "Gemini API",
+          "NLP",
+          "Vector Embeddings",
+          "Cosine Similarity",
+          "Machine Learning"
+        ],
+        "githubLink": "https://github.com/kussshhhh/book-rec",
+        "deployedLink": "na",
+        "userCount": "na"
+      },
+      {
+        "id": "pixel-board",
+        "title": "PixelBoard",
+        "description": "An infinite canvas digital clipboard application for advanced image organization. Key features and technical details:\n\n• Implemented an infinite canvas system using HTML Canvas for unlimited workspace navigation\n• Built a high-performance image manipulation system with React and Node.js backend\n• Engineered smooth zoom transitions and pan operations for seamless navigation\n• Developed a robust drag-and-drop system for intuitive image placement and organization\n• Implemented a comprehensive multi-level undo-redo system for operation history\n• Utilized SQLite for efficient image data persistence and state management\n• Optimized canvas rendering for handling multiple high-resolution images\n• Implemented memory management techniques for handling large workspaces\n• Created a minimalist UI focused on speed and efficiency\n• Developed custom event handling for simultaneous drag, zoom, and pan operations",
+        "technologies": [
+          "React",
+          "HTML Canvas",
+          "Node.js",
+          "SQLite",
+          "Drag-and-Drop API"
+        ],
+        "githubLink": "https://github.com/kussshhhh/pixel_board",
+        "deployedLink": "na",
+        "userCount": "na"
+      },
+      {
+        "id": "prompt-box",
+        "title": "PromptBox",
+        "description": "A sophisticated Chrome extension for managing and enhancing AI prompts. Key features and technical details:\n\n• Developed a floating, draggable interface that can be minimized to avoid content obstruction\n• Implemented dual storage system for prompts: local storage for private prompts and global sharing capability\n• Created an intelligent autocomplete system specifically optimized for Claude's interface\n• Built a real-time token counting system that tracks context limits and usage\n• Engineered a non-intrusive UI that integrates seamlessly with existing chat interfaces\n• Implemented drag-and-drop functionality for the floating window\n• Created a state management system for handling prompt storage and retrieval\n• Developed event listeners for detecting chat context and prompt insertion\n• Implemented token calculation algorithms for accurate usage tracking\n• Built a modular architecture allowing for easy updates and feature additions",
+        "technologies": [
+          "JavaScript",
+          "Chrome Extensions API",
+          "HTML",
+          "CSS",
+          "Local Storage API"
+        ],
+        "githubLink": "https://github.com/kussshhhh/PromptBox",
+        "deployedLink": "na",
+        "userCount": "na"
+      }
+    ],
+    "achievements": [
+      {
+        "id": "codeforces-pupil",
+        "title": "Pupil on Codeforces",
+        "platform": "Codeforces",
+        "category": "Competitive Programming",
+        "description": "Demonstrated exceptional algorithmic problem-solving skills through consistent performance in competitive programming:\n\n• Achieved Pupil rank with 1200+ rating on Codeforces platform\n• Participated in multiple Codeforces rounds, showing consistent rating improvement\n• Solved problems across various categories including Dynamic Programming, Graph Algorithms, and Data Structures\n• Demonstrated proficiency in optimizing solutions for time and space complexity\n• Maintained consistent participation and improvement trajectory in contests",
+        "date": "2024",
+        "metrics": {
+          "rating": "1200+",
+          "rank": "Pupil",
+          "platform": "Codeforces"
+        }
+      }
+    ]
+  }

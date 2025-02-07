@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>projects</title>
+    <style>
+        pre {
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <pre id="json"></pre>
+    <script>
+        fetch('projects.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('json').textContent = JSON.stringify(data, null, 2);
+            });
+    </script>
+</body>
+</html>
