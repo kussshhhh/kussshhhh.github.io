@@ -1,94 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Projects</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            background: #f9fafb;
-        }
-
-        pre {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow-x: auto;
-            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-            font-size: 14px;
-        }
-
-        .key {
-            color: #881391;
-        }
-
-        .string {
-            color: #0b7285;
-        }
-
-        .number {
-            color: #1c7ed6;
-        }
-
-        .boolean {
-            color: #e67700;
-        }
-
-        .null {
-            color: #868e96;
-        }
-
-        a {
-            color: #0b7285;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kush Bhardwaj</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <pre id="json"></pre>
-    <script>
-        function syntaxHighlight(json) {
-            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-                let cls = 'number';
-                if (/^"/.test(match)) {
-                    if (/:$/.test(match)) {
-                        cls = 'key';
-                    } else {
-                        cls = 'string';
-                        // Convert URLs to clickable links
-                        if (match.includes('http')) {
-                            let url = match.slice(1, -1); // Remove quotes
-                            return `"<a href="${url}" target="_blank">${url}</a>"`;
-                        }
-                    }
-                } else if (/true|false/.test(match)) {
-                    cls = 'boolean';
-                } else if (/null/.test(match)) {
-                    cls = 'null';
-                }
-                return '<span class="' + cls + '">' + match + '</span>';
-            });
-        }
+    <canvas id="particle-canvas"></canvas>
+    <div id="content">
+        hi, im kush bhardwaj
+    </div>
 
-        fetch('projects.json')
-            .then(response => response.json())
-            .then(data => {
-                const highlighted = syntaxHighlight(JSON.stringify(data, null, 2));
-                document.getElementById('json').innerHTML = highlighted;
-            })
-            .catch(error => {
-                console.error('Error loading JSON:', error);
-                document.getElementById('json').textContent = 'Error loading JSON data';
-            });
-    </script>
+    <script src="particles.js"></script>
 </body>
 </html>
