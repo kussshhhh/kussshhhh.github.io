@@ -20,6 +20,10 @@ body {
     z-index: 1;
     font-size: 2rem;
     margin-bottom: 4rem;
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    line-height: 1.5;
 }
 
 #particle-canvas {
@@ -60,7 +64,7 @@ body {
 
 #social-section {
     position: fixed;
-    bottom: 40px;
+    bottom: 25px;
     right: 40px;
     display: flex;
     flex-direction: row;
@@ -136,5 +140,58 @@ body {
     }
 }
 
+.audio-player-wrapper {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    z-index: 3;
+}
 
+.audio-player {
+    background: transparent;
+    border: 2px solid #000;
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+    width: 48px;
+    height: 48px;
+}
 
+.audio-player:hover {
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.audio-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Audio wave animation */
+@keyframes wave {
+    0% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+    100% { transform: scaleY(0.5); }
+}
+
+.wave-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 24px;
+}
+
+.wave-bar {
+    width: 2px;
+    height: 16px;
+    background-color: #000;
+    animation: wave 1s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { animation-delay: 0.3s; }
