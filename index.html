@@ -6,26 +6,31 @@
     <title>Kush Bhardwaj</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <canvas id="particle-canvas"></canvas>
+    <nav class="navbar navbar-light>
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="notes.html" class="nav-link">Notes</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+    </nav>
     <div id="content">
-        Hi, I am Kush Bhardwaj.
+        <p>Hi,</p>
+        <p>I am <span id="name">Kush Bhardwaj.</span></p>
         A compsci grad in my prefinal year.
-        I like building stuff, programming, music and football and play guitar sometimes. 
+        I like building stuff, programming, music and football
+        <p>
+         (oh and i play guitar sometimes :D) 
+        </p>
     </div>  
-    <div id="directories">
-        <a href="/projects.json" class="directory">
-            <img src="./folder.png" alt="Projects Directory">
-            <span class="directory-name">projects</span>
-        </a>
-        <a href="/blogs" class="directory">
-            <img src="./folder.png" alt="Blogs Directory">
-            <span class="directory-name">blogs</span>
-        </a>
-    </div>
+    
     <div id="social-section">
         <img src="./goku.gif" alt="Goku" id="goku">
         <div id="social-links">
@@ -61,6 +66,6 @@
     </div>
 
     <script src = "audio.js"></script>
-    <script src="particles.js"></script>
+    <!-- <script src="particles.js"></script> -->
 </body>
 </html>

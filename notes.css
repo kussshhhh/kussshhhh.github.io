@@ -1,0 +1,75 @@
+/* Base Navbar Styles - To be used across all pages */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    /* Background color is the only property that should vary between pages */
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right {
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: 'Inconsolata', monospace;
+    transition: all 0.3s ease;
+    padding: 0.5rem 3rem;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+/* Light theme - for index/home page */
+.navbar-light {
+    background-color: #f5f4f1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-light .nav-link {
+    color: #e6d3b0;
+}
+
+/* Dark theme - for notes page */
+.navbar-dark {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-dark .nav-link {
+    color: #f7ebeb;
+}
+
+.navbar-dark .nav-link:hover {
+    color: #ffffff;
+}
+
+/* Responsive styles for all navbars */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .nav-right {
+        gap: 1rem;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.4rem 1.5rem;
+    }
+}
