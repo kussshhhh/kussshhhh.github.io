@@ -13,7 +13,7 @@ from pathlib import Path
 
 # Configuration
 NOTES_DIR = "notes"  # Directory containing markdown files
-OUTPUT_FILE = "graph_data.js"  # Output JavaScript file
+OUTPUT_FILE = "notesData.js"  # Output JavaScript file
 GROUP_CATEGORIES = {  # Optional: categorize notes by content type
     "project": 1,
     "concept": 2,
