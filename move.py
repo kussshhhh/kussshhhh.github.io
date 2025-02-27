@@ -12,7 +12,7 @@ import random
 from pathlib import Path
 
 # Configuration
-NOTES_DIR = "notes"  # Directory containing markdown files
+NOTES_DIR = "/home/kush/cooking/kussshhhh.github.io/notes"  # Directory containing markdown files
 OUTPUT_FILE = "notesData.js"  # Output JavaScript file
 GROUP_CATEGORIES = {  # Optional: categorize notes by content type
     "project": 1,
