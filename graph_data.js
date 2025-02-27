@@ -1,5 +1,5 @@
 // Auto-generated graph data for notes visualization
-// Generated on: 2025-02-27 00:39:26
+// Generated on: 2025-02-27 08:58:45
 // DO NOT EDIT MANUALLY
 
 const graphData = {
@@ -10,11 +10,19 @@ const graphData = {
     },
     {
       "id": "servers",
-      "group": 10
+      "group": 6
     },
     {
       "id": "scripts",
-      "group": 10
+      "group": 6
+    },
+    {
+      "id": "ai",
+      "group": 5
+    },
+    {
+      "id": "notes",
+      "group": 2
     },
     {
       "id": "projects",
@@ -22,7 +30,7 @@ const graphData = {
     },
     {
       "id": "something",
-      "group": 8
+      "group": 9
     }
   ],
   "links": [
