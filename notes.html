@@ -425,7 +425,7 @@
         // Function to handle node clicks (navigate to note page)
         function handleNodeClick(event, d) {
           const notePath = `notes/${encodeURIComponent(d.id)}.md`;
-          window.location.href = notePath;
+          window.location.href = `md.html?file=${notePath}`;
         }
 
         // Function to handle mouse over (highlight node and connected edges)
