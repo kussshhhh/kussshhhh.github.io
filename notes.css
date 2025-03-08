@@ -57,3 +57,32 @@ svg {
     color: #a0a0a0;
     margin-top: 8px;
 }
+
+/* Custom Scrollbar Styles */
+body::-webkit-scrollbar {
+    width: 6px; /* Thin scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent; /* No background to avoid layout shift */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(247, 243, 235, 0.3); /* Light, semi-transparent thumb matching theme */
+    border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(247, 243, 235, 0.5); /* Slightly brighter on hover */
+}
+
+/* Firefox Scrollbar */
+body {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: rgba(247, 243, 235, 0.3) transparent; /* Thumb color, transparent track */
+}
+
+/* Ensure content doesn’t shift */
+html, body {
+    overflow-y: overlay; /* Scrollbar overlays content, no space taken */
+}

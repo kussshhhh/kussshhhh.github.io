@@ -27,12 +27,11 @@ body {
 
 /* Homepage-specific styles */
 #name {
-    font-weight: 400;
-    background: linear-gradient(90deg, #ff6ec4, #7873f5); /* Original highlight gradient */
+    font-weight: 450;
+    background: linear-gradient(90deg, #b0e3ec, #b0e3ec); 
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    font-weight: 700; /* Bold as per original */
 }
 
 #content {
