@@ -7,13 +7,136 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="notes.css"> <!-- Reuses dark theme from notes.css -->
+    <link rel="stylesheet" href="notes.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <style>
-        /* Inline styles for projects-specific tweaks */
-        #content {
-            padding: 2rem;
-            max-width: 800px;
+        /* Obsidian-like styling with Inconsolata font */
+        .markdown-content {
+            color: #dcddde;
+            line-height: 1.6;
+            font-size: 18px;
+            font-family: 'Inconsolata', monospace;
+            padding: 0 4px;
+            width: 100%;
+            max-width: 750px;
             margin: 0 auto;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .markdown-content h1, .markdown-content h2, .markdown-content h3,
+        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+            color: #a8d8da;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        .markdown-content h1 { font-size: 2em; }
+        .markdown-content h2 { font-size: 1.7em; }
+        .markdown-content h3 { font-size: 1.4em; }
+        .markdown-content h4 { font-size: 1.2em; }
+        .markdown-content p { margin: 0 0 1em 0; font-size: 18px; }
+        .markdown-content a { color: #80deea; text-decoration: none; }
+        .markdown-content a:hover { text-decoration: underline; }
+        .markdown-content blockquote {
+            border-left: 4px solid #4d5666;
+            padding-left: 16px;
+            margin: 0 0 16px 0;
+            color: #b4b4b4;
+        }
+        .markdown-content code {
+            font-family: 'Inconsolata', monospace;
+            background-color: rgba(40, 44, 52, 0.5);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.95em;
+        }
+        .markdown-content pre {
+            background-color: #282c34;
+            padding: 16px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0 0 16px 0;
+        }
+        .markdown-content pre code {
+            background-color: transparent;
+            padding: 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .markdown-content ul, .markdown-content ol {
+            padding-left: 24px;
+            margin: 0 0 16px 0;
+        }
+        .markdown-content li { margin-bottom: 4px; font-size: 18px; }
+        .markdown-content li > ul, .markdown-content li > ol {
+            margin-top: 4px;
+            margin-bottom: 0;
+        }
+        .markdown-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 0 16px 0;
+        }
+        .markdown-content table th, .markdown-content table td {
+            border: 1px solid #4d5666;
+            padding: 8px 12px;
+            font-size: 18px;
+        }
+        .markdown-content table th {
+            background-color: rgba(40, 44, 52, 0.5);
+            font-weight: 600;
+        }
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin: 8px 0;
+        }
+        .markdown-content hr {
+            height: 1px;
+            background-color: #4d5666;
+            border: none;
+            margin: 24px 0;
+        }
+        .internal-link { color: #a277ff; text-decoration: none; }
+        .internal-link:hover { text-decoration: underline; }
+        .tag {
+            display: inline-block;
+            color: #56c2c6;
+            background-color: rgba(86, 194, 198, 0.1);
+            border-radius: 3px;
+            padding: 0 4px;
+            font-size: 0.95em;
+            text-decoration: none;
+        }
+        mark {
+            background-color: rgba(255, 210, 70, 0.3);
+            color: #ffd246;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .callout {
+            border-radius: 4px;
+            margin: 16px 0;
+            padding: 16px;
+            border-left: 4px solid;
+            background-color: rgba(120, 120, 120, 0.1);
+        }
+        .callout-info { border-color: #61afef; background-color: rgba(97, 175, 239, 0.1); }
+        .callout-warn { border-color: #e5c07b; background-color: rgba(229, 192, 123, 0.1); }
+        .callout-error { border-color: #e06c75; background-color: rgba(224, 108, 117, 0.1); }
+        .callout-success { border-color: #98c379; background-color: rgba(152, 195, 121, 0.1); }
+        .loading {
+            text-align: center;
+            padding: 32px;
+            color: #888;
+            font-size: 16px;
+            font-family: 'Inconsolata', monospace;
         }
     </style>
 </head>
@@ -28,9 +151,74 @@
             <a href="about.html" class="nav-link">About</a>
         </div>
     </nav>
-    <div id="content">
-        <p>Here are some of my projects</p>
-        <p><span>nodes:</span> a learning tool which generates a roadmap for learning any topic. Imagine learning but in a BFS format.</p>
+    <div class="container">
+        <div id="markdown-content" class="markdown-content">
+            <div class="loading">Loading projects...</div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('projects.md') // Statically load projects.md
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to load projects.md');
+                    return response.text();
+                })
+                .then(markdownText => {
+                    marked.setOptions({
+                        breaks: true,
+                        gfm: true,
+                        headerIds: true,
+                        highlight: function(code, lang) {
+                            if (lang && hljs.getLanguage(lang)) {
+                                return hljs.highlight(code, { language: lang }).value;
+                            }
+                            return hljs.highlightAuto(code).value;
+                        }
+                    });
+                    const processedText = processObsidianSyntax(markdownText);
+                    const rendered = marked.parse(processedText);
+                    document.getElementById('markdown-content').innerHTML = rendered;
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        hljs.highlightBlock(block);
+                    });
+                    const h1 = document.querySelector('h1');
+                    if (h1) {
+                        document.title = h1.textContent + ' - Projects';
+                    } else {
+                        document.title = 'Projects';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading projects.md:', error);
+                    document.getElementById('markdown-content').innerHTML = 
+                        `<p>Error loading projects: ${error.message}</p>`;
+                });
+
+            function processObsidianSyntax(text) {
+                text = text.replace(/\[\[(.*?)\]\]/g, function(match, p1) {
+                    const parts = p1.split('|');
+                    const link = parts[0].trim();
+                    const label = parts.length > 1 ? parts[1].trim() : link;
+                    return `<a href="md.html?file=notes/${encodeURIComponent(link)}.md" class="internal-link">${label}</a>`;
+                });
+                text = text.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g, '$1<span class="tag">#$2</span>');
+                text = text.replace(/!\[\[(.*?)\]\]/g, function(match, p1) {
+                    const parts = p1.split('|');
+                    const link = parts[0].trim();
+                    const alt = parts.length > 1 ? parts[1].trim() : link;
+                    if (/\.(jpg|jpeg|png|gif|svg)$/i.test(link)) {
+                        return `<img src="${link}" alt="${alt}" class="embedded-image">`;
+                    } else {
+                        return `<div class="embedded-note">Loading embedded content: ${alt}</div>`;
+                    }
+                });
+                text = text.replace(/==(.*?)==/g, '<mark>$1</mark>');
+                text = text.replace(/>\s*\[!(\w+)\]([^\n]*(?:\n(?!\n)(?!>\s*\[!).*)*)(?=\n|$)/g, function(match, type, content) {
+                    return `<div class="callout callout-${type.toLowerCase()}">${content}</div>`;
+                });
+                return text;
+            }
+        });
+    </script>
 </body>
 </html>
