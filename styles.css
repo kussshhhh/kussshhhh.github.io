@@ -1,62 +1,38 @@
-* {
-  font-family: 'Inconsolata', monospace;
-}
+/* styles.css */
+@import url('./global.css');
 
 body {
-    margin: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #f5f4f1;
-    color: #000;
-    font-family: "Inconsolata", monospace;
-    font-weight: 300;
-    font-optical-sizing: auto;
-    font-style: normal;
+    background: #1a1a1a; /* Dark theme background */
+    color: #dcddde; /* Light text color */
     overflow: hidden;
-    padding-top: 0;
-
 }
 
-/* Navigation Bar Styles */
+/* Navbar Theme (Dark) */
 .navbar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    background-color: #f5f4f1;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-}
-
-.nav-right {
-    gap: 2rem;
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link {
-    color: #726541;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 400;
-    transition: all 0.3s ease;
-    padding: 0.5rem 3rem;
+    color: #f7f3eb;
 }
 
 .nav-link:hover {
-    opacity: 0.7;
+    color: #ffffff;
 }
 
+/* Homepage-specific styles */
 #name {
     font-weight: 400;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5); /* Original highlight gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700; /* Bold as per original */
 }
 
 #content {
@@ -67,8 +43,9 @@ body {
     max-width: 800px;
     width: 90%;
     text-align: center;
-    line-height: 1;
+    line-height: 1.8; /* Increased vertical spacing (was 1 originally) */
     margin-top: 4rem;
+    color: rgba(255, 255, 255, 0.8); /* Translucent effect restored */
 }
 
 #particle-canvas {
@@ -81,28 +58,32 @@ body {
     z-index: 2;
 }
 
- #directories {
+#directories {
     display: flex;
     gap: 2rem;
     margin-top: 2rem;
 }
+
 .directory {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: inherit;
+    color: #dcddde;
     background: transparent;
     transition: transform 0.2s;
 }
+
 .directory:hover {
     transform: scale(1.05);
 }
+
 .directory img {
     width: 64px;
     height: 64px;
     margin-bottom: 0.5rem;
 }
+
 .directory-name {
     font-size: 1rem;
 }
@@ -168,10 +149,10 @@ body {
 
 /* Glow animation - timed to 7-8 second mark */
 @keyframes icon-glow {
-    0%, 60% {  /* No glow until 6.9 seconds  */
+    0%, 58% {  /* No glow until 6.9 seconds  */
         filter: drop-shadow(0 0 0 rgba(0, 255, 255, 0));
     }
-    62% {  /* Start glowing at 7 seconds */
+    60% {  /* Start glowing at 7 seconds */
         filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
     }
     70% {  /* Peak glow */
@@ -185,6 +166,7 @@ body {
     }
 }
 
+
 .audio-player-wrapper {
     position: fixed;
     bottom: 40px;
@@ -194,7 +176,7 @@ body {
 
 .audio-player {
     background: transparent;
-    border: 2px solid #000;
+    border: 2px solid #dcddde; /* Updated for dark theme */
     border-radius: 50%;
     padding: 12px;
     cursor: pointer;
@@ -208,12 +190,13 @@ body {
 
 .audio-player:hover {
     transform: scale(1.1);
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.1); /* Adjusted for dark theme */
 }
 
 .audio-icon {
     width: 24px;
     height: 24px;
+    stroke: #dcddde; /* Updated for dark theme */
 }
 
 /* Audio wave animation */
@@ -233,7 +216,7 @@ body {
 .wave-bar {
     width: 2px;
     height: 16px;
-    background-color: #000;
+    background-color: #dcddde; /* Updated for dark theme */
     animation: wave 1s ease-in-out infinite;
 }
 

@@ -6,16 +6,31 @@
     <title>Projects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="notes.css"> <!-- Reuses dark theme from notes.css -->
+    <style>
+        /* Inline styles for projects-specific tweaks */
+        #content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="notes.html" class="nav-link">Notes</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+    </nav>
     <div id="content">
         <p>Here are some of my projects</p>
-        <p> <span>nodes: </span> a learning tool which genrates a roadmap for learning of any topic. imagine learning but in a bfs format.</p>
-
-
-    </div>  
-    
+        <p><span>nodes:</span> a learning tool which generates a roadmap for learning any topic. Imagine learning but in a BFS format.</p>
+    </div>
 </body>
 </html>

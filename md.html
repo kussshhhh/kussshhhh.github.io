@@ -4,263 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="notes.css">
-    <!-- Add marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
-    <!-- Add highlight.js for code syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <!-- Add Inconsolata font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-       body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
-    
-    .container {
-      background-color: #1a1a1a;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 16px;
-      box-sizing: border-box;
-    }
-    
-    .header {
-      font-size: 12px;
-      color: #a0a0a0;
-      margin-bottom: 8px;
-    }
-    
-    .graph-container {
-      position: relative;
-      flex-grow: 1;
-      background-color: #1a1a1a;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    
-    svg {
-      width: 100%;
-      height: 100%;
-      min-height: 500px;
-    }
-    
-    .footer {
-      font-size: 12px;
-      color: #a0a0a0;
-      margin-top: 8px;
-    }
+        /* Obsidian-like styling with Inconsolata font */
+        .markdown-content {
+            color: #dcddde;
+            line-height: 1.6;
+            font-size: 18px;
+            font-family: 'Inconsolata', monospace;
+            padding: 0 4px;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            height: 100%;
+            overflow-y: auto;
+        }
 
-    /* Obsidian-like styling with Inconsolata font */
-    .markdown-content {
-      color: #dcddde;
-      line-height: 1.6;
-      font-size: 18px;
-      font-family: 'Inconsolata', monospace;
-      padding: 0 4px;
-      width: 100%;
-      max-width: 750px;
-      margin: 0 auto;
-      height: 100%;
-      overflow-y: auto;
-    }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3,
+        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+            color: #7f9ef3;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+            font-family: 'Inconsolata', monospace;
+        }
 
-    .markdown-content h1, 
-    .markdown-content h2, 
-    .markdown-content h3, 
-    .markdown-content h4, 
-    .markdown-content h5, 
-    .markdown-content h6 {
-      color: #7f9ef3;
-      font-weight: 600;
-      margin-top: 24px;
-      margin-bottom: 16px;
-      line-height: 1.25;
-      font-family: 'Inconsolata', monospace;
-    }
-
-    .markdown-content h1 {
-      font-size: 2em;
-    }
-
-    .markdown-content h2 {
-      font-size: 1.7em;
-    }
-
-    .markdown-content h3 {
-      font-size: 1.4em;
-    }
-
-    .markdown-content h4 {
-      font-size: 1.2em;
-    }
-
-    .markdown-content p {
-      margin: 0 0 1em 0;
-      font-size: 18px;
-    }
-
-    .markdown-content a {
-      color: #7f9ef3;
-      text-decoration: none;
-    }
-
-    .markdown-content a:hover {
-      text-decoration: underline;
-    }
-
-    .markdown-content blockquote {
-      border-left: 4px solid #4d5666;
-      padding-left: 16px;
-      margin: 0 0 16px 0;
-      color: #b4b4b4;
-    }
-
-    .markdown-content code {
-      font-family: 'Inconsolata', monospace;
-      background-color: rgba(40, 44, 52, 0.5);
-      padding: 2px 4px;
-      border-radius: 3px;
-      font-size: 0.95em;
-    }
-
-    .markdown-content pre {
-      background-color: #282c34;
-      padding: 16px;
-      border-radius: 4px;
-      overflow-x: auto;
-      margin: 0 0 16px 0;
-    }
-
-    .markdown-content pre code {
-      background-color: transparent;
-      padding: 0;
-      font-size: 0.95em;
-      line-height: 1.5;
-    }
-
-    .markdown-content ul, 
-    .markdown-content ol {
-      padding-left: 24px;
-      margin: 0 0 16px 0;
-    }
-
-    .markdown-content li {
-      margin-bottom: 4px;
-      font-size: 18px;
-    }
-
-    .markdown-content li > ul,
-    .markdown-content li > ol {
-      margin-top: 4px;
-      margin-bottom: 0;
-    }
-
-    .markdown-content table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 0 0 16px 0;
-    }
-
-    .markdown-content table th, 
-    .markdown-content table td {
-      border: 1px solid #4d5666;
-      padding: 8px 12px;
-      font-size: 18px;
-    }
-
-    .markdown-content table th {
-      background-color: rgba(40, 44, 52, 0.5);
-      font-weight: 600;
-    }
-
-    .markdown-content img {
-      max-width: 100%;
-      border-radius: 4px;
-      margin: 8px 0;
-    }
-
-    .markdown-content hr {
-      height: 1px;
-      background-color: #4d5666;
-      border: none;
-      margin: 24px 0;
-    }
-
-    /* Obsidian-specific elements */
-    .internal-link {
-      color: #a277ff;
-      text-decoration: none;
-    }
-
-    .internal-link:hover {
-      text-decoration: underline;
-    }
-
-    .tag {
-      display: inline-block;
-      color: #56c2c6;
-      background-color: rgba(86, 194, 198, 0.1);
-      border-radius: 3px;
-      padding: 0 4px;
-      font-size: 0.95em;
-      text-decoration: none;
-    }
-
-    mark {
-      background-color: rgba(255, 210, 70, 0.3);
-      color: #ffd246;
-      padding: 0 2px;
-      border-radius: 2px;
-    }
-
-    /* Callouts like in Obsidian */
-    .callout {
-      border-radius: 4px;
-      margin: 16px 0;
-      padding: 16px;
-      border-left: 4px solid;
-      background-color: rgba(120, 120, 120, 0.1);
-    }
-
-    .callout-info {
-      border-color: #61afef;
-      background-color: rgba(97, 175, 239, 0.1);
-    }
-
-    .callout-warn {
-      border-color: #e5c07b;
-      background-color: rgba(229, 192, 123, 0.1);
-    }
-
-    .callout-error {
-      border-color: #e06c75;
-      background-color: rgba(224, 108, 117, 0.1);
-    }
-
-    .callout-success {
-      border-color: #98c379;
-      background-color: rgba(152, 195, 121, 0.1);
-    }
-
-    /* Clean loading state */
-    .loading {
-      text-align: center;
-      padding: 32px;
-      color: #888;
-      font-size: 16px;
-      font-family: 'Inconsolata', monospace;
-    }
+        .markdown-content h1 { font-size: 2em; }
+        .markdown-content h2 { font-size: 1.7em; }
+        .markdown-content h3 { font-size: 1.4em; }
+        .markdown-content h4 { font-size: 1.2em; }
+        .markdown-content p { margin: 0 0 1em 0; font-size: 18px; }
+        .markdown-content a { color: #7f9ef3; text-decoration: none; }
+        .markdown-content a:hover { text-decoration: underline; }
+        .markdown-content blockquote {
+            border-left: 4px solid #4d5666;
+            padding-left: 16px;
+            margin: 0 0 16px 0;
+            color: #b4b4b4;
+        }
+        .markdown-content code {
+            font-family: 'Inconsolata', monospace;
+            background-color: rgba(40, 44, 52, 0.5);
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 0.95em;
+        }
+        .markdown-content pre {
+            background-color: #282c34;
+            padding: 16px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 0 0 16px 0;
+        }
+        .markdown-content pre code {
+            background-color: transparent;
+            padding: 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .markdown-content ul, .markdown-content ol {
+            padding-left: 24px;
+            margin: 0 0 16px 0;
+        }
+        .markdown-content li { margin-bottom: 4px; font-size: 18px; }
+        .markdown-content li > ul, .markdown-content li > ol {
+            margin-top: 4px;
+            margin-bottom: 0;
+        }
+        .markdown-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 0 16px 0;
+        }
+        .markdown-content table th, .markdown-content table td {
+            border: 1px solid #4d5666;
+            padding: 8px 12px;
+            font-size: 18px;
+        }
+        .markdown-content table th {
+            background-color: rgba(40, 44, 52, 0.5);
+            font-weight: 600;
+        }
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin: 8px 0;
+        }
+        .markdown-content hr {
+            height: 1px;
+            background-color: #4d5666;
+            border: none;
+            margin: 24px 0;
+        }
+        .internal-link { color: #a277ff; text-decoration: none; }
+        .internal-link:hover { text-decoration: underline; }
+        .tag {
+            display: inline-block;
+            color: #56c2c6;
+            background-color: rgba(86, 194, 198, 0.1);
+            border-radius: 3px;
+            padding: 0 4px;
+            font-size: 0.95em;
+            text-decoration: none;
+        }
+        mark {
+            background-color: rgba(255, 210, 70, 0.3);
+            color: #ffd246;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        .callout {
+            border-radius: 4px;
+            margin: 16px 0;
+            padding: 16px;
+            border-left: 4px solid;
+            background-color: rgba(120, 120, 120, 0.1);
+        }
+        .callout-info { border-color: #61afef; background-color: rgba(97, 175, 239, 0.1); }
+        .callout-warn { border-color: #e5c07b; background-color: rgba(229, 192, 123, 0.1); }
+        .callout-error { border-color: #e06c75; background-color: rgba(224, 108, 117, 0.1); }
+        .callout-success { border-color: #98c379; background-color: rgba(152, 195, 121, 0.1); }
+        .loading {
+            text-align: center;
+            padding: 32px;
+            color: #888;
+            font-size: 16px;
+            font-family: 'Inconsolata', monospace;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-dark">
+    <nav class="navbar">
         <div class="nav-left">
             <a href="index.html" class="nav-link">Home</a>
         </div>
@@ -270,35 +151,25 @@
             <a href="about.html" class="nav-link">About</a>
         </div>
     </nav>
-  
-    
     <div class="container">
         <div id="markdown-content" class="markdown-content">
             <div class="loading">Loading markdown content...</div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get the markdown file path from the URL
             const urlParams = new URLSearchParams(window.location.search);
             const markdownFile = urlParams.get('file');
-            
             if (!markdownFile) {
                 document.getElementById('markdown-content').innerHTML = '<p>No markdown file specified.</p>';
                 return;
             }
-            
-            // Fetch the markdown file
             fetch(markdownFile)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load markdown file');
-                    }
+                    if (!response.ok) throw new Error('Failed to load markdown file');
                     return response.text();
                 })
                 .then(markdownText => {
-                    // Configure marked options for Obsidian-like rendering
                     marked.setOptions({
                         breaks: true,
                         gfm: true,
@@ -310,20 +181,12 @@
                             return hljs.highlightAuto(code).value;
                         }
                     });
-                    
-                    // Process Obsidian-specific syntax
                     const processedText = processObsidianSyntax(markdownText);
-                    
-                    // Render the markdown
                     const rendered = marked.parse(processedText);
                     document.getElementById('markdown-content').innerHTML = rendered;
-                    
-                    // Apply syntax highlighting to code blocks
                     document.querySelectorAll('pre code').forEach((block) => {
                         hljs.highlightBlock(block);
                     });
-                    
-                    // Update page title based on first h1 or filename
                     const h1 = document.querySelector('h1');
                     if (h1) {
                         document.title = h1.textContent + ' - Notes';
@@ -337,47 +200,32 @@
                     document.getElementById('markdown-content').innerHTML = 
                         `<p>Error loading markdown file: ${error.message}</p>`;
                 });
+
+            function processObsidianSyntax(text) {
+                text = text.replace(/\[\[(.*?)\]\]/g, function(match, p1) {
+                    const parts = p1.split('|');
+                    const link = parts[0].trim();
+                    const label = parts.length > 1 ? parts[1].trim() : link;
+                    return `<a href="md.html?file=notes/${encodeURIComponent(link)}.md" class="internal-link">${label}</a>`;
+                });
+                text = text.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g, '$1<span class="tag">#$2</span>');
+                text = text.replace(/!\[\[(.*?)\]\]/g, function(match, p1) {
+                    const parts = p1.split('|');
+                    const link = parts[0].trim();
+                    const alt = parts.length > 1 ? parts[1].trim() : link;
+                    if (/\.(jpg|jpeg|png|gif|svg)$/i.test(link)) {
+                        return `<img src="${link}" alt="${alt}" class="embedded-image">`;
+                    } else {
+                        return `<div class="embedded-note">Loading embedded content: ${alt}</div>`;
+                    }
+                });
+                text = text.replace(/==(.*?)==/g, '<mark>$1</mark>');
+                text = text.replace(/>\s*\[!(\w+)\]([^\n]*(?:\n(?!\n)(?!>\s*\[!).*)*)(?=\n|$)/g, function(match, type, content) {
+                    return `<div class="callout callout-${type.toLowerCase()}">${content}</div>`;
+                });
+                return text;
+            }
         });
-        
-        // Function to process Obsidian-specific syntax
-        function processObsidianSyntax(text) {
-            // Process [[Wiki Links]]
-            text = text.replace(/\[\[(.*?)\]\]/g, function(match, p1) {
-                const parts = p1.split('|');
-                const link = parts[0].trim();
-                const label = parts.length > 1 ? parts[1].trim() : link;
-                
-                return `<a href="md.html?file=notes/${encodeURIComponent(link)}.md" class="internal-link">${label}</a>`;
-            });
-            
-            // Process #tags
-            text = text.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g, '$1<span class="tag">#$2</span>');
-            
-            // Process ![[Embedded content]] (images, notes, etc.)
-            text = text.replace(/!\[\[(.*?)\]\]/g, function(match, p1) {
-                const parts = p1.split('|');
-                const link = parts[0].trim();
-                const alt = parts.length > 1 ? parts[1].trim() : link;
-                
-                // Check if it's likely an image
-                if (/\.(jpg|jpeg|png|gif|svg)$/i.test(link)) {
-                    return `<img src="${link}" alt="${alt}" class="embedded-image">`;
-                } else {
-                    // Treat as embedded note (simplified)
-                    return `<div class="embedded-note">Loading embedded content: ${alt}</div>`;
-                }
-            });
-            
-            // Process ==highlighted text==
-            text = text.replace(/==(.*?)==/g, '<mark>$1</mark>');
-            
-            // Process callout blocks
-            text = text.replace(/>\s*\[!(\w+)\]([^\n]*(?:\n(?!\n)(?!>\s*\[!).*)*)(?=\n|$)/g, function(match, type, content) {
-                return `<div class="callout callout-${type.toLowerCase()}">${content}</div>`;
-            });
-            
-            return text;
-        }
     </script>
 </body>
 </html>

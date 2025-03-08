@@ -1,61 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notes</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-  <script src="notesData.js"></script>
-  <script src="parseNotes.js"></script>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
-    
-    .container {
-      background-color: #1a1a1a;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 16px;
-      box-sizing: border-box;
-    }
-    
-    .header {
-      font-size: 12px;
-      color: #a0a0a0;
-      margin-bottom: 8px;
-    }
-    
-    .graph-container {
-      position: relative;
-      flex-grow: 1;
-      background-color: #1a1a1a;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    
-    svg {
-      width: 100%;
-      height: 100%;
-      min-height: 500px;
-    }
-    
-    .footer {
-      font-size: 12px;
-      color: #a0a0a0;
-      margin-top: 8px;
-    }
-  </style>
-  <link rel="stylesheet" href="notes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="notes.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="notesData.js"></script>
+    <script src="parseNotes.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-dark">
+    <nav class="navbar">
         <div class="nav-left">
             <a href="index.html" class="nav-link">Home</a>
         </div>
@@ -65,616 +23,457 @@
             <a href="about.html" class="nav-link">About</a>
         </div>
     </nav>
-  <div class="container">
-    <div class="header">notes</div>
-    <div class="graph-container">
-      <svg id="graph-svg"></svg>
+    <div class="container">
+        <div class="header">notes</div>
+        <div class="graph-container">
+            <svg id="graph-svg"></svg>
+        </div>
+        <div class="footer" id="zoom-level">Zoom level: 1.00x</div>
     </div>
-    <div class="footer" id="zoom-level">Zoom level: 1.00x</div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    ( async function() {
-        
-    
-      const svgElement = document.getElementById('graph-svg');
-      const zoomLevelElement = document.getElementById('zoom-level');
-      let currentZoom = 1;
-      let simulation = null;
-      
-      // Generate sample data
-      // Replace sample data with real notes
-      let nodes = [
-        // Default nodes (keep these as fallback)
-        { id: "Future Plans", group: 15 },    
-        { id: "Quotes", group: 16 },          
-        { id: "Contacts", group: 16 }    
-      ];
-          
-      let links = [
-
-      ];
-          
-      // Try to load real notes
-      try {
-          console.log("Attempting to load notes data...");
-          const notesData = await getNotesData();
-          console.log("Notes data loaded:", notesData);
-          
-          if (notesData && notesData.nodes && notesData.links) {
-            nodes = notesData.nodes.length ? notesData.nodes : nodes;
-            links = notesData.links.length ? notesData.links : links;
-            console.log(`Using loaded data: ${nodes.length} nodes, ${links.length} links`);
-          } else {
-            console.warn("No valid notes data found, using default values");
-          }
-        } catch (error) {
-          console.error("Error loading notes data, using default values:", error);
-      } 
-
-// Rest of your existing D3 setup code...
-      
-      // Setup D3 force simulation
-      function setupD3() {
-        if (!nodes.length || !links.length || !svgElement) return;
-        
-        const width = svgElement.clientWidth;
-        const height = svgElement.clientHeight;
-        
-        // Clear any existing SVG content
-        d3.select(svgElement).selectAll("*").remove();
-        
-        // Create SVG element
-        const svg = d3.select(svgElement)
-          .attr("width", width)
-          .attr("height", height)
-          .attr("viewBox", [0, 0, width, height]);
-        
-        const g = svg.append("g");
-        
-        // Define node colors based on group
-        const color = d3.scaleOrdinal(d3.schemeCategory10);
-        
-        // Helper function to check if two line segments intersect
-        function doLinesIntersect(a1, a2, b1, b2) {
-          // Line segment intersection detection using vectors
-          const ua = ((b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x)) /
-                    ((b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y));
-          const ub = ((a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x)) /
-                    ((b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y));
-          
-          // Check if intersection is on both line segments
-          return (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1);
-        }
-        
-        // Function to initialize node positions in a more organized way
-        function initializeNodePositions() {
-          // Initialize nodes in a radial layout
-          const centerX = width / 2;
-          const centerY = height / 2;
-          const radius = Math.min(width, height) * 0.4;
-          
-          // Group nodes by their connections to create clusters
-          const nodeConnections = {};
-          nodes.forEach(node => {
-            nodeConnections[node.id] = {
-              node: node,
-              connections: []
-            };
-          });
-          
-          links.forEach(link => {
-            nodeConnections[link.source.id || link.source].connections.push(link.target.id || link.target);
-            nodeConnections[link.target.id || link.target].connections.push(link.source.id || link.source);
-          });
-          
-          // Sort nodes by connection count
-          const sortedNodes = [...nodes].sort((a, b) => 
-            nodeConnections[b.id].connections.length - 
-            nodeConnections[a.id].connections.length
-          );
-          
-          // Assign initial positions based on connection density
-          sortedNodes.forEach((node, i) => {
-            const angle = (i / sortedNodes.length) * 2 * Math.PI;
-            const distance = radius * (0.5 + 0.5 * (nodeConnections[node.id].connections.length / 
-                            Math.max(...Object.values(nodeConnections).map(n => n.connections.length))));
-            
-            node.x = centerX + distance * Math.cos(angle);
-            node.y = centerY + distance * Math.sin(angle);
-          });
-        }
-        
-        // Custom force to make edges repel each other
-        const edgeRepulsionForce = () => {
-          const edges = links;
-          let iterations = 2; // Increased iterations
-          
-          function force(alpha) {
-            // Run even at lower alpha values to ensure edge untangling
-            if (alpha < 0.05) return;
-            
-            for (let i = 0; i < iterations; i++) {
-              for (let e1 = 0; e1 < edges.length; e1++) {
-                for (let e2 = e1 + 1; e2 < edges.length; e2++) {
-                  const edge1 = edges[e1];
-                  const edge2 = edges[e2];
-                  
-                  // Skip if edges share a node
-                  if (edge1.source.id === edge2.source.id || 
-                      edge1.source.id === edge2.target.id ||
-                      edge1.target.id === edge2.source.id ||
-                      edge1.target.id === edge2.target.id) {
-                    continue;
-                  }
-                  
-                  // Check for edge intersection
-                  const isIntersecting = doLinesIntersect(
-                    {x: edge1.source.x, y: edge1.source.y},
-                    {x: edge1.target.x, y: edge1.target.y},
-                    {x: edge2.source.x, y: edge2.source.y},
-                    {x: edge2.target.x, y: edge2.target.y}
-                  );
-                  
-                  // Apply stronger repulsion if edges intersect
-                  if (isIntersecting) {
-                    // Calculate midpoints of each edge
-                    const mx1 = (edge1.source.x + edge1.target.x) / 2;
-                    const my1 = (edge1.source.y + edge1.target.y) / 2;
-                    const mx2 = (edge2.source.x + edge2.target.x) / 2;
-                    const my2 = (edge2.source.y + edge2.target.y) / 2;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            (async function() {
+                const svgElement = document.getElementById('graph-svg');
+                const zoomLevelElement = document.getElementById('zoom-level');
+                let currentZoom = 1;
+                let simulation = null;
+                
+                let nodes = [
+                    { id: "Future Plans", group: 15 },
+                    { id: "Quotes", group: 16 },
+                    { id: "Contacts", group: 16 }
+                ];
+                let links = [];
+                
+                try {
+                    console.log("Attempting to load notes data...");
+                    const notesData = await getNotesData();
+                    console.log("Notes data loaded:", notesData);
                     
-                    // Direction vector between midpoints
-                    const dx = mx2 - mx1;
-                    const dy = my2 - my1;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance > 0) {
-                      // Use very strong repulsion for intersecting edges
-                      const repulsionStrength = alpha * 8.0 / distance;
-                      
-                      // Normalized direction vector
-                      const fx = dx * repulsionStrength;
-                      const fy = dy * repulsionStrength;
-                      
-                      // Apply forces to edge endpoints
-                      edge1.source.x -= fx * 0.5;
-                      edge1.source.y -= fy * 0.5;
-                      edge1.target.x -= fx * 0.5;
-                      edge1.target.y -= fy * 0.5;
-                      
-                      edge2.source.x += fx * 0.5;
-                      edge2.source.y += fy * 0.5;
-                      edge2.target.x += fx * 0.5;
-                      edge2.target.y += fy * 0.5;
+                    if (notesData && notesData.nodes && notesData.links) {
+                        nodes = notesData.nodes.length ? notesData.nodes : nodes;
+                        links = notesData.links.length ? notesData.links : links;
+                        console.log(`Using loaded data: ${nodes.length} nodes, ${links.length} links`);
+                    } else {
+                        console.warn("No valid notes data found, using default values");
                     }
-                  }
-                  
-                  // Apply regular edge repulsion even if not intersecting
-                  const mx1 = (edge1.source.x + edge1.target.x) / 2;
-                  const my1 = (edge1.source.y + edge1.target.y) / 2;
-                  const mx2 = (edge2.source.x + edge2.target.x) / 2;
-                  const my2 = (edge2.source.y + edge2.target.y) / 2;
-                  
-                  const dx = mx2 - mx1;
-                  const dy = my2 - my1;
-                  const distance = Math.sqrt(dx * dx + dy * dy);
-                  
-                  if (distance > 0 && distance < 120) {
-                    const repulsionStrength = alpha * 1.2 * (120 - distance) / distance;
-                    
-                    const fx = dx * repulsionStrength;
-                    const fy = dy * repulsionStrength;
-                    
-                    edge1.source.x -= fx * 0.35;
-                    edge1.source.y -= fy * 0.35;
-                    edge1.target.x -= fx * 0.35;
-                    edge1.target.y -= fy * 0.35;
-                    
-                    edge2.source.x += fx * 0.35;
-                    edge2.source.y += fy * 0.35;
-                    edge2.target.x += fx * 0.35;
-                    edge2.target.y += fy * 0.35;
-                  }
+                } catch (error) {
+                    console.error("Error loading notes data, using default values:", error);
                 }
-              }
-            }
-          }
-          
-          force.iterations = function(i) {
-            iterations = i;
-            return force;
-          };
-          
-          return force;
-        };
-        
-        // Custom force to make nodes repel edges they don't belong to
-        const nodeEdgeRepulsionForce = () => {
-          let iterations = 2;
-          const nodeRadius = 10;
-          
-          function force(alpha) {
-            if (alpha < 0.05) return;
-            
-            for (let i = 0; i < iterations; i++) {
-              nodes.forEach(node => {
-                links.forEach(link => {
-                  // Skip if the node is part of this edge
-                  if (node.id === link.source.id || node.id === link.target.id) return;
-                  
-                  // Calculate distance from node to edge
-                  const x1 = link.source.x;
-                  const y1 = link.source.y;
-                  const x2 = link.target.x;
-                  const y2 = link.target.y;
-                  
-                  const lineVecX = x2 - x1;
-                  const lineVecY = y2 - y1;
-                  const lineLength = Math.sqrt(lineVecX * lineVecX + lineVecY * lineVecY);
-                  
-                  if (lineLength < 0.1) return;
-                  
-                  const lineNormX = lineVecX / lineLength;
-                  const lineNormY = lineVecY / lineLength;
-                  
-                  const nodeVecX = node.x - x1;
-                  const nodeVecY = node.y - y1;
-                  
-                  const projection = nodeVecX * lineNormX + nodeVecY * lineNormY;
-                  const projectionClamped = Math.max(0, Math.min(lineLength, projection));
-                  
-                  const closestX = x1 + projectionClamped * lineNormX;
-                  const closestY = y1 + projectionClamped * lineNormY;
-                  
-                  const distanceX = node.x - closestX;
-                  const distanceY = node.y - closestY;
-                  const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-                  
-                  const minDistance = nodeRadius + 25; // Increased minimum distance
-                  if (distance > 0 && distance < minDistance) {
-                    const repulsionDirX = distanceX / distance;
-                    const repulsionDirY = distanceY / distance;
-                    
-                    const repulsionStrength = alpha * 3.0 * (minDistance - distance) / distance;
-                    
-                    node.x += repulsionDirX * repulsionStrength;
-                    node.y += repulsionDirY * repulsionStrength;
-                    
-                    const counterFactor = 0.2;
-                    link.source.x -= repulsionDirX * repulsionStrength * counterFactor;
-                    link.source.y -= repulsionDirY * repulsionStrength * counterFactor;
-                    link.target.x -= repulsionDirX * repulsionStrength * counterFactor;
-                    link.target.y -= repulsionDirY * repulsionStrength * counterFactor;
-                  }
-                });
-              });
-            }
-          }
-          
-          force.iterations = function(i) {
-            iterations = i;
-            return force;
-          };
-          
-          return force;
-        };
-        
-        // Initialize nodes with better starting positions
-        initializeNodePositions();
-        
-        // Pre-simulation phase to reduce initial edge crossings
-        for (let i = 0; i < 300; i++) {
-          const alpha = 1 - (i / 300);
-          edgeRepulsionForce()(alpha);
-        }
-        
-        // Create the force simulation with enhanced physics
-        const sim = d3.forceSimulation(nodes)
-          .force("link", d3.forceLink(links).id(d => d.id).distance(160)) // Further increased distance
-          .force("charge", d3.forceManyBody().strength(-450)) // Stronger repulsion
-          .force("center", d3.forceCenter(width / 2, height / 2))
-          .force("x", d3.forceX(width / 2).strength(0.025))
-          .force("y", d3.forceY(height / 2).strength(0.025))
-          .force("collision", d3.forceCollide().radius(45)) // Larger collision radius
-          .force("edgeRepulsion", edgeRepulsionForce().iterations(3)) // More iterations
-          .force("nodeEdgeRepulsion", nodeEdgeRepulsionForce().iterations(2))
-          .alphaMin(0.001) // Lower alpha minimum for longer simulation
-          .alphaDecay(0.005) // Much slower cooling
-          .velocityDecay(0.15); // Lower friction for more movement
-        
-        // Draw links
-        const link = g.append("g")
-          .attr("stroke", "#777")
-          .attr("stroke-opacity", 0.6)
-          .selectAll("line")
-          .data(links)
-          .join("line")
-          .attr("class", "link")
-          .attr("stroke-width", d => Math.sqrt(d.value) * 1.5);
 
-        // Draw nodes with click and hover functionality
-        const node = g.append("g")
-          .selectAll(".node")
-          .data(nodes)
-          .join("g")
-          .attr("class", "node")
-          .call(drag(sim))
-          .on("mouseover", handleMouseOver)
-          .on("mouseout", handleMouseOut)
-          .on("click", handleNodeClick);
+                // Rest of the D3 setup code remains unchanged
+                function setupD3() {
+                    if (!nodes.length || !links.length || !svgElement) return;
+                    const width = svgElement.clientWidth;
+                    const height = svgElement.clientHeight;
+                    d3.select(svgElement).selectAll("*").remove();
+                    const svg = d3.select(svgElement)
+                        .attr("width", width)
+                        .attr("height", height)
+                        .attr("viewBox", [0, 0, width, height]);
+                    const g = svg.append("g");
+                    const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-        // Add circles to nodes
-        node.append("circle")
-          .attr("r", 7)
-          .attr("fill", d => color(d.group))
-          .attr("stroke", "#fff")
-          .attr("stroke-width", 1.5);
+                    function doLinesIntersect(a1, a2, b1, b2) {
+                        const ua = ((b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x)) /
+                            ((b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y));
+                        const ub = ((a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x)) /
+                            ((b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y));
+                        return (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1);
+                    }
 
-        // Add text labels
-        const labels = node.append("text")
-          .attr("dx", 10)
-          .attr("dy", ".35em")
-          .text(d => d.id)
-          .attr("font-family", "Arial")
-          .attr("font-size", "11px")
-          .attr("fill", "#ddd")
-          .style("opacity", 1);
+                    function initializeNodePositions() {
+                        const centerX = width / 2;
+                        const centerY = height / 2;
+                        const radius = Math.min(width, height) * 0.4;
+                        const nodeConnections = {};
+                        nodes.forEach(node => {
+                            nodeConnections[node.id] = { node: node, connections: [] };
+                        });
+                        links.forEach(link => {
+                            nodeConnections[link.source.id || link.source].connections.push(link.target.id || link.target);
+                            nodeConnections[link.target.id || link.target].connections.push(link.source.id || link.source);
+                        });
+                        const sortedNodes = [...nodes].sort((a, b) => 
+                            nodeConnections[b.id].connections.length - nodeConnections[a.id].connections.length
+                        );
+                        sortedNodes.forEach((node, i) => {
+                            const angle = (i / sortedNodes.length) * 2 * Math.PI;
+                            const distance = radius * (0.5 + 0.5 * (nodeConnections[node.id].connections.length / 
+                                Math.max(...Object.values(nodeConnections).map(n => n.connections.length))));
+                            node.x = centerX + distance * Math.cos(angle);
+                            node.y = centerY + distance * Math.sin(angle);
+                        });
+                    }
 
-        // Function to handle node clicks (navigate to note page)
-        function handleNodeClick(event, d) {
-          const notePath = `notes/${encodeURIComponent(d.id)}.md`;
-          window.location.href = `md.html?file=${notePath}`;
-        }
+                    const edgeRepulsionForce = () => {
+                        const edges = links;
+                        let iterations = 2;
+                        function force(alpha) {
+                            if (alpha < 0.05) return;
+                            for (let i = 0; i < iterations; i++) {
+                                for (let e1 = 0; e1 < edges.length; e1++) {
+                                    for (let e2 = e1 + 1; e2 < edges.length; e2++) {
+                                        const edge1 = edges[e1];
+                                        const edge2 = edges[e2];
+                                        if (edge1.source.id === edge2.source.id || edge1.source.id === edge2.target.id ||
+                                            edge1.target.id === edge2.source.id || edge1.target.id === edge2.target.id) {
+                                            continue;
+                                        }
+                                        const isIntersecting = doLinesIntersect(
+                                            {x: edge1.source.x, y: edge1.source.y},
+                                            {x: edge1.target.x, y: edge1.target.y},
+                                            {x: edge2.source.x, y: edge2.source.y},
+                                            {x: edge2.target.x, y: edge2.target.y}
+                                        );
+                                        if (isIntersecting) {
+                                            const mx1 = (edge1.source.x + edge1.target.x) / 2;
+                                            const my1 = (edge1.source.y + edge1.target.y) / 2;
+                                            const mx2 = (edge2.source.x + edge2.target.x) / 2;
+                                            const my2 = (edge2.source.y + edge2.target.y) / 2;
+                                            const dx = mx2 - mx1;
+                                            const dy = my2 - my1;
+                                            const distance = Math.sqrt(dx * dx + dy * dy);
+                                            if (distance > 0) {
+                                                const repulsionStrength = alpha * 8.0 / distance;
+                                                const fx = dx * repulsionStrength;
+                                                const fy = dy * repulsionStrength;
+                                                edge1.source.x -= fx * 0.5;
+                                                edge1.source.y -= fy * 0.5;
+                                                edge1.target.x -= fx * 0.5;
+                                                edge1.target.y -= fy * 0.5;
+                                                edge2.source.x += fx * 0.5;
+                                                edge2.source.y += fy * 0.5;
+                                                edge2.target.x += fx * 0.5;
+                                                edge2.target.y += fy * 0.5;
+                                            }
+                                        }
+                                        const mx1 = (edge1.source.x + edge1.target.x) / 2;
+                                        const my1 = (edge1.source.y + edge1.target.y) / 2;
+                                        const mx2 = (edge2.source.x + edge2.target.x) / 2;
+                                        const my2 = (edge2.source.y + edge2.target.y) / 2;
+                                        const dx = mx2 - mx1;
+                                        const dy = my2 - my1;
+                                        const distance = Math.sqrt(dx * dx + dy * dy);
+                                        if (distance > 0 && distance < 120) {
+                                            const repulsionStrength = alpha * 1.2 * (120 - distance) / distance;
+                                            const fx = dx * repulsionStrength;
+                                            const fy = dy * repulsionStrength;
+                                            edge1.source.x -= fx * 0.35;
+                                            edge1.source.y -= fy * 0.35;
+                                            edge1.target.x -= fx * 0.35;
+                                            edge1.target.y -= fy * 0.35;
+                                            edge2.source.x += fx * 0.35;
+                                            edge2.source.y += fy * 0.35;
+                                            edge2.target.x += fx * 0.35;
+                                            edge2.target.y += fy * 0.35;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        force.iterations = function(i) { iterations = i; return force; };
+                        return force;
+                    };
 
-        // Function to handle mouse over (highlight node and connected edges)
-        function handleMouseOver(event, d) {
-          // Dim all nodes and links
-          d3.selectAll(".node circle").transition().duration(200)
-            .attr("opacity", 0.3);
-          d3.selectAll(".node text").transition().duration(200)
-            .attr("opacity", 0.3);
-          d3.selectAll(".link").transition().duration(200)
-            .attr("opacity", 0.1)
-            .attr("stroke", "#555");
-        
-          // Get connected nodes and links
-          const connectedNodeIds = new Set();
-          connectedNodeIds.add(d.id);
-        
-          const connectedLinks = links.filter(link => {
-            const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
-            const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+                    const nodeEdgeRepulsionForce = () => {
+                        let iterations = 2;
+                        const nodeRadius = 10;
+                        function force(alpha) {
+                            if (alpha < 0.05) return;
+                            for (let i = 0; i < iterations; i++) {
+                                nodes.forEach(node => {
+                                    links.forEach(link => {
+                                        if (node.id === link.source.id || node.id === link.target.id) return;
+                                        const x1 = link.source.x;
+                                        const y1 = link.source.y;
+                                        const x2 = link.target.x;
+                                        const y2 = link.target.y;
+                                        const lineVecX = x2 - x1;
+                                        const lineVecY = y2 - y1;
+                                        const lineLength = Math.sqrt(lineVecX * lineVecX + lineVecY * lineVecY);
+                                        if (lineLength < 0.1) return;
+                                        const lineNormX = lineVecX / lineLength;
+                                        const lineNormY = lineVecY / lineLength;
+                                        const nodeVecX = node.x - x1;
+                                        const nodeVecY = node.y - y1;
+                                        const projection = nodeVecX * lineNormX + nodeVecY * lineNormY;
+                                        const projectionClamped = Math.max(0, Math.min(lineLength, projection));
+                                        const closestX = x1 + projectionClamped * lineNormX;
+                                        const closestY = y1 + projectionClamped * lineNormY;
+                                        const distanceX = node.x - closestX;
+                                        const distanceY = node.y - closestY;
+                                        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                                        const minDistance = nodeRadius + 25;
+                                        if (distance > 0 && distance < minDistance) {
+                                            const repulsionDirX = distanceX / distance;
+                                            const repulsionDirY = distanceY / distance;
+                                            const repulsionStrength = alpha * 3.0 * (minDistance - distance) / distance;
+                                            node.x += repulsionDirX * repulsionStrength;
+                                            node.y += repulsionDirY * repulsionStrength;
+                                            const counterFactor = 0.2;
+                                            link.source.x -= repulsionDirX * repulsionStrength * counterFactor;
+                                            link.source.y -= repulsionDirY * repulsionStrength * counterFactor;
+                                            link.target.x -= repulsionDirX * repulsionStrength * counterFactor;
+                                            link.target.y -= repulsionDirY * repulsionStrength * counterFactor;
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                        force.iterations = function(i) { iterations = i; return force; };
+                        return force;
+                    };
 
-            if (sourceId === d.id || targetId === d.id) {
-              connectedNodeIds.add(sourceId);
-              connectedNodeIds.add(targetId);
-              return true;
-            }
-            return false;
-          });
+                    initializeNodePositions();
+                    for (let i = 0; i < 300; i++) {
+                        const alpha = 1 - (i / 300);
+                        edgeRepulsionForce()(alpha);
+                    }
 
-          // Highlight this node
-          d3.select(this).select("circle").transition().duration(200)
-            .attr("opacity", 1)
-            .attr("r", 10)
-            .attr("stroke", "#fff")
-            .attr("stroke-width", 2);
+                    const sim = d3.forceSimulation(nodes)
+                        .force("link", d3.forceLink(links).id(d => d.id).distance(160))
+                        .force("charge", d3.forceManyBody().strength(-450))
+                        .force("center", d3.forceCenter(width / 2, height / 2))
+                        .force("x", d3.forceX(width / 2).strength(0.025))
+                        .force("y", d3.forceY(height / 2).strength(0.025))
+                        .force("collision", d3.forceCollide().radius(45))
+                        .force("edgeRepulsion", edgeRepulsionForce().iterations(3))
+                        .force("nodeEdgeRepulsion", nodeEdgeRepulsionForce().iterations(2))
+                        .alphaMin(0.001)
+                        .alphaDecay(0.005)
+                        .velocityDecay(0.15);
 
-          d3.select(this).select("text").transition().duration(200)
-            .attr("opacity", 1)
-            .attr("font-weight", "bold");
+                    const link = g.append("g")
+                        .attr("stroke", "#777")
+                        .attr("stroke-opacity", 0.6)
+                        .selectAll("line")
+                        .data(links)
+                        .join("line")
+                        .attr("class", "link")
+                        .attr("stroke-width", d => Math.sqrt(d.value) * 1.5);
 
-          // Highlight connected nodes
-          node.filter(n => connectedNodeIds.has(n.id) && n.id !== d.id)
-            .select("circle").transition().duration(200)
-            .attr("opacity", 0.8)
-            .attr("r", 8);
+                    const node = g.append("g")
+                        .selectAll(".node")
+                        .data(nodes)
+                        .join("g")
+                        .attr("class", "node")
+                        .call(drag(sim))
+                        .on("mouseover", handleMouseOver)
+                        .on("mouseout", handleMouseOut)
+                        .on("click", handleNodeClick);
 
-          node.filter(n => connectedNodeIds.has(n.id) && n.id !== d.id)
-            .select("text").transition().duration(200)
-            .attr("opacity", 0.8);
+                    node.append("circle")
+                        .attr("r", 7)
+                        .attr("fill", d => color(d.group))
+                        .attr("stroke", "#fff")
+                        .attr("stroke-width", 1.5);
 
-          // Highlight connected links
-          link.filter(l => {
-            const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
-            const targetId = typeof l.target === 'object' ? l.target.id : l.target;
-            return sourceId === d.id || targetId === d.id;
-          })
-          .transition().duration(200)
-          .attr("opacity", 1)
-          .attr("stroke", "#aaa")
-          .attr("stroke-width", d => Math.sqrt(d.value) * 2);
-        }
+                    const labels = node.append("text")
+                        .attr("dx", 10)
+                        .attr("dy", ".35em")
+                        .text(d => d.id)
+                        .attr("font-family", "Inconsolata, monospace")
+                        .attr("font-size", "11px")
+                        .attr("fill", "#ddd")
+                        .style("opacity", 1);
 
-        // Function to handle mouse out (reset highlights)
-        function handleMouseOut() {
-          // Reset all nodes and links to original appearance
-          d3.selectAll(".node circle").transition().duration(200)
-            .attr("opacity", 1)
-            .attr("r", 7)
-            .attr("stroke", "#fff")
-            .attr("stroke-width", 1.5);
-        
-          d3.selectAll(".node text").transition().duration(200)
-            .attr("opacity", () => currentZoom < 0.6 ? Math.max(0, (currentZoom - 0.2) / 0.4) : 1)
-            .attr("font-weight", "normal");
-        
-          d3.selectAll(".link").transition().duration(200)
-            .attr("opacity", 0.6)
-            .attr("stroke", "#777")
-            .attr("stroke-width", d => Math.sqrt(d.value) * 1.5);
-        }
+                    function handleNodeClick(event, d) {
+                        const notePath = `notes/${encodeURIComponent(d.id)}.md`;
+                        window.location.href = `md.html?file=${notePath}`;
+                    }
 
-        // Add cursor style for better UX
-        node.style("cursor", "pointer");
+                    function handleMouseOver(event, d) {
+                        d3.selectAll(".node circle").transition().duration(200)
+                            .attr("opacity", 0.3);
+                        d3.selectAll(".node text").transition().duration(200)
+                            .attr("opacity", 0.3);
+                        d3.selectAll(".link").transition().duration(200)
+                            .attr("opacity", 0.1)
+                            .attr("stroke", "#555");
+                        const connectedNodeIds = new Set([d.id]);
+                        const connectedLinks = links.filter(link => {
+                            const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+                            const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+                            if (sourceId === d.id || targetId === d.id) {
+                                connectedNodeIds.add(sourceId);
+                                connectedNodeIds.add(targetId);
+                                return true;
+                            }
+                            return false;
+                        });
+                        d3.select(this).select("circle").transition().duration(200)
+                            .attr("opacity", 1)
+                            .attr("r", 10)
+                            .attr("stroke", "#fff")
+                            .attr("stroke-width", 2);
+                        d3.select(this).select("text").transition().duration(200)
+                            .attr("opacity", 1)
+                            .attr("font-weight", "bold");
+                        node.filter(n => connectedNodeIds.has(n.id) && n.id !== d.id)
+                            .select("circle").transition().duration(200)
+                            .attr("opacity", 0.8)
+                            .attr("r", 8);
+                        node.filter(n => connectedNodeIds.has(n.id) && n.id !== d.id)
+                            .select("text").transition().duration(200)
+                            .attr("opacity", 0.8);
+                        link.filter(l => {
+                            const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+                            const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+                            return sourceId === d.id || targetId === d.id;
+                        })
+                        .transition().duration(200)
+                        .attr("opacity", 1)
+                        .attr("stroke", "#aaa")
+                        .attr("stroke-width", d => Math.sqrt(d.value) * 2);
+                    }
 
-        // Add a tooltip to show that nodes are clickable
-        node.append("title")
-          .text(d => `Click to open ${d.id}`);
-        
-        // Add zoom functionality
-        const zoom = d3.zoom()
-          .scaleExtent([0.2, 5])
-          .on("zoom", (event) => {
-            g.attr("transform", event.transform);
-            currentZoom = event.transform.k;
-            zoomLevelElement.textContent = `Zoom level: ${currentZoom.toFixed(2)}x`;
-            
-            if (currentZoom < 0.6) {
-              const opacity = Math.max(0, (currentZoom - 0.2) / 0.4);
-              labels.style("opacity", opacity);
-            } else {
-              labels.style("opacity", 1);
-            }
-          });
-        
-        svg.call(zoom);
-        
-        // Update positions on tick
-        sim.on("tick", () => {
-          link
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y);
-        
-          node.attr("transform", d => `translate(${d.x},${d.y})`);
+                    function handleMouseOut() {
+                        d3.selectAll(".node circle").transition().duration(200)
+                            .attr("opacity", 1)
+                            .attr("r", 7)
+                            .attr("stroke", "#fff")
+                            .attr("stroke-width", 1.5);
+                        d3.selectAll(".node text").transition().duration(200)
+                            .attr("opacity", () => currentZoom < 0.6 ? Math.max(0, (currentZoom - 0.2) / 0.4) : 1)
+                            .attr("font-weight", "normal");
+                        d3.selectAll(".link").transition().duration(200)
+                            .attr("opacity", 0.6)
+                            .attr("stroke", "#777")
+                            .attr("stroke-width", d => Math.sqrt(d.value) * 1.5);
+                    }
+
+                    node.style("cursor", "pointer");
+                    node.append("title")
+                        .text(d => `Click to open ${d.id}`);
+
+                    const zoom = d3.zoom()
+                        .scaleExtent([0.2, 5])
+                        .on("zoom", (event) => {
+                            g.attr("transform", event.transform);
+                            currentZoom = event.transform.k;
+                            zoomLevelElement.textContent = `Zoom level: ${currentZoom.toFixed(2)}x`;
+                            if (currentZoom < 0.6) {
+                                const opacity = Math.max(0, (currentZoom - 0.2) / 0.4);
+                                labels.style("opacity", opacity);
+                            } else {
+                                labels.style("opacity", 1);
+                            }
+                        });
+
+                    svg.call(zoom);
+
+                    sim.on("tick", () => {
+                        link
+                            .attr("x1", d => d.source.x)
+                            .attr("y1", d => d.source.y)
+                            .attr("x2", d => d.target.x)
+                            .attr("y2", d => d.target.y);
+                        node.attr("transform", d => `translate(${d.x},${d.y})`);
+                    });
+
+                    simulation = sim;
+                    sim.alpha(1).restart();
+
+                    function drag(simulation) {
+                        function dragstarted(event, d) {
+                            if (!event.active) simulation.alphaTarget(0.3).restart();
+                            d.fx = d.x;
+                            d.fy = d.y;
+                        }
+                        function dragged(event, d) {
+                            d.fx = event.x;
+                            d.fy = event.y;
+                        }
+                        function dragended(event, d) {
+                            if (!event.active) simulation.alphaTarget(0);
+                            d.fx = null;
+                            d.fy = null;
+                            simulation.alpha(0.5).restart();
+                        }
+                        return d3.drag()
+                            .on("start", dragstarted)
+                            .on("drag", dragged)
+                            .on("end", dragended);
+                    }
+
+                    setTimeout(() => {
+                        let hasIntersections = true;
+                        let attempts = 0;
+                        while (hasIntersections && attempts < 10) {
+                            hasIntersections = false;
+                            attempts++;
+                            for (let e1 = 0; e1 < links.length; e1++) {
+                                for (let e2 = e1 + 1; e2 < links.length; e2++) {
+                                    const edge1 = links[e1];
+                                    const edge2 = links[e2];
+                                    if (edge1.source.id === edge2.source.id || edge1.source.id === edge2.target.id ||
+                                        edge1.target.id === edge2.source.id || edge1.target.id === edge2.target.id) {
+                                        continue;
+                                    }
+                                    if (doLinesIntersect(
+                                        {x: edge1.source.x, y: edge1.source.y},
+                                        {x: edge1.target.x, y: edge1.target.y},
+                                        {x: edge2.source.x, y: edge2.source.y},
+                                        {x: edge2.target.x, y: edge2.target.y}
+                                    )) {
+                                        hasIntersections = true;
+                                        const mx1 = (edge1.source.x + edge1.target.x) / 2;
+                                        const my1 = (edge1.source.y + edge1.target.y) / 2;
+                                        const mx2 = (edge2.source.x + edge2.target.x) / 2;
+                                        const my2 = (edge2.source.y + edge2.target.y) / 2;
+                                        const dx = mx2 - mx1;
+                                        const dy = my2 - my1;
+                                        const distance = Math.sqrt(dx * dx + dy * dy);
+                                        if (distance > 0) {
+                                            const repulsionStrength = 5.0 / distance;
+                                            const fx = dx * repulsionStrength;
+                                            const fy = dy * repulsionStrength;
+                                            edge1.source.x -= fx;
+                                            edge1.source.y -= fy;
+                                            edge1.target.x -= fx;
+                                            edge1.target.y -= fy;
+                                            edge2.source.x += fx;
+                                            edge2.source.y += fy;
+                                            edge2.target.x += fx;
+                                            edge2.target.y += fy;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        sim.alpha(0.3).restart();
+                    }, 1000);
+
+                    const interval = setInterval(() => {
+                        if (sim && sim.alpha() < 0.01) {
+                            sim.alpha(0.1).restart();
+                        }
+                    }, 5000);
+
+                    function handleResize() {
+                        if (simulation) {
+                            setupD3();
+                        }
+                    }
+
+                    let resizeTimer;
+                    window.addEventListener('resize', function() {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(handleResize, 250);
+                    });
+
+                    return () => {
+                        if (simulation) {
+                            simulation.stop();
+                        }
+                        clearInterval(interval);
+                    };
+                }
+
+                setupD3();
+            })();
         });
-        
-        simulation = sim;
-        
-        // Drag behavior
-        function drag(simulation) {
-          function dragstarted(event, d) {
-            if (!event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-          }
-        
-          function dragged(event, d) {
-            d.fx = event.x;
-            d.fy = event.y;
-          }
-        
-          function dragended(event, d) {
-            if (!event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-            simulation.alpha(0.5).restart();
-          }
-        
-          return d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended);
-        }
-        
-        // Run simulation at high heat initially for longer
-        sim.alpha(1).restart();
-        
-        // After initial layout stabilizes somewhat, check for and fix any remaining edge intersections
-        setTimeout(() => {
-          let hasIntersections = true;
-          let attempts = 0;
-          
-          while (hasIntersections && attempts < 10) {
-            hasIntersections = false;
-            attempts++;
-            
-            // Check all edge pairs
-            for (let e1 = 0; e1 < links.length; e1++) {
-              for (let e2 = e1 + 1; e2 < links.length; e2++) {
-                const edge1 = links[e1];
-                const edge2 = links[e2];
-                
-                // Skip if edges share a node
-                if (edge1.source.id === edge2.source.id || 
-                    edge1.source.id === edge2.target.id ||
-                    edge1.target.id === edge2.source.id ||
-                    edge1.target.id === edge2.target.id) {
-                  continue;
-                }
-                
-                // Check for intersection
-                if (doLinesIntersect(
-                  {x: edge1.source.x, y: edge1.source.y},
-                  {x: edge1.target.x, y: edge1.target.y},
-                  {x: edge2.source.x, y: edge2.source.y},
-                  {x: edge2.target.x, y: edge2.target.y}
-                )) {
-                  hasIntersections = true;
-                  
-                  // Push apart more aggressively
-                  const mx1 = (edge1.source.x + edge1.target.x) / 2;
-                  const my1 = (edge1.source.y + edge1.target.y) / 2;
-                  const mx2 = (edge2.source.x + edge2.target.x) / 2;
-                  const my2 = (edge2.source.y + edge2.target.y) / 2;
-                  
-                  const dx = mx2 - mx1;
-                  const dy = my2 - my1;
-                  const distance = Math.sqrt(dx * dx + dy * dy);
-                  
-                  if (distance > 0) {
-                    const repulsionStrength = 5.0 / distance;
-                    
-                    const fx = dx * repulsionStrength;
-                    const fy = dy * repulsionStrength;
-                    
-                    edge1.source.x -= fx;
-                    edge1.source.y -= fy;
-                    edge1.target.x -= fx;
-                    edge1.target.y -= fy;
-                    
-                    edge2.source.x += fx;
-                    edge2.source.y += fy;
-                    edge2.target.x += fx;
-                    edge2.target.y += fy;
-                  }
-                }
-              }
-            }
-          }
-          
-          // Update positions after fixing intersections
-          sim.alpha(0.3).restart();
-        }, 1000);
-        
-        // Periodically reheat simulation
-        const interval = setInterval(() => {
-          if (sim && sim.alpha() < 0.01) {
-            sim.alpha(0.1).restart();
-          }
-        }, 5000);
-        
-        // Handle window resize
-        function handleResize() {
-          if (simulation) {
-            setupD3();
-          }
-        }
-        
-        // Debounce resize handler
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(handleResize, 250);
-        });
-        
-        // Cleanup
-        return () => {
-          if (simulation) {
-            simulation.stop();
-          }
-          clearInterval(interval);
-        };
-      }
-      
-      // Initialize the graph
-      setupD3();
-    })()
-    });
-  </script>
+    </script>
 </body>
 </html>
