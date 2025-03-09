@@ -231,3 +231,157 @@ body {
 .wave-bar:nth-child(2) { animation-delay: 0.1s; }
 .wave-bar:nth-child(3) { animation-delay: 0.2s; }
 .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+
+
+/* Responsive Design for Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Allow scrolling on smaller screens */
+    }
+
+    #content {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        width: 95%;
+    }
+
+    #directories {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        padding-bottom: 100px; /* Add padding to prevent overlap with social section */
+    }
+
+    .directory img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .directory-name {
+        font-size: 0.9rem;
+    }
+
+    #social-section {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        flex-direction: row; /* Keep horizontal layout */
+        align-items: center;
+        gap: 1rem; /* Space between Goku and icons */
+    }
+
+    #goku {
+        height: 80px;
+        width: auto;
+        margin-bottom: 0; /* Reset margins to align properly */
+        margin-right: 0;
+        order: -1; /* Ensure Goku stays left of social links */
+    }
+
+    #social-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .audio-player-wrapper {
+        bottom: 15px;
+        left: 15px;
+    }
+
+    .audio-player {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+
+    .audio-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .wave-container {
+        height: 20px;
+    }
+
+    .wave-bar {
+        height: 12px;
+    }
+}
+
+/* Responsive Design for Phones (max-width: 480px) */
+@media (max-width: 480px) {
+    #content {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #directories {
+        gap: 1rem;
+        padding-bottom: 80px; /* Adjusted padding for smaller screens */
+    }
+
+    .directory img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .directory-name {
+        font-size: 0.8rem;
+    }
+
+    #social-section {
+        bottom: 10px;
+        right: 10px;
+        flex-direction: row; /* Keep horizontal layout */
+        gap: 0.8rem;
+    }
+
+    #goku {
+        height: 60px;
+        width: auto;
+        margin-bottom: 0;
+        margin-right: 0;
+        order: -1; /* Ensure Goku stays left of social links */
+    }
+
+    #social-links {
+        gap: 0.8rem;
+    }
+
+    .social-link {
+        width: 35px;
+        height: 35px;
+    }
+
+    .audio-player-wrapper {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .audio-player {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+    }
+
+    .audio-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .wave-container {
+        height: 18px;
+    }
+
+    .wave-bar {
+        height: 10px;
+    }
+}
