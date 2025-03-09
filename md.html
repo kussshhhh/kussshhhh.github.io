@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Viewer</title>
+    <title>Notes</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
@@ -189,7 +189,7 @@
                     });
                     const h1 = document.querySelector('h1');
                     if (h1) {
-                        document.title = h1.textContent + ' - Notes';
+                        document.title = 'Notes/' + h1.textContent;
                     } else {
                         const fileName = markdownFile.split('/').pop().replace('.md', '');
                         document.title = fileName + ' - Notes';
