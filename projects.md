@@ -1,4 +1,6 @@
-#### here are some of my projects. 
+#### here are some of my projects. (click on the name of the project for site/github link)
+- [gpt2 finetune](https://github.com/kussshhhh/ml/tree/main/mid_generation_func_calling) : finetuned gpt2 for function calling which makes it pretty good at math for certain operations
+demo video and more explanation here: https://x.com/kucchi09/status/1936095566548664455
 - [nodes](https://nodes-five.vercel.app/) : it generates a roadmap to learn the basics of any topic. 
 	- click on a node to expand it. 
 	- ask it questions related to that subtopic.
