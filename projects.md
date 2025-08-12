@@ -1,6 +1,8 @@
 #### here are some of my projects. (click on the name of the project for site/github link)
-- [gyatt_form](https://github.com/kussshhhh/gyatt_form) : demo link https://x.com/kucchi09/status/1951649803084996645
-- [llama3.2 1b from scratch](https://github.com/kussshhhh/llama3-from-scratch) : implemented llama 3.2 1b model from scratch
+- [gyatt_form](https://github.com/kussshhhh/gyatt_form) : (WIP) a software that checks your workout forms(pushups, squats, etc) and counts your reps and corrects your form. 
+
+demo link https://x.com/kucchi09/status/1951649803084996645
+- [llama3.2 1b from scratch](https://github.com/kussshhhh/llama3-from-scratch) : implemented llama 3.2 1b model from scratch so basically most matrix muliplications except the tokenization. (inspired by naklecha in which he did it for the llama 3 8b model) 
 - [gpt2 finetune](https://github.com/kussshhhh/ml/tree/main/mid_generation_func_calling) : finetuned gpt2 for function calling which makes it pretty good at math for certain operations
 demo video and more explanation here: https://x.com/kucchi09/status/1936095566548664455
 - [nodes](https://nodes-five.vercel.app/) : it generates a roadmap to learn the basics of any topic. 
