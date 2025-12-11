@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="notes.css">
     <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <style>
         /* Obsidian-like styling with Inconsolata font */
@@ -26,8 +28,12 @@
             overflow-y: auto;
         }
 
-        .markdown-content h1, .markdown-content h2, .markdown-content h3,
-        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+        .markdown-content h1,
+        .markdown-content h2,
+        .markdown-content h3,
+        .markdown-content h4,
+        .markdown-content h5,
+        .markdown-content h6 {
             color: #a8d8da;
             font-weight: 600;
             margin-top: 24px;
@@ -36,19 +42,43 @@
             font-family: 'Inconsolata', monospace;
         }
 
-        .markdown-content h1 { font-size: 2em; }
-        .markdown-content h2 { font-size: 1.7em; }
-        .markdown-content h3 { font-size: 1.4em; }
-        .markdown-content h4 { font-size: 1.2em; }
-        .markdown-content p { margin: 0 0 1em 0; font-size: 18px; }
-        .markdown-content a { color: #80deea; text-decoration: none; }
-        .markdown-content a:hover { text-decoration: underline; }
+        .markdown-content h1 {
+            font-size: 2em;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.7em;
+        }
+
+        .markdown-content h3 {
+            font-size: 1.4em;
+        }
+
+        .markdown-content h4 {
+            font-size: 1.2em;
+        }
+
+        .markdown-content p {
+            margin: 0 0 1em 0;
+            font-size: 18px;
+        }
+
+        .markdown-content a {
+            color: #80deea;
+            text-decoration: none;
+        }
+
+        .markdown-content a:hover {
+            text-decoration: underline;
+        }
+
         .markdown-content blockquote {
             border-left: 4px solid #4d5666;
             padding-left: 16px;
             margin: 0 0 16px 0;
             color: #b4b4b4;
         }
+
         .markdown-content code {
             font-family: 'Inconsolata', monospace;
             background-color: rgba(40, 44, 52, 0.5);
@@ -56,6 +86,7 @@
             border-radius: 3px;
             font-size: 0.95em;
         }
+
         .markdown-content pre {
             background-color: #282c34;
             padding: 16px;
@@ -63,48 +94,71 @@
             overflow-x: auto;
             margin: 0 0 16px 0;
         }
+
         .markdown-content pre code {
             background-color: transparent;
             padding: 0;
             font-size: 0.95em;
             line-height: 1.5;
         }
-        .markdown-content ul, .markdown-content ol {
+
+        .markdown-content ul,
+        .markdown-content ol {
             padding-left: 24px;
             margin: 0 0 16px 0;
         }
-        .markdown-content li { margin-bottom: 4px; font-size: 18px; }
-        .markdown-content li > ul, .markdown-content li > ol {
+
+        .markdown-content li {
+            margin-bottom: 4px;
+            font-size: 18px;
+        }
+
+        .markdown-content li>ul,
+        .markdown-content li>ol {
             margin-top: 4px;
             margin-bottom: 0;
         }
+
         .markdown-content table {
             border-collapse: collapse;
             width: 100%;
             margin: 0 0 16px 0;
         }
-        .markdown-content table th, .markdown-content table td {
+
+        .markdown-content table th,
+        .markdown-content table td {
             border: 1px solid #4d5666;
             padding: 8px 12px;
             font-size: 18px;
         }
+
         .markdown-content table th {
             background-color: rgba(40, 44, 52, 0.5);
             font-weight: 600;
         }
+
         .markdown-content img {
             max-width: 100%;
             border-radius: 4px;
             margin: 8px 0;
         }
+
         .markdown-content hr {
             height: 1px;
             background-color: #4d5666;
             border: none;
             margin: 24px 0;
         }
-        .internal-link { color: #a277ff; text-decoration: none; }
-        .internal-link:hover { text-decoration: underline; }
+
+        .internal-link {
+            color: #a277ff;
+            text-decoration: none;
+        }
+
+        .internal-link:hover {
+            text-decoration: underline;
+        }
+
         .tag {
             display: inline-block;
             color: #56c2c6;
@@ -114,12 +168,14 @@
             font-size: 0.95em;
             text-decoration: none;
         }
+
         mark {
             background-color: rgba(255, 210, 70, 0.3);
             color: #ffd246;
             padding: 0 2px;
             border-radius: 2px;
         }
+
         .callout {
             border-radius: 4px;
             margin: 16px 0;
@@ -127,10 +183,27 @@
             border-left: 4px solid;
             background-color: rgba(120, 120, 120, 0.1);
         }
-        .callout-info { border-color: #61afef; background-color: rgba(97, 175, 239, 0.1); }
-        .callout-warn { border-color: #e5c07b; background-color: rgba(229, 192, 123, 0.1); }
-        .callout-error { border-color: #e06c75; background-color: rgba(224, 108, 117, 0.1); }
-        .callout-success { border-color: #98c379; background-color: rgba(152, 195, 121, 0.1); }
+
+        .callout-info {
+            border-color: #61afef;
+            background-color: rgba(97, 175, 239, 0.1);
+        }
+
+        .callout-warn {
+            border-color: #e5c07b;
+            background-color: rgba(229, 192, 123, 0.1);
+        }
+
+        .callout-error {
+            border-color: #e06c75;
+            background-color: rgba(224, 108, 117, 0.1);
+        }
+
+        .callout-success {
+            border-color: #98c379;
+            background-color: rgba(152, 195, 121, 0.1);
+        }
+
         .loading {
             text-align: center;
             padding: 32px;
@@ -140,6 +213,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-left">
@@ -148,7 +222,7 @@
         <div class="nav-right">
             <a href="projects.html" class="nav-link">Projects</a>
             <a href="notes.html" class="nav-link">Notes</a>
-            <!-- <a href="about.html" class="nav-link">About</a> -->
+            <a href="blog.html" class="nav-link">Blog</a>
         </div>
     </nav>
     <div class="container">
@@ -157,7 +231,7 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             fetch('projects.md') // Statically load projects.md
                 .then(response => {
                     if (!response.ok) throw new Error('Failed to load projects.md');
@@ -168,7 +242,7 @@
                         breaks: true,
                         gfm: true,
                         headerIds: true,
-                        highlight: function(code, lang) {
+                        highlight: function (code, lang) {
                             if (lang && hljs.getLanguage(lang)) {
                                 return hljs.highlight(code, { language: lang }).value;
                             }
@@ -190,19 +264,19 @@
                 })
                 .catch(error => {
                     console.error('Error loading projects.md:', error);
-                    document.getElementById('markdown-content').innerHTML = 
+                    document.getElementById('markdown-content').innerHTML =
                         `<p>Error loading projects: ${error.message}</p>`;
                 });
 
             function processObsidianSyntax(text) {
-                text = text.replace(/\[\[(.*?)\]\]/g, function(match, p1) {
+                text = text.replace(/\[\[(.*?)\]\]/g, function (match, p1) {
                     const parts = p1.split('|');
                     const link = parts[0].trim();
                     const label = parts.length > 1 ? parts[1].trim() : link;
                     return `<a href="md.html?file=notes/${encodeURIComponent(link)}.md" class="internal-link">${label}</a>`;
                 });
                 text = text.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g, '$1<span class="tag">#$2</span>');
-                text = text.replace(/!\[\[(.*?)\]\]/g, function(match, p1) {
+                text = text.replace(/!\[\[(.*?)\]\]/g, function (match, p1) {
                     const parts = p1.split('|');
                     const link = parts[0].trim();
                     const alt = parts.length > 1 ? parts[1].trim() : link;
@@ -213,7 +287,7 @@
                     }
                 });
                 text = text.replace(/==(.*?)==/g, '<mark>$1</mark>');
-                text = text.replace(/>\s*\[!(\w+)\]([^\n]*(?:\n(?!\n)(?!>\s*\[!).*)*)(?=\n|$)/g, function(match, type, content) {
+                text = text.replace(/>\s*\[!(\w+)\]([^\n]*(?:\n(?!\n)(?!>\s*\[!).*)*)(?=\n|$)/g, function (match, type, content) {
                     return `<div class="callout callout-${type.toLowerCase()}">${content}</div>`;
                 });
                 return text;
@@ -221,4 +295,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Kush Bhardwaj</title>
+    <meta name="description" content="Daily thoughts, ideas, and adventures from Kush Bhardwaj">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="blog.css?v=7">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="notes.html" class="nav-link">Notes</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+        </div>
+    </nav>
+
+    <main class="blog-container">
+        <header class="currently-section">
+            <h2 class="currently-heading">currently understanding ml systems and algos of all kinds</h2>
+        </header>
+
+        <div id="blog-content">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading entries...</p>
+            </div>
+        </div>
+
+        <div id="last-updated" class="last-updated" style="display: none;"></div>
+    </main>
+
+    <!-- Image Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Enlarged image">
+    </div>
+
+    <script>
+        // Fetch and render blog entries
+        async function loadBlog() {
+            const container = document.getElementById('blog-content');
+            const lastUpdatedEl = document.getElementById('last-updated');
+
+            try {
+                const response = await fetch('blog_data.json');
+
+                if (!response.ok) {
+                    throw new Error('Blog data not found');
+                }
+
+                const data = await response.json();
+
+                if (!data.entries || data.entries.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <h2>No entries yet</h2>
+                            <p>Check back soon!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Render entries
+                container.innerHTML = data.entries.map(entry => `
+                    <article class="blog-entry">
+                        <div class="entry-date">${escapeHtml(entry.date)}</div>
+                        <div class="entry-content">
+                            ${renderContent(entry.content)}
+                        </div>
+                    </article>
+                `).join('');
+
+                // Show last updated
+                if (data.last_updated) {
+                    const date = new Date(data.last_updated);
+                    lastUpdatedEl.textContent = `Last updated: ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+                    lastUpdatedEl.style.display = 'block';
+                }
+
+                // Add click handlers to images
+                document.querySelectorAll('.entry-content img').forEach(img => {
+                    img.addEventListener('click', () => openLightbox(img.src));
+                });
+
+            } catch (error) {
+                console.error('Error loading blog:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>Coming soon</h2>
+                        <p>Blog entries will appear here once configured.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Render content blocks
+        function renderContent(content) {
+            if (!content || !Array.isArray(content)) return '';
+
+            return content.map(block => {
+                if (block.type === 'text') {
+                    // Convert markdown-style formatting to HTML
+                    let html = escapeHtml(block.content);
+
+                    // Bold: **text**
+                    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+                    // Italic: *text*
+                    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+                    // Links: [text](url)
+                    html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+                    return `<p>${html}</p>`;
+                } else if (block.type === 'image') {
+                    return `<img src="${escapeHtml(block.src)}" alt="Blog image" loading="lazy">`;
+                }
+                return '';
+            }).join('');
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Lightbox functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Load blog on page load
+        loadBlog();
+    </script>
+</body>
+
+</html>

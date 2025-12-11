@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <script src="notesData.js"></script>
     <script src="parseNotes.js"></script>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-left">
@@ -20,7 +22,7 @@
         <div class="nav-right">
             <a href="projects.html" class="nav-link">Projects</a>
             <a href="notes.html" class="nav-link">Notes</a>
-            <!-- <a href="about.html" class="nav-link">About</a> -->
+            <a href="blog.html" class="nav-link">Blog</a>
         </div>
     </nav>
     <div class="container">
@@ -31,25 +33,25 @@
         <div class="footer" id="zoom-level">Zoom level: 1.00x</div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            (async function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            (async function () {
                 const svgElement = document.getElementById('graph-svg');
                 const zoomLevelElement = document.getElementById('zoom-level');
                 let currentZoom = 1;
                 let simulation = null;
-                
+
                 let nodes = [
                     { id: "Future Plans", group: 15 },
                     { id: "Quotes", group: 16 },
                     { id: "Contacts", group: 16 }
                 ];
                 let links = [];
-                
+
                 try {
                     console.log("Attempting to load notes data...");
                     const notesData = await getNotesData();
                     console.log("Notes data loaded:", notesData);
-                    
+
                     if (notesData && notesData.nodes && notesData.links) {
                         nodes = notesData.nodes.length ? notesData.nodes : nodes;
                         links = notesData.links.length ? notesData.links : links;
@@ -94,12 +96,12 @@
                             nodeConnections[link.source.id || link.source].connections.push(link.target.id || link.target);
                             nodeConnections[link.target.id || link.target].connections.push(link.source.id || link.source);
                         });
-                        const sortedNodes = [...nodes].sort((a, b) => 
+                        const sortedNodes = [...nodes].sort((a, b) =>
                             nodeConnections[b.id].connections.length - nodeConnections[a.id].connections.length
                         );
                         sortedNodes.forEach((node, i) => {
                             const angle = (i / sortedNodes.length) * 2 * Math.PI;
-                            const distance = radius * (0.5 + 0.5 * (nodeConnections[node.id].connections.length / 
+                            const distance = radius * (0.5 + 0.5 * (nodeConnections[node.id].connections.length /
                                 Math.max(...Object.values(nodeConnections).map(n => n.connections.length))));
                             node.x = centerX + distance * Math.cos(angle);
                             node.y = centerY + distance * Math.sin(angle);
@@ -121,10 +123,10 @@
                                             continue;
                                         }
                                         const isIntersecting = doLinesIntersect(
-                                            {x: edge1.source.x, y: edge1.source.y},
-                                            {x: edge1.target.x, y: edge1.target.y},
-                                            {x: edge2.source.x, y: edge2.source.y},
-                                            {x: edge2.target.x, y: edge2.target.y}
+                                            { x: edge1.source.x, y: edge1.source.y },
+                                            { x: edge1.target.x, y: edge1.target.y },
+                                            { x: edge2.source.x, y: edge2.source.y },
+                                            { x: edge2.target.x, y: edge2.target.y }
                                         );
                                         if (isIntersecting) {
                                             const mx1 = (edge1.source.x + edge1.target.x) / 2;
@@ -172,7 +174,7 @@
                                 }
                             }
                         }
-                        force.iterations = function(i) { iterations = i; return force; };
+                        force.iterations = function (i) { iterations = i; return force; };
                         return force;
                     };
 
@@ -221,7 +223,7 @@
                                 });
                             }
                         }
-                        force.iterations = function(i) { iterations = i; return force; };
+                        force.iterations = function (i) { iterations = i; return force; };
                         return force;
                     };
 
@@ -322,10 +324,10 @@
                             const targetId = typeof l.target === 'object' ? l.target.id : l.target;
                             return sourceId === d.id || targetId === d.id;
                         })
-                        .transition().duration(200)
-                        .attr("opacity", 1)
-                        .attr("stroke", "#aaa")
-                        .attr("stroke-width", d => Math.sqrt(d.value) * 2);
+                            .transition().duration(200)
+                            .attr("opacity", 1)
+                            .attr("stroke", "#aaa")
+                            .attr("stroke-width", d => Math.sqrt(d.value) * 2);
                     }
 
                     function handleMouseOut() {
@@ -412,10 +414,10 @@
                                         continue;
                                     }
                                     if (doLinesIntersect(
-                                        {x: edge1.source.x, y: edge1.source.y},
-                                        {x: edge1.target.x, y: edge1.target.y},
-                                        {x: edge2.source.x, y: edge2.source.y},
-                                        {x: edge2.target.x, y: edge2.target.y}
+                                        { x: edge1.source.x, y: edge1.source.y },
+                                        { x: edge1.target.x, y: edge1.target.y },
+                                        { x: edge2.source.x, y: edge2.source.y },
+                                        { x: edge2.target.x, y: edge2.target.y }
                                     )) {
                                         hasIntersections = true;
                                         const mx1 = (edge1.source.x + edge1.target.x) / 2;
@@ -458,7 +460,7 @@
                     }
 
                     let resizeTimer;
-                    window.addEventListener('resize', function() {
+                    window.addEventListener('resize', function () {
                         clearTimeout(resizeTimer);
                         resizeTimer = setTimeout(handleResize, 250);
                     });
@@ -476,4 +478,5 @@
         });
     </script>
 </body>
+
 </html>
