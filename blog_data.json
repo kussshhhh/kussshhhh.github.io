@@ -1,9 +1,43 @@
 {
   "entries": [
     {
+      "date": "11 dec, 2025",
+      "date_slug": "11_dec_2025",
+      "timestamp": "2025-12-11T15:14:07.615938",
+      "content": [
+        {
+          "type": "text",
+          "content": "anyways what imma do now today is study algos and implement them this is the winter imma consume more info than anyone ever and imma absorb it also :D"
+        },
+        {
+          "type": "text",
+          "content": "so yeah first thing i was thinking is can we train neural nets to predict markets? idk will have to find out :D"
+        },
+        {
+          "type": "text",
+          "content": "chasing an aesthetic that is particularly mine ;D"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/11_dec_2025_kix.waps.png"
+        }
+      ]
+    },
+    {
+      "date": "10 dec, 2025",
+      "date_slug": "10_dec_2025",
+      "timestamp": "2025-12-11T15:14:07.615929",
+      "content": [
+        {
+          "type": "text",
+          "content": "rejected a semidecent intern offer cause i didnt feel like doing it i could tell that this was not my path :D"
+        }
+      ]
+    },
+    {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-11T14:54:38.398092",
+      "timestamp": "2025-12-11T15:14:07.615890",
       "content": [
         {
           "type": "text",
@@ -26,41 +60,7 @@
           "content": "the greatest thing you ever worked on should still be yourself i think i should move in a way that the byproduct of that existence are peak things"
         }
       ]
-    },
-    {
-      "date": "10 dec, 2025",
-      "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-11T14:54:38.398154",
-      "content": [
-        {
-          "type": "text",
-          "content": "rejected a semidecent intern offer cause i didnt feel like doing it i could tell that this was not my path :D"
-        }
-      ]
-    },
-    {
-      "date": "11 dec, 2025",
-      "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-11T14:54:38.398164",
-      "content": [
-        {
-          "type": "text",
-          "content": "anyways what imma do now today is study algos and implement them this is the winter imma consume more info than anyone ever and imma absorb it also :D"
-        },
-        {
-          "type": "text",
-          "content": "so yeah first thing i was thinking is can we train neural nets to predict markets? idk will have to find out :D"
-        },
-        {
-          "type": "text",
-          "content": "chasing an aesthetic that is particularly mine ;D"
-        },
-        {
-          "type": "image",
-          "src": "images/blog/11_dec_2025_kix.waps.png"
-        }
-      ]
     }
   ],
-  "last_updated": "2025-12-11T14:54:39.536544"
+  "last_updated": "2025-12-11T15:14:07.637061"
 }
