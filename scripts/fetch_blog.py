@@ -275,12 +275,37 @@ def main():
     # Sort entries by date (newest first)
     # Try to parse dates for sorting
     def parse_date(date_str):
-        for fmt in ["%B %d, %Y", "%b %d, %Y", "%d %B %Y", "%d %b %Y", 
-                    "%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y"]:
+        # Normalize the date string - handle case insensitivity
+        normalized = date_str.strip()
+        
+        # Try various formats
+        formats = [
+            "%d %b, %Y",    # 9 dec, 2025
+            "%d %B, %Y",    # 9 december, 2025
+            "%B %d, %Y",    # December 9, 2025
+            "%b %d, %Y",    # Dec 9, 2025
+            "%d %B %Y",     # 9 December 2025
+            "%d %b %Y",     # 9 Dec 2025
+            "%Y-%m-%d",     # 2025-12-09
+            "%d/%m/%Y",     # 09/12/2025
+            "%m/%d/%Y",     # 12/09/2025
+        ]
+        
+        for fmt in formats:
             try:
-                return datetime.strptime(date_str, fmt)
+                # Try with title case (Dec) and lower case (dec)
+                return datetime.strptime(normalized.title(), fmt)
             except ValueError:
-                continue
+                try:
+                    return datetime.strptime(normalized, fmt)
+                except ValueError:
+                    continue
+        
+        # Fallback: try to extract just the day number for basic ordering
+        day_match = re.search(r'(\d{1,2})', date_str)
+        if day_match:
+            return datetime(2025, 12, int(day_match.group(1)))
+        
         return datetime.min
     
     entries.sort(key=lambda x: parse_date(x["date"]), reverse=True)
