@@ -1,9 +1,28 @@
 {
   "entries": [
     {
+      "date": "12 dec, 2025",
+      "date_slug": "12_dec_2025",
+      "timestamp": "2025-12-12T05:13:51.866398",
+      "content": [
+        {
+          "type": "text",
+          "content": "First i will solve 2 aoc problems cause gotta catch up after that will do some research on nn algos for market prediction, i do have a few repos that i will see to see whats up one of them is [https://github.com/Sudhanshu-S3/Live-Strategy-Backtester-II](https://github.com/Sudhanshu-S3/Live-Strategy-Backtester-II)  from this i wanna see how to interface with teh market to get data and will take a look at the design of ts project."
+        },
+        {
+          "type": "text",
+          "content": "And then need to study some for my finals :(  anyways for my decisions to make sense imma have to overwork everyone else lessgetoit :D"
+        },
+        {
+          "type": "text",
+          "content": "There should be ts innate sense of that im getting better yk i need to move fast real fast"
+        }
+      ]
+    },
+    {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-12T04:26:08.376746",
+      "timestamp": "2025-12-12T05:13:51.866297",
       "content": [
         {
           "type": "text",
@@ -26,7 +45,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-12T04:26:08.376736",
+      "timestamp": "2025-12-12T05:13:51.866285",
       "content": [
         {
           "type": "text",
@@ -37,7 +56,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-12T04:26:08.376700",
+      "timestamp": "2025-12-12T05:13:51.866232",
       "content": [
         {
           "type": "text",
@@ -62,5 +81,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-12T04:26:08.391035"
+  "last_updated": "2025-12-12T05:13:51.879505"
 }
