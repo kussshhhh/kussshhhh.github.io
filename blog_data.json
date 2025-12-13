@@ -1,9 +1,32 @@
 {
   "entries": [
     {
+      "date": "13 dec, 2025",
+      "date_slug": "13_dec_2025",
+      "timestamp": "2025-12-13T12:20:35.481074",
+      "content": [
+        {
+          "type": "text",
+          "content": "Also just saw this video"
+        },
+        {
+          "type": "text",
+          "content": "[https://x.com/KrishRShah/status/1999576120878883287?s=20](https://x.com/KrishRShah/status/1999576120878883287?s=20)"
+        },
+        {
+          "type": "text",
+          "content": "This is so cool ohmygod also this guy iirc also built weighing machine but using trackpad so goated yep i was right here it is [https://x.com/KrishRShah/status/1947186835811193330?s=20](https://x.com/KrishRShah/status/1947186835811193330?s=20)"
+        },
+        {
+          "type": "text",
+          "content": "I found it very cool when i saw this but now that i have a mac im actually gonna try both of these out :D"
+        }
+      ]
+    },
+    {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-13T11:09:05.121536",
+      "timestamp": "2025-12-13T12:20:35.481046",
       "content": [
         {
           "type": "text",
@@ -16,13 +39,29 @@
         {
           "type": "text",
           "content": "There should be ts innate sense of that im getting better yk i need to move fast real fast"
+        },
+        {
+          "type": "text",
+          "content": "Oh btw update: i did 3 aoc and yes did study the repo too more on this later"
+        },
+        {
+          "type": "text",
+          "content": "Also i might go on a lil hiatus due to finals but yeah will try to keep updating"
+        },
+        {
+          "type": "text",
+          "content": "One thing i wanna do in my life is iceskating i have a feeling once i get the hang of it ill be really good at it :D"
+        },
+        {
+          "type": "text",
+          "content": "I need to do more"
         }
       ]
     },
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-13T11:09:05.121439",
+      "timestamp": "2025-12-13T12:20:35.480926",
       "content": [
         {
           "type": "text",
@@ -45,7 +84,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-13T11:09:05.121430",
+      "timestamp": "2025-12-13T12:20:35.480917",
       "content": [
         {
           "type": "text",
@@ -56,7 +95,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-13T11:09:05.121394",
+      "timestamp": "2025-12-13T12:20:35.480883",
       "content": [
         {
           "type": "text",
@@ -81,5 +120,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-13T11:09:05.136369"
+  "last_updated": "2025-12-13T12:20:35.486045"
 }
