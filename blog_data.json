@@ -1,9 +1,32 @@
 {
   "entries": [
     {
+      "date": "14 dec, 2025",
+      "date_slug": "14_dec_2025",
+      "timestamp": "2025-12-14T06:17:24.059074",
+      "content": [
+        {
+          "type": "text",
+          "content": "I tweeted about ts project that i worked on a few weeks ago i think i should also include it in the projects section here, weirdly thanks to ts project i now know quite a lot about resnets :D"
+        },
+        {
+          "type": "text",
+          "content": "[https://x.com/kucchi09/status/1999856795213582694](https://x.com/kucchi09/status/1999856795213582694)"
+        },
+        {
+          "type": "text",
+          "content": "Ts  was a particularly good experiment i need to do more such things"
+        },
+        {
+          "type": "text",
+          "content": "Also i had ts idea about flying orbs that i need to build with oomf need to research more on that and also find a way to moneymaxx cause these things require money. I want money to be disconnected from my work tbh anyways gotta go ciao"
+        }
+      ]
+    },
+    {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-14T05:12:33.967696",
+      "timestamp": "2025-12-14T06:17:24.059058",
       "content": [
         {
           "type": "text",
@@ -26,7 +49,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-14T05:12:33.967668",
+      "timestamp": "2025-12-14T06:17:24.059030",
       "content": [
         {
           "type": "text",
@@ -61,7 +84,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-14T05:12:33.967576",
+      "timestamp": "2025-12-14T06:17:24.058934",
       "content": [
         {
           "type": "text",
@@ -84,7 +107,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-14T05:12:33.967567",
+      "timestamp": "2025-12-14T06:17:24.058924",
       "content": [
         {
           "type": "text",
@@ -95,7 +118,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-14T05:12:33.967533",
+      "timestamp": "2025-12-14T06:17:24.058890",
       "content": [
         {
           "type": "text",
@@ -120,5 +143,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-14T05:12:33.989204"
+  "last_updated": "2025-12-14T06:17:24.078647"
 }
