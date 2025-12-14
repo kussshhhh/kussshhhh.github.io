@@ -3,7 +3,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-14T12:20:34.592332",
+      "timestamp": "2025-12-14T13:21:01.067428",
       "content": [
         {
           "type": "text",
@@ -24,13 +24,25 @@
         {
           "type": "text",
           "content": "Also worst case scenario if i dont get any direction till jan first week then imma jsut reach cm on cf till mid late of 2026 which is still a colossal W so yeah i win either way its just a matter of how big :D"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/14_dec_2025_kix.vjgg.png"
+        },
+        {
+          "type": "text",
+          "content": "Also random link [https://tokens-for-thoughts.notion.site/post-training-101](https://tokens-for-thoughts.notion.site/post-training-101)"
+        },
+        {
+          "type": "text",
+          "content": "Ill read ts eventually heh"
         }
       ]
     },
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-14T12:20:34.592316",
+      "timestamp": "2025-12-14T13:21:01.067412",
       "content": [
         {
           "type": "text",
@@ -53,7 +65,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-14T12:20:34.592289",
+      "timestamp": "2025-12-14T13:21:01.067384",
       "content": [
         {
           "type": "text",
@@ -88,7 +100,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-14T12:20:34.592192",
+      "timestamp": "2025-12-14T13:21:01.067282",
       "content": [
         {
           "type": "text",
@@ -111,7 +123,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-14T12:20:34.592183",
+      "timestamp": "2025-12-14T13:21:01.067272",
       "content": [
         {
           "type": "text",
@@ -122,7 +134,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-14T12:20:34.592147",
+      "timestamp": "2025-12-14T13:21:01.067232",
       "content": [
         {
           "type": "text",
@@ -147,5 +159,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-14T12:20:35.059991"
+  "last_updated": "2025-12-14T13:21:01.594046"
 }
