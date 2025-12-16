@@ -3,7 +3,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249376",
+      "timestamp": "2025-12-16T17:17:00.249536",
       "content": [
         {
           "type": "text",
@@ -56,13 +56,45 @@
         {
           "type": "text",
           "content": "each run tthrough all of data is called an epoch"
+        },
+        {
+          "type": "text",
+          "content": "I want to write on my notebook sort of something not only write but also draw and have llms give only signal im not sure if it\u2019ll be signal"
+        },
+        {
+          "type": "text",
+          "content": "the way i wanna interact with llms hasnt been built yet its just too limiting man my speed of thought is much greater but even if i come to its level i dont wanna act like a manager as well as a translator and text just isnt it why cant it draw with me"
+        },
+        {
+          "type": "text",
+          "content": "im not sure it can even be done with llms maybe smth new but i see smth and the closest approximation we have rn is claude which btw is also very very very far i see smth but im not sure how to make it its very very hard but i do see it"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/15_dec_2025_kix.gyt7.png"
+        },
+        {
+          "type": "text",
+          "content": "one usecase forexample is imagine a paperliek tablet liek this which has ts texture where you can just draw diagrams could be anything could be system design could be cad adjacent could be just plain old drawings and then ai(not sure llms) can help with it and there's an interface 3d printer adjacent that this can interface with to build whatever you want ykwim things could be much much better and tightknit than it is now we are far from where it could feel magical and of actual utility"
+        },
+        {
+          "type": "text",
+          "content": "[](https://x.com/kucchi09/status/2000967130423157009/photo/1)"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/15_dec_2025_kix.hocb.png"
+        },
+        {
+          "type": "text",
+          "content": "[](https://x.com/kucchi09/status/2000964418629521814/photo/1)"
         }
       ]
     },
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249316",
+      "timestamp": "2025-12-16T17:17:00.249473",
       "content": [
         {
           "type": "text",
@@ -113,7 +145,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249300",
+      "timestamp": "2025-12-16T17:17:00.249458",
       "content": [
         {
           "type": "text",
@@ -136,7 +168,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249262",
+      "timestamp": "2025-12-16T17:17:00.249429",
       "content": [
         {
           "type": "text",
@@ -171,7 +203,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249165",
+      "timestamp": "2025-12-16T17:17:00.249331",
       "content": [
         {
           "type": "text",
@@ -194,7 +226,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249156",
+      "timestamp": "2025-12-16T17:17:00.249323",
       "content": [
         {
           "type": "text",
@@ -205,7 +237,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-16T16:16:25.249121",
+      "timestamp": "2025-12-16T17:17:00.249287",
       "content": [
         {
           "type": "text",
@@ -230,5 +262,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-16T16:16:25.314916"
+  "last_updated": "2025-12-16T17:17:00.755976"
 }
