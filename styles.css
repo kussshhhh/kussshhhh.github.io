@@ -69,9 +69,8 @@ body {
     pointer-events: none;
     z-index: 0;
     /* Changed to 0 to be behind content which is usually z-index 1 or higher */
-    filter: blur(2px);
-    /* Soft, glowing effect */
-    opacity: 0.8;
+    /* Blur removed as requested */
+    opacity: 0.5;
 }
 
 #directories {
