@@ -3,7 +3,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.494015",
+      "timestamp": "2025-12-17T15:13:51.603409",
       "content": [
         {
           "type": "text",
@@ -78,23 +78,27 @@
           "content": "one usecase forexample is imagine a paperliek tablet liek this which has ts texture where you can just draw diagrams could be anything could be system design could be cad adjacent could be just plain old drawings and then ai(not sure llms) can help with it and there's an interface 3d printer adjacent that this can interface with to build whatever you want ykwim things could be much much better and tightknit than it is now we are far from where it could feel magical and of actual utility"
         },
         {
-          "type": "text",
-          "content": "[](https://x.com/kucchi09/status/2000967130423157009/photo/1)"
-        },
-        {
           "type": "image",
           "src": "images/blog/15_dec_2025_kix.hocb.png"
         },
         {
           "type": "text",
-          "content": "[](https://x.com/kucchi09/status/2000964418629521814/photo/1)"
+          "content": "# 17 dec, 2025"
+        },
+        {
+          "type": "text",
+          "content": "\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d\ud83d\ude2d"
+        },
+        {
+          "type": "text",
+          "content": "fuck everyone"
         }
       ]
     },
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.493954",
+      "timestamp": "2025-12-17T15:13:51.603348",
       "content": [
         {
           "type": "text",
@@ -145,7 +149,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.493938",
+      "timestamp": "2025-12-17T15:13:51.603333",
       "content": [
         {
           "type": "text",
@@ -168,7 +172,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.493911",
+      "timestamp": "2025-12-17T15:13:51.603305",
       "content": [
         {
           "type": "text",
@@ -203,7 +207,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.493806",
+      "timestamp": "2025-12-17T15:13:51.603215",
       "content": [
         {
           "type": "text",
@@ -226,7 +230,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.493796",
+      "timestamp": "2025-12-17T15:13:51.603206",
       "content": [
         {
           "type": "text",
@@ -237,7 +241,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-17T14:13:26.493761",
+      "timestamp": "2025-12-17T15:13:51.603172",
       "content": [
         {
           "type": "text",
@@ -262,5 +266,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-17T14:13:26.508781"
+  "last_updated": "2025-12-17T15:13:51.616480"
 }
