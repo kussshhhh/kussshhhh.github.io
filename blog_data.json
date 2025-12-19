@@ -3,7 +3,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964512",
+      "timestamp": "2025-12-19T18:17:25.887196",
       "content": [
         {
           "type": "text",
@@ -31,14 +31,22 @@
         },
         {
           "type": "text",
-          "content": "But nothing on mac cause i mean i asked claude adn apparently there existed one but now there is no need as teh data is encrypted and once key is deleted no way to access taht data not only that"
+          "content": "But nothing on mac cause i mean i asked claude adn apparently there existed one but now there is no need as teh data is encrypted and once key is deleted no way to access that data not only that you could enable altho it should already be System Settings \u2192 Privacy & Security \u2192 FileVault"
+        },
+        {
+          "type": "text",
+          "content": "Also you cant aktually build this cause macs all use SSDs with wear leveling, so overwriting doesn't guarantee the data is actually erased from the physical flash cells"
+        },
+        {
+          "type": "text",
+          "content": "Its so fun that i can write whatever i want have themes and then deviate from those themes anyways here comes the ml notes and experiments :D"
         }
       ]
     },
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964502",
+      "timestamp": "2025-12-19T18:17:25.887187",
       "content": [
         {
           "type": "text",
@@ -53,7 +61,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964405",
+      "timestamp": "2025-12-19T18:17:25.887093",
       "content": [
         {
           "type": "text",
@@ -136,7 +144,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964338",
+      "timestamp": "2025-12-19T18:17:25.887032",
       "content": [
         {
           "type": "text",
@@ -187,7 +195,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964322",
+      "timestamp": "2025-12-19T18:17:25.887016",
       "content": [
         {
           "type": "text",
@@ -210,7 +218,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964293",
+      "timestamp": "2025-12-19T18:17:25.886989",
       "content": [
         {
           "type": "text",
@@ -245,7 +253,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964169",
+      "timestamp": "2025-12-19T18:17:25.886878",
       "content": [
         {
           "type": "text",
@@ -268,7 +276,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964160",
+      "timestamp": "2025-12-19T18:17:25.886868",
       "content": [
         {
           "type": "text",
@@ -279,7 +287,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-19T17:11:54.964125",
+      "timestamp": "2025-12-19T18:17:25.886835",
       "content": [
         {
           "type": "text",
@@ -304,5 +312,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-19T17:11:55.321611"
+  "last_updated": "2025-12-19T18:17:25.900688"
 }
