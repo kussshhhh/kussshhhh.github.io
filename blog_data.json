@@ -1,9 +1,44 @@
 {
   "entries": [
     {
+      "date": "19 dec, 2025",
+      "date_slug": "19_dec_2025",
+      "timestamp": "2025-12-19T17:11:54.964512",
+      "content": [
+        {
+          "type": "text",
+          "content": "Ok exam done"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/19_dec_2025_kix.dtfk.png"
+        },
+        {
+          "type": "text",
+          "content": "Also heard in some gc that \u201cno hymns chanted on hungry stomach\u201d"
+        },
+        {
+          "type": "text",
+          "content": "Ts is so tru ong"
+        },
+        {
+          "type": "text",
+          "content": "Anyways i was studying and something obv to anyone studying cs would be that when we delete smth it doesnt aktually get deleted even after clearing bin cause the bits until occupied by smth else are still there for this tools do exist"
+        },
+        {
+          "type": "text",
+          "content": "Like shred on linux"
+        },
+        {
+          "type": "text",
+          "content": "But nothing on mac cause i mean i asked claude adn apparently there existed one but now there is no need as teh data is encrypted and once key is deleted no way to access taht data not only that"
+        }
+      ]
+    },
+    {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601486",
+      "timestamp": "2025-12-19T17:11:54.964502",
       "content": [
         {
           "type": "text",
@@ -18,7 +53,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601386",
+      "timestamp": "2025-12-19T17:11:54.964405",
       "content": [
         {
           "type": "text",
@@ -101,7 +136,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601289",
+      "timestamp": "2025-12-19T17:11:54.964338",
       "content": [
         {
           "type": "text",
@@ -152,7 +187,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601273",
+      "timestamp": "2025-12-19T17:11:54.964322",
       "content": [
         {
           "type": "text",
@@ -175,7 +210,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601246",
+      "timestamp": "2025-12-19T17:11:54.964293",
       "content": [
         {
           "type": "text",
@@ -210,7 +245,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601151",
+      "timestamp": "2025-12-19T17:11:54.964169",
       "content": [
         {
           "type": "text",
@@ -233,7 +268,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601143",
+      "timestamp": "2025-12-19T17:11:54.964160",
       "content": [
         {
           "type": "text",
@@ -244,7 +279,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-19T16:14:50.601109",
+      "timestamp": "2025-12-19T17:11:54.964125",
       "content": [
         {
           "type": "text",
@@ -269,5 +304,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-19T16:14:50.615602"
+  "last_updated": "2025-12-19T17:11:55.321611"
 }
