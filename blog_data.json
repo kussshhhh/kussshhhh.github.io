@@ -3,7 +3,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543937",
+      "timestamp": "2025-12-20T08:14:37.996351",
       "content": [
         {
           "type": "text",
@@ -39,6 +39,10 @@
         },
         {
           "type": "text",
+          "content": "Oh also ts is the reason that your shred command is good in theory but wont work aktuallly in practice so yeah have fun :D"
+        },
+        {
+          "type": "text",
           "content": "Its so fun that i can write whatever i want have themes and then deviate from those themes anyways here comes the ml notes and experiments :D"
         }
       ]
@@ -46,7 +50,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543927",
+      "timestamp": "2025-12-20T08:14:37.996342",
       "content": [
         {
           "type": "text",
@@ -61,7 +65,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543835",
+      "timestamp": "2025-12-20T08:14:37.996250",
       "content": [
         {
           "type": "text",
@@ -144,7 +148,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543775",
+      "timestamp": "2025-12-20T08:14:37.996189",
       "content": [
         {
           "type": "text",
@@ -195,7 +199,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543759",
+      "timestamp": "2025-12-20T08:14:37.996174",
       "content": [
         {
           "type": "text",
@@ -218,7 +222,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543732",
+      "timestamp": "2025-12-20T08:14:37.996147",
       "content": [
         {
           "type": "text",
@@ -253,7 +257,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543638",
+      "timestamp": "2025-12-20T08:14:37.996056",
       "content": [
         {
           "type": "text",
@@ -276,7 +280,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543629",
+      "timestamp": "2025-12-20T08:14:37.996047",
       "content": [
         {
           "type": "text",
@@ -287,7 +291,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-20T07:10:38.543595",
+      "timestamp": "2025-12-20T08:14:37.996012",
       "content": [
         {
           "type": "text",
@@ -312,5 +316,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-20T07:10:38.548921"
+  "last_updated": "2025-12-20T08:14:38.019286"
 }
