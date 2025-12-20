@@ -3,7 +3,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.572132",
+      "timestamp": "2025-12-20T12:20:13.692746",
       "content": [
         {
           "type": "text",
@@ -43,14 +43,30 @@
         },
         {
           "type": "text",
-          "content": "Its so fun that i can write whatever i want have themes and then deviate from those themes anyways here comes the ml notes and experiments :D"
+          "content": "Hmm also once you\u2019ve thought about what you want and are sure of it then getting it is the ez part yk, cause bending the world to your will is ez once you know what the shape you want it to take."
+        },
+        {
+          "type": "text",
+          "content": "(btw random book rec: the making of prince of persia)"
+        },
+        {
+          "type": "text",
+          "content": "So anyways first calibration is required and then after that its pretty ez cause you know what to optimise for."
+        },
+        {
+          "type": "image",
+          "src": "images/blog/19_dec_2025_kix.jc8u.png"
+        },
+        {
+          "type": "text",
+          "content": "Also saw this and i feel like i should einstein maxx like basically to fight for money isnt worth it tbh. With all due respect"
         }
       ]
     },
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.572122",
+      "timestamp": "2025-12-20T12:20:13.692737",
       "content": [
         {
           "type": "text",
@@ -65,7 +81,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.572023",
+      "timestamp": "2025-12-20T12:20:13.692642",
       "content": [
         {
           "type": "text",
@@ -148,7 +164,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.571959",
+      "timestamp": "2025-12-20T12:20:13.692579",
       "content": [
         {
           "type": "text",
@@ -199,7 +215,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.571943",
+      "timestamp": "2025-12-20T12:20:13.692563",
       "content": [
         {
           "type": "text",
@@ -222,7 +238,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.571916",
+      "timestamp": "2025-12-20T12:20:13.692537",
       "content": [
         {
           "type": "text",
@@ -257,7 +273,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.571818",
+      "timestamp": "2025-12-20T12:20:13.692439",
       "content": [
         {
           "type": "text",
@@ -280,7 +296,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.571809",
+      "timestamp": "2025-12-20T12:20:13.692430",
       "content": [
         {
           "type": "text",
@@ -291,7 +307,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-20T11:09:01.571774",
+      "timestamp": "2025-12-20T12:20:13.692396",
       "content": [
         {
           "type": "text",
@@ -316,5 +332,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-20T11:09:01.584910"
+  "last_updated": "2025-12-20T12:20:14.285296"
 }
