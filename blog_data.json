@@ -1,26 +1,25 @@
 {
   "entries": [
     {
-      "date": "20 dec, 2025",
-      "date_slug": "20_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635292",
+      "date": "22 dec, 2025",
+      "date_slug": "22_dec_2025",
+      "timestamp": "2025-12-22T09:19:13.425221",
       "content": [
         {
           "type": "text",
-          "content": "Hmm also once you\u2019ve thought about what you want and are sure of it then getting it is the ez part yk, cause bending the world to your will is ez once you know what the shape you want it to take."
+          "content": "Man i wanna work on locally running models and that i feel is really important to me. Wdym i have to pay atleast 20 dollars a month to get access to intelligence adn not having that puts me at a disadvantage, its not really about money its about leverage liek how taht thing can be taken away from me on their whim."
         },
         {
           "type": "text",
-          "content": "(btw random book rec: the making of prince of persia)"
-        },
-        {
-          "type": "text",
-          "content": "So anyways first calibration is required and then after that its pretty ez cause you know what to optimise for."
-        },
-        {
-          "type": "image",
-          "src": "images/blog/20_dec_2025_kix.jc8u.png"
-        },
+          "content": "Anyways tomorrow i have an exam so i gotta study for that :D"
+        }
+      ]
+    },
+    {
+      "date": "21 dec, 2025",
+      "date_slug": "21_dec_2025",
+      "timestamp": "2025-12-22T09:19:13.425205",
+      "content": [
         {
           "type": "text",
           "content": "I wanna drink smth warm should make myself smth tbh"
@@ -48,9 +47,32 @@
       ]
     },
     {
+      "date": "20 dec, 2025",
+      "date_slug": "20_dec_2025",
+      "timestamp": "2025-12-22T09:19:13.425169",
+      "content": [
+        {
+          "type": "text",
+          "content": "Hmm also once you\u2019ve thought about what you want and are sure of it then getting it is the ez part yk, cause bending the world to your will is ez once you know what the shape you want it to take."
+        },
+        {
+          "type": "text",
+          "content": "(btw random book rec: the making of prince of persia)"
+        },
+        {
+          "type": "text",
+          "content": "So anyways first calibration is required and then after that its pretty ez cause you know what to optimise for."
+        },
+        {
+          "type": "image",
+          "src": "images/blog/20_dec_2025_kix.jc8u.png"
+        }
+      ]
+    },
+    {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635251",
+      "timestamp": "2025-12-22T09:19:13.425129",
       "content": [
         {
           "type": "text",
@@ -93,7 +115,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635241",
+      "timestamp": "2025-12-22T09:19:13.425119",
       "content": [
         {
           "type": "text",
@@ -108,7 +130,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635148",
+      "timestamp": "2025-12-22T09:19:13.425026",
       "content": [
         {
           "type": "text",
@@ -191,7 +213,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635088",
+      "timestamp": "2025-12-22T09:19:13.424964",
       "content": [
         {
           "type": "text",
@@ -242,7 +264,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635072",
+      "timestamp": "2025-12-22T09:19:13.424949",
       "content": [
         {
           "type": "text",
@@ -265,7 +287,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.635045",
+      "timestamp": "2025-12-22T09:19:13.424920",
       "content": [
         {
           "type": "text",
@@ -300,7 +322,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.634937",
+      "timestamp": "2025-12-22T09:19:13.424823",
       "content": [
         {
           "type": "text",
@@ -323,7 +345,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.634928",
+      "timestamp": "2025-12-22T09:19:13.424814",
       "content": [
         {
           "type": "text",
@@ -334,7 +356,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-22T08:18:28.634892",
+      "timestamp": "2025-12-22T09:19:13.424779",
       "content": [
         {
           "type": "text",
@@ -359,5 +381,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-22T08:18:28.685131"
+  "last_updated": "2025-12-22T09:19:13.439325"
 }
