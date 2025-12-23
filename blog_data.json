@@ -1,9 +1,20 @@
 {
   "entries": [
     {
+      "date": "23 dec, 2025",
+      "date_slug": "23_dec_2025",
+      "timestamp": "2025-12-23T18:18:22.428638",
+      "content": [
+        {
+          "type": "text",
+          "content": "lock in"
+        }
+      ]
+    },
+    {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314317",
+      "timestamp": "2025-12-23T18:18:22.428628",
       "content": [
         {
           "type": "text",
@@ -18,7 +29,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314301",
+      "timestamp": "2025-12-23T18:18:22.428612",
       "content": [
         {
           "type": "text",
@@ -49,7 +60,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314265",
+      "timestamp": "2025-12-23T18:18:22.428583",
       "content": [
         {
           "type": "text",
@@ -72,7 +83,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314225",
+      "timestamp": "2025-12-23T18:18:22.428549",
       "content": [
         {
           "type": "text",
@@ -115,7 +126,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314216",
+      "timestamp": "2025-12-23T18:18:22.428541",
       "content": [
         {
           "type": "text",
@@ -130,7 +141,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314123",
+      "timestamp": "2025-12-23T18:18:22.428461",
       "content": [
         {
           "type": "text",
@@ -213,7 +224,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314063",
+      "timestamp": "2025-12-23T18:18:22.428410",
       "content": [
         {
           "type": "text",
@@ -264,7 +275,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314048",
+      "timestamp": "2025-12-23T18:18:22.428393",
       "content": [
         {
           "type": "text",
@@ -287,7 +298,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.314021",
+      "timestamp": "2025-12-23T18:18:22.428365",
       "content": [
         {
           "type": "text",
@@ -322,7 +333,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.313925",
+      "timestamp": "2025-12-23T18:18:22.428276",
       "content": [
         {
           "type": "text",
@@ -345,7 +356,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.313916",
+      "timestamp": "2025-12-23T18:18:22.428268",
       "content": [
         {
           "type": "text",
@@ -356,7 +367,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-23T17:13:05.313866",
+      "timestamp": "2025-12-23T18:18:22.428231",
       "content": [
         {
           "type": "text",
@@ -381,5 +392,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-23T17:13:05.333539"
+  "last_updated": "2025-12-23T18:18:22.524512"
 }
