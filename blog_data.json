@@ -3,18 +3,22 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207511",
+      "timestamp": "2025-12-25T14:11:36.655032",
       "content": [
         {
           "type": "text",
           "content": "Studying system design nowadays also one thing is clear im starting running but eventually i wanna be able to run real fast like on athlete\u2019s level yk i saw ts reel where the guy\u2019s sweat was evaporating cause his body was so heated up adn it looked like a titan transforming :D"
+        },
+        {
+          "type": "text",
+          "content": "Sometimes i feel taking a piece of a life that i am capable but havent realised a life that could be taking a piece from that and integrating that into my present life and keep doing that until its fully integrated in my life."
         }
       ]
     },
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207503",
+      "timestamp": "2025-12-25T14:11:36.655024",
       "content": [
         {
           "type": "text",
@@ -25,7 +29,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207492",
+      "timestamp": "2025-12-25T14:11:36.655014",
       "content": [
         {
           "type": "text",
@@ -40,7 +44,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207473",
+      "timestamp": "2025-12-25T14:11:36.654999",
       "content": [
         {
           "type": "text",
@@ -71,7 +75,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207434",
+      "timestamp": "2025-12-25T14:11:36.654962",
       "content": [
         {
           "type": "text",
@@ -94,7 +98,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207389",
+      "timestamp": "2025-12-25T14:11:36.654922",
       "content": [
         {
           "type": "text",
@@ -137,7 +141,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207379",
+      "timestamp": "2025-12-25T14:11:36.654913",
       "content": [
         {
           "type": "text",
@@ -152,7 +156,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207279",
+      "timestamp": "2025-12-25T14:11:36.654819",
       "content": [
         {
           "type": "text",
@@ -235,7 +239,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207214",
+      "timestamp": "2025-12-25T14:11:36.654758",
       "content": [
         {
           "type": "text",
@@ -286,7 +290,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207196",
+      "timestamp": "2025-12-25T14:11:36.654743",
       "content": [
         {
           "type": "text",
@@ -309,7 +313,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207166",
+      "timestamp": "2025-12-25T14:11:36.654715",
       "content": [
         {
           "type": "text",
@@ -344,7 +348,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207064",
+      "timestamp": "2025-12-25T14:11:36.654625",
       "content": [
         {
           "type": "text",
@@ -367,7 +371,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207055",
+      "timestamp": "2025-12-25T14:11:36.654616",
       "content": [
         {
           "type": "text",
@@ -378,7 +382,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-25T13:26:19.207018",
+      "timestamp": "2025-12-25T14:11:36.654581",
       "content": [
         {
           "type": "text",
@@ -403,5 +407,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-25T13:26:19.212756"
+  "last_updated": "2025-12-25T14:11:36.670395"
 }
