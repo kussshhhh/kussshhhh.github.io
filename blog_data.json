@@ -3,7 +3,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884711",
+      "timestamp": "2025-12-29T12:24:59.448274",
       "content": [
         {
           "type": "image",
@@ -16,13 +16,21 @@
         {
           "type": "text",
           "content": "And strings.Split(smth, \u201c,\u201d)  // splits by ,"
+        },
+        {
+          "type": "text",
+          "content": "I was getting into system design and made a load balancer in go :D"
+        },
+        {
+          "type": "text",
+          "content": "I should work more this not cutting it"
         }
       ]
     },
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884701",
+      "timestamp": "2025-12-29T12:24:59.448264",
       "content": [
         {
           "type": "text",
@@ -37,7 +45,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884694",
+      "timestamp": "2025-12-29T12:24:59.448256",
       "content": [
         {
           "type": "text",
@@ -48,7 +56,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884685",
+      "timestamp": "2025-12-29T12:24:59.448246",
       "content": [
         {
           "type": "text",
@@ -63,7 +71,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884668",
+      "timestamp": "2025-12-29T12:24:59.448229",
       "content": [
         {
           "type": "text",
@@ -94,7 +102,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884633",
+      "timestamp": "2025-12-29T12:24:59.448194",
       "content": [
         {
           "type": "text",
@@ -117,7 +125,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884593",
+      "timestamp": "2025-12-29T12:24:59.448153",
       "content": [
         {
           "type": "text",
@@ -160,7 +168,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884584",
+      "timestamp": "2025-12-29T12:24:59.448144",
       "content": [
         {
           "type": "text",
@@ -175,7 +183,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884483",
+      "timestamp": "2025-12-29T12:24:59.448045",
       "content": [
         {
           "type": "text",
@@ -258,7 +266,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884423",
+      "timestamp": "2025-12-29T12:24:59.447946",
       "content": [
         {
           "type": "text",
@@ -309,7 +317,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884408",
+      "timestamp": "2025-12-29T12:24:59.447930",
       "content": [
         {
           "type": "text",
@@ -332,7 +340,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884381",
+      "timestamp": "2025-12-29T12:24:59.447903",
       "content": [
         {
           "type": "text",
@@ -367,7 +375,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884287",
+      "timestamp": "2025-12-29T12:24:59.447806",
       "content": [
         {
           "type": "text",
@@ -390,7 +398,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884278",
+      "timestamp": "2025-12-29T12:24:59.447798",
       "content": [
         {
           "type": "text",
@@ -401,7 +409,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2025-12-29T11:11:29.884244",
+      "timestamp": "2025-12-29T12:24:59.447764",
       "content": [
         {
           "type": "text",
@@ -426,5 +434,5 @@
       ]
     }
   ],
-  "last_updated": "2025-12-29T11:11:29.901372"
+  "last_updated": "2025-12-29T12:24:59.463231"
 }
