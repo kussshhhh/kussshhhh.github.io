@@ -1,9 +1,48 @@
 {
   "entries": [
     {
+      "date": "3 jan, 2026",
+      "date_slug": "3_jan_2026",
+      "timestamp": "2026-01-03T05:13:27.777562",
+      "content": [
+        {
+          "type": "text",
+          "content": "Think legos factorio etc"
+        },
+        {
+          "type": "text",
+          "content": "This is claude\u2019s summary for my idea and it looks good"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/3_jan_2026_kix.m7mz.png"
+        },
+        {
+          "type": "text",
+          "content": "So a bunch of models clubbed together where at the last stage we have a 3d model/mesh that is 3d printable :D"
+        },
+        {
+          "type": "text",
+          "content": "meow typbeat"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/3_jan_2026_kix.mfph.png"
+        },
+        {
+          "type": "text",
+          "content": "So first i think i should make some sort of canvas screenshots of which will be given to claude back adn forth also that canvas would then connect to opencad or smth after that a few checks and it will be 3d printable. The thing is tho that i dont have 3d printer but idt thats a problem need to just make it till second last step :D"
+        },
+        {
+          "type": "text",
+          "content": "Aight now one more thing need to study some system design for <redacted> before getting back to ts"
+        }
+      ]
+    },
+    {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-03T04:23:43.841812",
+      "timestamp": "2026-01-03T05:13:27.777553",
       "content": [
         {
           "type": "text",
@@ -18,7 +57,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-03T04:23:43.841804",
+      "timestamp": "2026-01-03T05:13:27.777545",
       "content": [
         {
           "type": "text",
@@ -29,7 +68,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841781",
+      "timestamp": "2026-01-03T05:13:27.777522",
       "content": [
         {
           "type": "text",
@@ -60,7 +99,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841746",
+      "timestamp": "2026-01-03T05:13:27.777461",
       "content": [
         {
           "type": "image",
@@ -87,7 +126,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841736",
+      "timestamp": "2026-01-03T05:13:27.777450",
       "content": [
         {
           "type": "text",
@@ -102,7 +141,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841728",
+      "timestamp": "2026-01-03T05:13:27.777442",
       "content": [
         {
           "type": "text",
@@ -113,7 +152,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841719",
+      "timestamp": "2026-01-03T05:13:27.777432",
       "content": [
         {
           "type": "text",
@@ -128,7 +167,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841702",
+      "timestamp": "2026-01-03T05:13:27.777415",
       "content": [
         {
           "type": "text",
@@ -159,7 +198,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841667",
+      "timestamp": "2026-01-03T05:13:27.777378",
       "content": [
         {
           "type": "text",
@@ -182,7 +221,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841626",
+      "timestamp": "2026-01-03T05:13:27.777337",
       "content": [
         {
           "type": "text",
@@ -225,7 +264,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841616",
+      "timestamp": "2026-01-03T05:13:27.777327",
       "content": [
         {
           "type": "text",
@@ -240,7 +279,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841517",
+      "timestamp": "2026-01-03T05:13:27.777233",
       "content": [
         {
           "type": "text",
@@ -323,7 +362,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841438",
+      "timestamp": "2026-01-03T05:13:27.777173",
       "content": [
         {
           "type": "text",
@@ -374,7 +413,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841422",
+      "timestamp": "2026-01-03T05:13:27.777157",
       "content": [
         {
           "type": "text",
@@ -397,7 +436,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841395",
+      "timestamp": "2026-01-03T05:13:27.777129",
       "content": [
         {
           "type": "text",
@@ -432,7 +471,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841299",
+      "timestamp": "2026-01-03T05:13:27.777033",
       "content": [
         {
           "type": "text",
@@ -455,7 +494,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841290",
+      "timestamp": "2026-01-03T05:13:27.777024",
       "content": [
         {
           "type": "text",
@@ -466,7 +505,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-03T04:23:43.841255",
+      "timestamp": "2026-01-03T05:13:27.776989",
       "content": [
         {
           "type": "text",
@@ -491,5 +530,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-03T04:23:43.855748"
+  "last_updated": "2026-01-03T05:13:28.645243"
 }
