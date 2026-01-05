@@ -3,7 +3,7 @@
     {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-05T06:24:55.456867",
+      "timestamp": "2026-01-05T07:21:16.900492",
       "content": [
         {
           "type": "text",
@@ -12,13 +12,17 @@
         {
           "type": "text",
           "content": "And will think here for my projects"
+        },
+        {
+          "type": "text",
+          "content": "Hmm so now i coded up a fraud_detection system in go :D"
         }
       ]
     },
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-05T06:24:55.456795",
+      "timestamp": "2026-01-05T07:21:16.900420",
       "content": [
         {
           "type": "text",
@@ -89,7 +93,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-05T06:24:55.456729",
+      "timestamp": "2026-01-05T07:21:16.900354",
       "content": [
         {
           "type": "text",
@@ -128,7 +132,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-05T06:24:55.456720",
+      "timestamp": "2026-01-05T07:21:16.900346",
       "content": [
         {
           "type": "text",
@@ -143,7 +147,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-05T06:24:55.456713",
+      "timestamp": "2026-01-05T07:21:16.900338",
       "content": [
         {
           "type": "text",
@@ -154,7 +158,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456690",
+      "timestamp": "2026-01-05T07:21:16.900317",
       "content": [
         {
           "type": "text",
@@ -185,7 +189,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456653",
+      "timestamp": "2026-01-05T07:21:16.900278",
       "content": [
         {
           "type": "image",
@@ -212,7 +216,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456643",
+      "timestamp": "2026-01-05T07:21:16.900268",
       "content": [
         {
           "type": "text",
@@ -227,7 +231,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456636",
+      "timestamp": "2026-01-05T07:21:16.900260",
       "content": [
         {
           "type": "text",
@@ -238,7 +242,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456625",
+      "timestamp": "2026-01-05T07:21:16.900249",
       "content": [
         {
           "type": "text",
@@ -253,7 +257,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456608",
+      "timestamp": "2026-01-05T07:21:16.900217",
       "content": [
         {
           "type": "text",
@@ -284,7 +288,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456570",
+      "timestamp": "2026-01-05T07:21:16.900182",
       "content": [
         {
           "type": "text",
@@ -307,7 +311,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456525",
+      "timestamp": "2026-01-05T07:21:16.900142",
       "content": [
         {
           "type": "text",
@@ -350,7 +354,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456500",
+      "timestamp": "2026-01-05T07:21:16.900132",
       "content": [
         {
           "type": "text",
@@ -365,7 +369,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456407",
+      "timestamp": "2026-01-05T07:21:16.900039",
       "content": [
         {
           "type": "text",
@@ -448,7 +452,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456345",
+      "timestamp": "2026-01-05T07:21:16.899979",
       "content": [
         {
           "type": "text",
@@ -499,7 +503,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456329",
+      "timestamp": "2026-01-05T07:21:16.899964",
       "content": [
         {
           "type": "text",
@@ -522,7 +526,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456302",
+      "timestamp": "2026-01-05T07:21:16.899936",
       "content": [
         {
           "type": "text",
@@ -557,7 +561,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456194",
+      "timestamp": "2026-01-05T07:21:16.899842",
       "content": [
         {
           "type": "text",
@@ -580,7 +584,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456185",
+      "timestamp": "2026-01-05T07:21:16.899833",
       "content": [
         {
           "type": "text",
@@ -591,7 +595,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-05T06:24:55.456151",
+      "timestamp": "2026-01-05T07:21:16.899798",
       "content": [
         {
           "type": "text",
@@ -616,5 +620,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-05T06:24:55.469255"
+  "last_updated": "2026-01-05T07:21:16.912646"
 }
