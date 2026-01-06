@@ -1,9 +1,20 @@
 {
   "entries": [
     {
+      "date": "6 jan, 2026",
+      "date_slug": "6_jan_2026",
+      "timestamp": "2026-01-06T06:19:49.326604",
+      "content": [
+        {
+          "type": "text",
+          "content": "Hey i should start the day with doing the difficult thing and getting it out of the way and for me rn that is system design in go so gotta do that(cause gotta look up some syntax sometimes)"
+        }
+      ]
+    },
+    {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-06T05:17:07.384034",
+      "timestamp": "2026-01-06T06:19:48.901416",
       "content": [
         {
           "type": "text",
@@ -64,13 +75,21 @@
         {
           "type": "text",
           "content": "V1 of this project /research/ basically making the system design"
+        },
+        {
+          "type": "text",
+          "content": "Update: i was able to do it gnight"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/5_jan_2026_kix.5yb1.png"
         }
       ]
     },
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-06T05:17:07.383962",
+      "timestamp": "2026-01-06T06:19:48.901322",
       "content": [
         {
           "type": "text",
@@ -141,7 +160,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-06T05:17:07.383906",
+      "timestamp": "2026-01-06T06:19:48.901256",
       "content": [
         {
           "type": "text",
@@ -180,7 +199,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-06T05:17:07.383897",
+      "timestamp": "2026-01-06T06:19:48.901248",
       "content": [
         {
           "type": "text",
@@ -195,7 +214,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-06T05:17:07.383890",
+      "timestamp": "2026-01-06T06:19:48.901240",
       "content": [
         {
           "type": "text",
@@ -206,7 +225,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383863",
+      "timestamp": "2026-01-06T06:19:48.901217",
       "content": [
         {
           "type": "text",
@@ -237,7 +256,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383833",
+      "timestamp": "2026-01-06T06:19:48.901181",
       "content": [
         {
           "type": "image",
@@ -264,7 +283,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383821",
+      "timestamp": "2026-01-06T06:19:48.901170",
       "content": [
         {
           "type": "text",
@@ -279,7 +298,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383811",
+      "timestamp": "2026-01-06T06:19:48.901163",
       "content": [
         {
           "type": "text",
@@ -290,7 +309,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383797",
+      "timestamp": "2026-01-06T06:19:48.901153",
       "content": [
         {
           "type": "text",
@@ -305,7 +324,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383776",
+      "timestamp": "2026-01-06T06:19:48.901137",
       "content": [
         {
           "type": "text",
@@ -336,7 +355,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383743",
+      "timestamp": "2026-01-06T06:19:48.901101",
       "content": [
         {
           "type": "text",
@@ -359,7 +378,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383700",
+      "timestamp": "2026-01-06T06:19:48.901062",
       "content": [
         {
           "type": "text",
@@ -402,7 +421,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383691",
+      "timestamp": "2026-01-06T06:19:48.901053",
       "content": [
         {
           "type": "text",
@@ -417,7 +436,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383598",
+      "timestamp": "2026-01-06T06:19:48.900960",
       "content": [
         {
           "type": "text",
@@ -500,7 +519,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383539",
+      "timestamp": "2026-01-06T06:19:48.900899",
       "content": [
         {
           "type": "text",
@@ -551,7 +570,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383519",
+      "timestamp": "2026-01-06T06:19:48.900884",
       "content": [
         {
           "type": "text",
@@ -574,7 +593,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383486",
+      "timestamp": "2026-01-06T06:19:48.900857",
       "content": [
         {
           "type": "text",
@@ -609,7 +628,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383373",
+      "timestamp": "2026-01-06T06:19:48.900767",
       "content": [
         {
           "type": "text",
@@ -632,7 +651,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383363",
+      "timestamp": "2026-01-06T06:19:48.900758",
       "content": [
         {
           "type": "text",
@@ -643,7 +662,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-06T05:17:07.383317",
+      "timestamp": "2026-01-06T06:19:48.900723",
       "content": [
         {
           "type": "text",
@@ -668,5 +687,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-06T05:17:07.397955"
+  "last_updated": "2026-01-06T06:19:49.347305"
 }
