@@ -3,18 +3,22 @@
     {
       "date": "6 jan, 2026",
       "date_slug": "6_jan_2026",
-      "timestamp": "2026-01-06T06:19:49.326604",
+      "timestamp": "2026-01-06T07:19:07.389474",
       "content": [
         {
           "type": "text",
           "content": "Hey i should start the day with doing the difficult thing and getting it out of the way and for me rn that is system design in go so gotta do that(cause gotta look up some syntax sometimes)"
+        },
+        {
+          "type": "text",
+          "content": "Done solving :D but i still wanna do more after a bit"
         }
       ]
     },
     {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-06T06:19:48.901416",
+      "timestamp": "2026-01-06T07:19:07.389396",
       "content": [
         {
           "type": "text",
@@ -89,7 +93,7 @@
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-06T06:19:48.901322",
+      "timestamp": "2026-01-06T07:19:07.389329",
       "content": [
         {
           "type": "text",
@@ -160,7 +164,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-06T06:19:48.901256",
+      "timestamp": "2026-01-06T07:19:07.389276",
       "content": [
         {
           "type": "text",
@@ -199,7 +203,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-06T06:19:48.901248",
+      "timestamp": "2026-01-06T07:19:07.389268",
       "content": [
         {
           "type": "text",
@@ -214,7 +218,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-06T06:19:48.901240",
+      "timestamp": "2026-01-06T07:19:07.389261",
       "content": [
         {
           "type": "text",
@@ -225,7 +229,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901217",
+      "timestamp": "2026-01-06T07:19:07.389239",
       "content": [
         {
           "type": "text",
@@ -256,7 +260,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901181",
+      "timestamp": "2026-01-06T07:19:07.389210",
       "content": [
         {
           "type": "image",
@@ -283,7 +287,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901170",
+      "timestamp": "2026-01-06T07:19:07.389200",
       "content": [
         {
           "type": "text",
@@ -298,7 +302,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901163",
+      "timestamp": "2026-01-06T07:19:07.389192",
       "content": [
         {
           "type": "text",
@@ -309,7 +313,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901153",
+      "timestamp": "2026-01-06T07:19:07.389181",
       "content": [
         {
           "type": "text",
@@ -324,7 +328,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901137",
+      "timestamp": "2026-01-06T07:19:07.389163",
       "content": [
         {
           "type": "text",
@@ -355,7 +359,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901101",
+      "timestamp": "2026-01-06T07:19:07.389132",
       "content": [
         {
           "type": "text",
@@ -378,7 +382,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901062",
+      "timestamp": "2026-01-06T07:19:07.389096",
       "content": [
         {
           "type": "text",
@@ -421,7 +425,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.901053",
+      "timestamp": "2026-01-06T07:19:07.389087",
       "content": [
         {
           "type": "text",
@@ -436,7 +440,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900960",
+      "timestamp": "2026-01-06T07:19:07.389003",
       "content": [
         {
           "type": "text",
@@ -519,7 +523,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900899",
+      "timestamp": "2026-01-06T07:19:07.388951",
       "content": [
         {
           "type": "text",
@@ -570,7 +574,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900884",
+      "timestamp": "2026-01-06T07:19:07.388934",
       "content": [
         {
           "type": "text",
@@ -593,7 +597,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900857",
+      "timestamp": "2026-01-06T07:19:07.388906",
       "content": [
         {
           "type": "text",
@@ -628,7 +632,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900767",
+      "timestamp": "2026-01-06T07:19:07.388815",
       "content": [
         {
           "type": "text",
@@ -651,7 +655,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900758",
+      "timestamp": "2026-01-06T07:19:07.388806",
       "content": [
         {
           "type": "text",
@@ -662,7 +666,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-06T06:19:48.900723",
+      "timestamp": "2026-01-06T07:19:07.388769",
       "content": [
         {
           "type": "text",
@@ -687,5 +691,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-06T06:19:49.347305"
+  "last_updated": "2026-01-06T07:19:07.401285"
 }
