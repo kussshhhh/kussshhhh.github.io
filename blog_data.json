@@ -1,9 +1,72 @@
 {
   "entries": [
     {
+      "date": "7 jan, 2026",
+      "date_slug": "7_jan_2026",
+      "timestamp": "2026-01-07T20:13:59.205141",
+      "content": [
+        {
+          "type": "text",
+          "content": "hi today I'll try to workout and absolutely spam codeforces (in a good way) been a long long while since I've touched codeforces and now it's time"
+        },
+        {
+          "type": "text",
+          "content": "ps: went into another rabbithole instead of ts"
+        },
+        {
+          "type": "text",
+          "content": "There is this feeling that im chasing its when you try something new those evenings they are really fun the aesthetics i cant quite describe but its really fun all those connections forming in your brain and trying to connect it to all youve learnt before and unlearn some things its really fun."
+        },
+        {
+          "type": "text",
+          "content": "btw ts wen I was looking at the jaeger repo of cncf which is like a traceability software and also I streamed today btw it's like 1:25 am and I should sleep, the plan for tomorrow is to continue understand this jaeger repo and maybe also see how it works wit other tools such as Prometheus etc also see if I can contribute to it I mean it will require effort but should be doable and if I like it then might also apply for ts cncf mentorship thing but either way it's good learning so I don't mind."
+        },
+        {
+          "type": "text",
+          "content": "Also watches ts camping anime and it reminded me of the time I camped in kullu. I think camping will be my hobby I wanna camp in Japan too btw aa well as in chandratal in India and there should be other places too jaise anywhere where I can see fireflies."
+        },
+        {
+          "type": "text",
+          "content": "Btw the plan for tomorrow is to"
+        },
+        {
+          "type": "text",
+          "content": "wake up and do some codeforces or system design"
+        },
+        {
+          "type": "text",
+          "content": "make sense of jaeger"
+        },
+        {
+          "type": "text",
+          "content": "stream advent of code in go"
+        },
+        {
+          "type": "text",
+          "content": "work on your side project if you want"
+        },
+        {
+          "type": "text",
+          "content": "\ud83d\ude3c\ud83d\ude3c"
+        },
+        {
+          "type": "text",
+          "content": "I should have fun while living my life either way. I win either way."
+        },
+        {
+          "type": "text",
+          "content": "But yeah in a few years must get to a place where I just do things and chase aesthetics that are uniquely mine and don't have to worry about money at all it's just smth that's there ykwim."
+        },
+        {
+          "type": "text",
+          "content": "anyways should sleep now gnight"
+        }
+      ]
+    },
+    {
       "date": "6 jan, 2026",
       "date_slug": "6_jan_2026",
-      "timestamp": "2026-01-07T19:14:05.981830",
+      "timestamp": "2026-01-07T20:13:59.205128",
       "content": [
         {
           "type": "text",
@@ -22,7 +85,7 @@
     {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-07T19:14:05.981753",
+      "timestamp": "2026-01-07T20:13:59.205048",
       "content": [
         {
           "type": "text",
@@ -97,7 +160,7 @@
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-07T19:14:05.981690",
+      "timestamp": "2026-01-07T20:13:59.204968",
       "content": [
         {
           "type": "text",
@@ -168,7 +231,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-07T19:14:05.981639",
+      "timestamp": "2026-01-07T20:13:59.204902",
       "content": [
         {
           "type": "text",
@@ -207,7 +270,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-07T19:14:05.981630",
+      "timestamp": "2026-01-07T20:13:59.204894",
       "content": [
         {
           "type": "text",
@@ -222,7 +285,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-07T19:14:05.981623",
+      "timestamp": "2026-01-07T20:13:59.204886",
       "content": [
         {
           "type": "text",
@@ -233,7 +296,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981601",
+      "timestamp": "2026-01-07T20:13:59.204864",
       "content": [
         {
           "type": "text",
@@ -264,7 +327,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981573",
+      "timestamp": "2026-01-07T20:13:59.204822",
       "content": [
         {
           "type": "image",
@@ -291,7 +354,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981563",
+      "timestamp": "2026-01-07T20:13:59.204812",
       "content": [
         {
           "type": "text",
@@ -306,7 +369,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981556",
+      "timestamp": "2026-01-07T20:13:59.204805",
       "content": [
         {
           "type": "text",
@@ -317,7 +380,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981546",
+      "timestamp": "2026-01-07T20:13:59.204795",
       "content": [
         {
           "type": "text",
@@ -332,7 +395,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981528",
+      "timestamp": "2026-01-07T20:13:59.204778",
       "content": [
         {
           "type": "text",
@@ -363,7 +426,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981500",
+      "timestamp": "2026-01-07T20:13:59.204741",
       "content": [
         {
           "type": "text",
@@ -386,7 +449,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981463",
+      "timestamp": "2026-01-07T20:13:59.204692",
       "content": [
         {
           "type": "text",
@@ -429,7 +492,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981454",
+      "timestamp": "2026-01-07T20:13:59.204682",
       "content": [
         {
           "type": "text",
@@ -444,7 +507,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981357",
+      "timestamp": "2026-01-07T20:13:59.204565",
       "content": [
         {
           "type": "text",
@@ -527,7 +590,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981305",
+      "timestamp": "2026-01-07T20:13:59.204502",
       "content": [
         {
           "type": "text",
@@ -578,7 +641,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981290",
+      "timestamp": "2026-01-07T20:13:59.204486",
       "content": [
         {
           "type": "text",
@@ -601,7 +664,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981260",
+      "timestamp": "2026-01-07T20:13:59.204459",
       "content": [
         {
           "type": "text",
@@ -636,7 +699,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981171",
+      "timestamp": "2026-01-07T20:13:59.204362",
       "content": [
         {
           "type": "text",
@@ -659,7 +722,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981162",
+      "timestamp": "2026-01-07T20:13:59.204353",
       "content": [
         {
           "type": "text",
@@ -670,7 +733,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-07T19:14:05.981124",
+      "timestamp": "2026-01-07T20:13:59.204317",
       "content": [
         {
           "type": "text",
@@ -693,22 +756,7 @@
           "content": "the greatest thing you ever worked on should still be yourself i think i should move in a way that the byproduct of that existence are peak things"
         }
       ]
-    },
-    {
-      "date": "7 jan, 2025",
-      "date_slug": "7_jan_2025",
-      "timestamp": "2026-01-07T19:14:05.981842",
-      "content": [
-        {
-          "type": "text",
-          "content": "hi today I'll try to workout and absolutely spam codeforces (in a good way) been a long long while since I've touched codeforces and now it's time"
-        },
-        {
-          "type": "text",
-          "content": "There is this feeling that im chasing its when you try something new those evenings they are really fun the aesthetics i cant quite describe but its really fun all those connections forming in your brain and trying to connect it to all youve learnt before and unlearn some things its really fun."
-        }
-      ]
     }
   ],
-  "last_updated": "2026-01-07T19:14:05.992212"
+  "last_updated": "2026-01-07T20:13:59.259609"
 }
