@@ -3,18 +3,30 @@
     {
       "date": "8 jan, 2026",
       "date_slug": "8_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937377",
+      "timestamp": "2026-01-08T12:25:27.678641",
       "content": [
         {
           "type": "text",
           "content": "Well this hibernation was fun but i gotta workout also :D"
+        },
+        {
+          "type": "text",
+          "content": "Umm canvas works now"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/8_jan_2026_kix.g3i9.png"
+        },
+        {
+          "type": "text",
+          "content": "Need to make it better sure but it works adn that i like about it"
         }
       ]
     },
     {
       "date": "7 jan, 2026",
       "date_slug": "7_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937344",
+      "timestamp": "2026-01-08T12:25:27.678604",
       "content": [
         {
           "type": "text",
@@ -77,7 +89,7 @@
     {
       "date": "6 jan, 2026",
       "date_slug": "6_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937331",
+      "timestamp": "2026-01-08T12:25:27.678591",
       "content": [
         {
           "type": "text",
@@ -96,7 +108,7 @@
     {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937248",
+      "timestamp": "2026-01-08T12:25:27.678502",
       "content": [
         {
           "type": "text",
@@ -171,7 +183,7 @@
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937172",
+      "timestamp": "2026-01-08T12:25:27.678416",
       "content": [
         {
           "type": "text",
@@ -242,7 +254,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937104",
+      "timestamp": "2026-01-08T12:25:27.678348",
       "content": [
         {
           "type": "text",
@@ -281,7 +293,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937095",
+      "timestamp": "2026-01-08T12:25:27.678338",
       "content": [
         {
           "type": "text",
@@ -296,7 +308,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-08T11:13:02.937087",
+      "timestamp": "2026-01-08T12:25:27.678330",
       "content": [
         {
           "type": "text",
@@ -307,7 +319,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.937063",
+      "timestamp": "2026-01-08T12:25:27.678306",
       "content": [
         {
           "type": "text",
@@ -338,7 +350,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.937024",
+      "timestamp": "2026-01-08T12:25:27.678268",
       "content": [
         {
           "type": "image",
@@ -365,7 +377,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.937014",
+      "timestamp": "2026-01-08T12:25:27.678257",
       "content": [
         {
           "type": "text",
@@ -380,7 +392,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.937007",
+      "timestamp": "2026-01-08T12:25:27.678249",
       "content": [
         {
           "type": "text",
@@ -391,7 +403,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936996",
+      "timestamp": "2026-01-08T12:25:27.678239",
       "content": [
         {
           "type": "text",
@@ -406,7 +418,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936978",
+      "timestamp": "2026-01-08T12:25:27.678220",
       "content": [
         {
           "type": "text",
@@ -437,7 +449,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936941",
+      "timestamp": "2026-01-08T12:25:27.678164",
       "content": [
         {
           "type": "text",
@@ -460,7 +472,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936893",
+      "timestamp": "2026-01-08T12:25:27.678122",
       "content": [
         {
           "type": "text",
@@ -503,7 +515,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936865",
+      "timestamp": "2026-01-08T12:25:27.678112",
       "content": [
         {
           "type": "text",
@@ -518,7 +530,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936765",
+      "timestamp": "2026-01-08T12:25:27.678016",
       "content": [
         {
           "type": "text",
@@ -601,7 +613,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936702",
+      "timestamp": "2026-01-08T12:25:27.677953",
       "content": [
         {
           "type": "text",
@@ -652,7 +664,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936685",
+      "timestamp": "2026-01-08T12:25:27.677936",
       "content": [
         {
           "type": "text",
@@ -675,7 +687,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936657",
+      "timestamp": "2026-01-08T12:25:27.677907",
       "content": [
         {
           "type": "text",
@@ -710,7 +722,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936556",
+      "timestamp": "2026-01-08T12:25:27.677807",
       "content": [
         {
           "type": "text",
@@ -733,7 +745,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936547",
+      "timestamp": "2026-01-08T12:25:27.677798",
       "content": [
         {
           "type": "text",
@@ -744,7 +756,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-08T11:13:02.936513",
+      "timestamp": "2026-01-08T12:25:27.677759",
       "content": [
         {
           "type": "text",
@@ -769,5 +781,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-08T11:13:02.967521"
+  "last_updated": "2026-01-08T12:25:28.040542"
 }
