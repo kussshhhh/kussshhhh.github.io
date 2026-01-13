@@ -1,9 +1,28 @@
 {
   "entries": [
     {
+      "date": "13 jan, 2026",
+      "date_slug": "13_jan_2026",
+      "timestamp": "2026-01-13T10:14:08.125335",
+      "content": [
+        {
+          "type": "text",
+          "content": "Umm here is the launch of canvas btw got some users also a lot to improve tbh but dont feel liek it as of now [https://x.com/kucchi09/status/2010270871366316051?s=20](https://x.com/kucchi09/status/2010270871366316051?s=20)"
+        },
+        {
+          "type": "text",
+          "content": "Anyways now until the next idea or inspiration or burst of energy i will be studying system design"
+        },
+        {
+          "type": "text",
+          "content": "Also whats more is that i wont be optimising for anything now and im just gonna study for a bit, cause a bit tired of building."
+        }
+      ]
+    },
+    {
       "date": "11 jan, 2026",
       "date_slug": "11_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690626",
+      "timestamp": "2026-01-13T10:14:08.125286",
       "content": [
         {
           "type": "image",
@@ -14,7 +33,7 @@
     {
       "date": "8 jan, 2026",
       "date_slug": "8_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690534",
+      "timestamp": "2026-01-13T10:14:08.125206",
       "content": [
         {
           "type": "text",
@@ -41,7 +60,7 @@
     {
       "date": "7 jan, 2026",
       "date_slug": "7_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690478",
+      "timestamp": "2026-01-13T10:14:08.125172",
       "content": [
         {
           "type": "text",
@@ -104,7 +123,7 @@
     {
       "date": "6 jan, 2026",
       "date_slug": "6_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690464",
+      "timestamp": "2026-01-13T10:14:08.125156",
       "content": [
         {
           "type": "text",
@@ -123,7 +142,7 @@
     {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690345",
+      "timestamp": "2026-01-13T10:14:08.125076",
       "content": [
         {
           "type": "text",
@@ -198,7 +217,7 @@
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690266",
+      "timestamp": "2026-01-13T10:14:08.125002",
       "content": [
         {
           "type": "text",
@@ -269,7 +288,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690197",
+      "timestamp": "2026-01-13T10:14:08.124951",
       "content": [
         {
           "type": "text",
@@ -278,10 +297,6 @@
         {
           "type": "text",
           "content": "This is claude\u2019s summary for my idea and it looks good"
-        },
-        {
-          "type": "image",
-          "src": "images/blog/3_jan_2026_kix.m7mz.png"
         },
         {
           "type": "text",
@@ -308,7 +323,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690188",
+      "timestamp": "2026-01-13T10:14:08.124943",
       "content": [
         {
           "type": "text",
@@ -323,7 +338,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-13T09:19:17.690181",
+      "timestamp": "2026-01-13T10:14:08.124935",
       "content": [
         {
           "type": "text",
@@ -334,7 +349,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690158",
+      "timestamp": "2026-01-13T10:14:08.124913",
       "content": [
         {
           "type": "text",
@@ -365,7 +380,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690122",
+      "timestamp": "2026-01-13T10:14:08.124876",
       "content": [
         {
           "type": "image",
@@ -392,7 +407,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690111",
+      "timestamp": "2026-01-13T10:14:08.124866",
       "content": [
         {
           "type": "text",
@@ -407,7 +422,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690104",
+      "timestamp": "2026-01-13T10:14:08.124859",
       "content": [
         {
           "type": "text",
@@ -418,7 +433,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690094",
+      "timestamp": "2026-01-13T10:14:08.124849",
       "content": [
         {
           "type": "text",
@@ -433,7 +448,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690074",
+      "timestamp": "2026-01-13T10:14:08.124831",
       "content": [
         {
           "type": "text",
@@ -464,7 +479,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.690039",
+      "timestamp": "2026-01-13T10:14:08.124792",
       "content": [
         {
           "type": "text",
@@ -487,7 +502,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689996",
+      "timestamp": "2026-01-13T10:14:08.124751",
       "content": [
         {
           "type": "text",
@@ -530,7 +545,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689986",
+      "timestamp": "2026-01-13T10:14:08.124741",
       "content": [
         {
           "type": "text",
@@ -545,7 +560,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689891",
+      "timestamp": "2026-01-13T10:14:08.124644",
       "content": [
         {
           "type": "text",
@@ -628,7 +643,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689828",
+      "timestamp": "2026-01-13T10:14:08.124569",
       "content": [
         {
           "type": "text",
@@ -679,7 +694,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689813",
+      "timestamp": "2026-01-13T10:14:08.124040",
       "content": [
         {
           "type": "text",
@@ -702,7 +717,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689785",
+      "timestamp": "2026-01-13T10:14:08.124010",
       "content": [
         {
           "type": "text",
@@ -737,7 +752,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689694",
+      "timestamp": "2026-01-13T10:14:08.123909",
       "content": [
         {
           "type": "text",
@@ -760,7 +775,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689684",
+      "timestamp": "2026-01-13T10:14:08.123900",
       "content": [
         {
           "type": "text",
@@ -771,7 +786,7 @@
     {
       "date": "10 jab, 2026",
       "date_slug": "10_jab_2026",
-      "timestamp": "2026-01-13T09:19:17.690599",
+      "timestamp": "2026-01-13T10:14:08.125260",
       "content": [
         {
           "type": "text",
@@ -802,7 +817,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-13T09:19:17.689650",
+      "timestamp": "2026-01-13T10:14:08.123866",
       "content": [
         {
           "type": "text",
@@ -827,5 +842,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-13T09:19:17.707907"
+  "last_updated": "2026-01-13T10:14:08.139611"
 }
