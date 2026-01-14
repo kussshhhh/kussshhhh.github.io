@@ -1,9 +1,20 @@
 {
   "entries": [
     {
+      "date": "14 jan, 2026",
+      "date_slug": "14_jan_2026",
+      "timestamp": "2026-01-14T08:17:49.042932",
+      "content": [
+        {
+          "type": "text",
+          "content": "Golum"
+        }
+      ]
+    },
+    {
       "date": "13 jan, 2026",
       "date_slug": "13_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053367",
+      "timestamp": "2026-01-14T08:17:48.638565",
       "content": [
         {
           "type": "text",
@@ -27,14 +38,18 @@
         },
         {
           "type": "text",
-          "content": "I felt ts as a kid during diwali but havent felt ts in so long t"
+          "content": "I felt ts as a kid during diwali but havent felt ts in so long"
+        },
+        {
+          "type": "image",
+          "src": "images/blog/13_jan_2026_kix.ml5h.png"
         }
       ]
     },
     {
       "date": "11 jan, 2026",
       "date_slug": "11_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053338",
+      "timestamp": "2026-01-14T08:17:48.638521",
       "content": [
         {
           "type": "image",
@@ -45,7 +60,7 @@
     {
       "date": "8 jan, 2026",
       "date_slug": "8_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053262",
+      "timestamp": "2026-01-14T08:17:48.638444",
       "content": [
         {
           "type": "text",
@@ -72,7 +87,7 @@
     {
       "date": "7 jan, 2026",
       "date_slug": "7_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053225",
+      "timestamp": "2026-01-14T08:17:48.638409",
       "content": [
         {
           "type": "text",
@@ -135,7 +150,7 @@
     {
       "date": "6 jan, 2026",
       "date_slug": "6_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053212",
+      "timestamp": "2026-01-14T08:17:48.638394",
       "content": [
         {
           "type": "text",
@@ -154,7 +169,7 @@
     {
       "date": "5 jan, 2026",
       "date_slug": "5_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053134",
+      "timestamp": "2026-01-14T08:17:48.638311",
       "content": [
         {
           "type": "text",
@@ -229,7 +244,7 @@
     {
       "date": "4 jan, 2026",
       "date_slug": "4_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.053055",
+      "timestamp": "2026-01-14T08:17:48.638236",
       "content": [
         {
           "type": "text",
@@ -300,7 +315,7 @@
     {
       "date": "3 jan, 2026",
       "date_slug": "3_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.052987",
+      "timestamp": "2026-01-14T08:17:48.638186",
       "content": [
         {
           "type": "text",
@@ -335,7 +350,7 @@
     {
       "date": "2 jan, 2026",
       "date_slug": "2_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.052977",
+      "timestamp": "2026-01-14T08:17:48.638177",
       "content": [
         {
           "type": "text",
@@ -350,7 +365,7 @@
     {
       "date": "1 jan, 2026",
       "date_slug": "1_jan_2026",
-      "timestamp": "2026-01-14T07:17:55.052967",
+      "timestamp": "2026-01-14T08:17:48.638170",
       "content": [
         {
           "type": "text",
@@ -361,7 +376,7 @@
     {
       "date": "30 dec, 2025",
       "date_slug": "30_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052943",
+      "timestamp": "2026-01-14T08:17:48.638145",
       "content": [
         {
           "type": "text",
@@ -392,7 +407,7 @@
     {
       "date": "29 dec, 2025",
       "date_slug": "29_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052906",
+      "timestamp": "2026-01-14T08:17:48.638108",
       "content": [
         {
           "type": "image",
@@ -419,7 +434,7 @@
     {
       "date": "25 dec, 2025",
       "date_slug": "25_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052896",
+      "timestamp": "2026-01-14T08:17:48.638098",
       "content": [
         {
           "type": "text",
@@ -434,7 +449,7 @@
     {
       "date": "23 dec, 2025",
       "date_slug": "23_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052889",
+      "timestamp": "2026-01-14T08:17:48.638091",
       "content": [
         {
           "type": "text",
@@ -445,7 +460,7 @@
     {
       "date": "22 dec, 2025",
       "date_slug": "22_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052879",
+      "timestamp": "2026-01-14T08:17:48.638081",
       "content": [
         {
           "type": "text",
@@ -460,7 +475,7 @@
     {
       "date": "21 dec, 2025",
       "date_slug": "21_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052863",
+      "timestamp": "2026-01-14T08:17:48.638065",
       "content": [
         {
           "type": "text",
@@ -491,7 +506,7 @@
     {
       "date": "20 dec, 2025",
       "date_slug": "20_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052819",
+      "timestamp": "2026-01-14T08:17:48.638027",
       "content": [
         {
           "type": "text",
@@ -514,7 +529,7 @@
     {
       "date": "19 dec, 2025",
       "date_slug": "19_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052775",
+      "timestamp": "2026-01-14T08:17:48.637985",
       "content": [
         {
           "type": "text",
@@ -557,7 +572,7 @@
     {
       "date": "17 dec, 2025",
       "date_slug": "17_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052765",
+      "timestamp": "2026-01-14T08:17:48.637970",
       "content": [
         {
           "type": "text",
@@ -572,7 +587,7 @@
     {
       "date": "15 dec, 2025",
       "date_slug": "15_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052668",
+      "timestamp": "2026-01-14T08:17:48.637873",
       "content": [
         {
           "type": "text",
@@ -655,7 +670,7 @@
     {
       "date": "14 dec, 2025",
       "date_slug": "14_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052607",
+      "timestamp": "2026-01-14T08:17:48.637813",
       "content": [
         {
           "type": "text",
@@ -706,7 +721,7 @@
     {
       "date": "13 dec, 2025",
       "date_slug": "13_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052592",
+      "timestamp": "2026-01-14T08:17:48.637797",
       "content": [
         {
           "type": "text",
@@ -729,7 +744,7 @@
     {
       "date": "12 dec, 2025",
       "date_slug": "12_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052562",
+      "timestamp": "2026-01-14T08:17:48.637767",
       "content": [
         {
           "type": "text",
@@ -764,7 +779,7 @@
     {
       "date": "11 dec, 2025",
       "date_slug": "11_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052464",
+      "timestamp": "2026-01-14T08:17:48.637670",
       "content": [
         {
           "type": "text",
@@ -787,7 +802,7 @@
     {
       "date": "10 dec, 2025",
       "date_slug": "10_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052454",
+      "timestamp": "2026-01-14T08:17:48.637660",
       "content": [
         {
           "type": "text",
@@ -798,7 +813,7 @@
     {
       "date": "10 jab, 2026",
       "date_slug": "10_jab_2026",
-      "timestamp": "2026-01-14T07:17:55.053316",
+      "timestamp": "2026-01-14T08:17:48.638498",
       "content": [
         {
           "type": "text",
@@ -829,7 +844,7 @@
     {
       "date": "9 dec, 2025",
       "date_slug": "9_dec_2025",
-      "timestamp": "2026-01-14T07:17:55.052419",
+      "timestamp": "2026-01-14T08:17:48.637614",
       "content": [
         {
           "type": "text",
@@ -854,5 +869,5 @@
       ]
     }
   ],
-  "last_updated": "2026-01-14T07:17:55.068287"
+  "last_updated": "2026-01-14T08:17:49.058681"
 }
