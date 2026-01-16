@@ -1,4 +1,9 @@
 #### here are some of my projects. (click on the name of the project for site/github link)
+- [canvas](https://github.com/kussshhhh/canvas) : a "physical compiler" that transforms sketches and text prompts into 3D-printable models using AI. you can iterate on it and then and export as stl which you can 3d print :D demo: https://x.com/kucchi09/status/2010270871366316051?s=20
+
+- [gazenet](https://github.com/kussshhhh/gazenet) : a gaze-controlled mouse that lets you control your computer's cursor with your eyes, using a webcam. it uses deeplearning models, mainly resnets and linear regression to map your gaze to screen coordinates.  
+- [synapse](https://github.com/kussshhhh/synapse) : an "intelligent second brain" to store and search everything (images, URLs, notes) with AI, featuring semantic search and auto-tagging. it has many modes (semantic, text, both etc) 
+- [golum](https://github.com/kussshhhh/golum) : (WIP) a minimal ml library in golang.
 - [gyatt_form](https://github.com/kussshhhh/gyatt_form) : (WIP) a software that checks your workout forms(pushups, squats, etc) and counts your reps and corrects your form.
 demo link: https://x.com/kucchi09/status/1951649803084996645
 - [llama3.2 1b from scratch](https://github.com/kussshhhh/llama3-from-scratch) : implemented llama 3.2 1b model from scratch so basically most matrix muliplications except the tokenization. (inspired by naklecha in which he did it for the llama 3 8b model) 
