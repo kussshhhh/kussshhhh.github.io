@@ -104,9 +104,17 @@ a:hover {
     text-decoration: underline;
 }
 
-.tweet-embed {
+.video-embed {
     margin: 1rem 0;
-    max-width: 560px;
+    max-width: 680px;
+}
+
+.video-embed video {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(176, 227, 236, 0.24);
+    border-radius: 4px;
+    background: #0f0f0f;
 }
 
 ul {
