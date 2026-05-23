@@ -32,10 +32,10 @@
 
         <section class="section-block">
             <h2>products</h2>
-            <article id="context-fatigue-interface" class="entry">
+            <article class="entry">
                 <div class="entry-index">-</div>
                 <div>
-                    <h3>interface that doesn't cause context fatigue</h3>
+                    <h3 id="context-fatigue-interface">interface that doesn't cause context fatigue</h3>
                     <ul>
                         <li>
                             this has been one of my biggest gripes with llms and when i iterate upon some idea what
@@ -46,10 +46,10 @@
                 </div>
             </article>
 
-            <article id="physical-compiler" class="entry">
+            <article class="entry">
                 <div class="entry-index">-</div>
                 <div>
-                    <h3>physical compiler</h3>
+                    <h3 id="physical-compiler">physical compiler</h3>
                     <p>
                         ok listen up so i was thinking looking at the current state of things this product is for a post
                         abundance state of the world or for people who are still in it
@@ -83,10 +83,10 @@
 
             <p class="aside-note">now that i think about it both of these products could be one really neat thing :D</p>
 
-            <article id="research-space" class="entry">
+            <article class="entry">
                 <div class="entry-index">-</div>
                 <div>
-                    <h3>research space</h3>
+                    <h3 id="research-space">research space</h3>
                     <p>
                         i want this to be the brain for my whole ml research and understanding it will have writeups and
                         code and links everything mine tho. i can create an instance for
@@ -128,10 +128,10 @@
 
         <section class="section-block">
             <h2>experiments</h2>
-            <article id="editable-llm-transcript-lab" class="entry">
+            <article class="entry">
                 <div class="entry-index">1.</div>
                 <div>
-                    <h3>editable llm transcript lab</h3>
+                    <h3 id="editable-llm-transcript-lab">editable llm transcript lab</h3>
                     <p>
                         An environment for editing any visible part of an LLM conversation: system, user, assistant output,
                         and an explicit reasoning scaffold. The goal is to create SOTA intended chats and eval targets by
@@ -145,6 +145,21 @@
             </article>
         </section>
     </main>
+    <script>
+        function scrollToHashTarget() {
+            if (!window.location.hash) return;
+
+            const target = document.querySelector(window.location.hash);
+            if (!target) return;
+
+            window.setTimeout(() => {
+                target.scrollIntoView({ block: "start" });
+            }, 80);
+        }
+
+        window.addEventListener("load", scrollToHashTarget);
+        window.addEventListener("hashchange", scrollToHashTarget);
+    </script>
 </body>
 
 </html>
