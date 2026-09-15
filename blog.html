@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Kush Bhardwaj</title>
     <meta name="description" content="Daily thoughts, ideas, and adventures from Kush Bhardwaj">
+    <script src="theme.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="blog.css?v=7">
+    <link rel="stylesheet" href="blog.css?v=8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 </head>
 
 <body>
@@ -21,12 +25,14 @@
             <a href="projects.html" class="nav-link">Projects</a>
             <a href="notes.html" class="nav-link">Notes</a>
             <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="articles.html" class="nav-link">Articles</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
         </div>
     </nav>
 
     <main class="blog-container">
         <header class="currently-section">
-            <h2 class="currently-heading">currently understanding ml systems and algos of all kinds</h2>
+            <h2 class="currently-heading">currently rooting for open source and local ai</h2>
         </header>
 
         <div id="blog-content">
@@ -91,6 +97,8 @@
                     img.addEventListener('click', () => openLightbox(img.src));
                 });
 
+                renderMath();
+
             } catch (error) {
                 console.error('Error loading blog:', error);
                 container.innerHTML = `
@@ -126,6 +134,23 @@
                 }
                 return '';
             }).join('');
+        }
+
+        // Render LaTeX math with KaTeX ($..$, $$..$$, \(..\), \[..\])
+        function renderMath() {
+            if (typeof renderMathInElement !== 'function') {
+                window.addEventListener('load', renderMath, { once: true });
+                return;
+            }
+            renderMathInElement(document.getElementById('blog-content'), {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '\\[', right: '\\]', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+            });
         }
 
         // Escape HTML to prevent XSS

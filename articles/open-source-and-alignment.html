@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>in favour of local ai - Kush Bhardwaj</title>
+    <meta name="description" content="a model for why democratizing capable models beats concentrating them, argued through incentives instead of intuition.">
+    <script src="../theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../blog.css?v=8">
+    <link rel="stylesheet" href="../articles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMath()"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="../index.html" class="nav-link">Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="../projects.html" class="nav-link">Projects</a>
+            <a href="../notes.html" class="nav-link">Notes</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../articles.html" class="nav-link active">Articles</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">☀</button>
+        </div>
+    </nav>
+
+    <main class="blog-container">
+        <a href="../articles.html" class="back-link">&larr; all articles</a>
+
+        <header class="article-header">
+            <h1>in favour of local ai</h1>
+            <div class="article-meta">15 sep, 2026</div>
+        </header>
+
+        <article class="article-body" id="article-content">
+            <h2>the premise</h2>
+            <p>ive been thinking a lot about short term and long term ai crisis, how do I contribute in preventing it and a good argument for open source.</p>
+            <p>large (super)intelligent language models sit in very few hands, because of hardware constraints and capability concentrates.</p>
+            <p>now say after some number of optimizations we succeed in democratizing intelligence i.e capable llms run locally, on consumer hardware. btw these optimisations will also push the frontier more forward but we arent fighting the frontier as you'll see later on.</p>
+            <p>the main counterargument against open source is that "what if it falls in the wrong hands?"</p>
+
+            <h2>the antithesis</h2>
+            <p>your archangel a capable llm running on your own hardware, in a binding vow with you such that all its resources are aligned to making your life better will protect you from them. a lot of the time without you even knowing.</p>
+            <p>moreso, the few people who currently have access aren't that good either. simply because they aren't aligned with you specifically. for them, you're a data point. a frontier lab is optimizing across a billion users to gain profits, trust, govt regulations, its own moral compass etc.</p>
+            <p>so essentially it's an argument about incentives.</p>
+
+            <h2>the model</h2>
+            <p>an actor holds $n$ units of capability, deployed across a population of $m$ people, which lets say can be segmented into $S$ segments.</p>
+            <p>$p_i$ : the weightage they give segment $i$ due to profitability, government enforcement, their own moral policy, whatever.</p>
+            <p>$$\sum_i p_i = 1$$</p>
+            <p>$q_i = p_i \cdot n$ (capability actually aimed at segment $i$)</p>
+            <p>$\hat{x}_i$ : the direction segment $i$ gets pushed.</p>
+            <p>$\hat{a}$ : your true alignment direction, at any given moment.</p>
+            <p>$c_i = \hat{x}_i \cdot \hat{a}$ (the component of segment $i$'s push that lands on your axis. prolly positive)</p>
+            <p>note that $c_i$ is a component, not a verdict on the whole vector. no segment has to be wholly hostile. what matters is only how much of its push projects onto you, and in which direction.</p>
+            <p>suppose you're in segment $k$. every other segment's optimization carries some anti-alignment component wrt you, and those components sum:</p>
+            <p>$$D = \left| \sum_{i \neq k} q_i c_i \right|$$</p>
+            <p>some segments may even help you incidentally ($c_i > 0$). the claim survives that it only needs the weighted sum to come out against you.</p>
+            <p>what the actor does for you along $\hat{a}$:</p>
+            <p>$$A = q_k c_k$$</p>
+            <p>so i want opensource to reach a stage where</p>
+            <p>$$l > D + A$$</p>
+            <p>so basically all you gotta do is overpower projection of $n$ onto you.</p>
+            <p>almost all of a frontier actor's capability points at things orthogonal to any given individual, protein folding, ad auctions, somebody else's segment. those terms have $c_i \approx 0$ and drop out of the sum.</p>
+            <p>hence opensource is v v important and we should take this more seriously, and this will be a running theme where i'll try to contribute to these optimisations as much as i can.</p>
+        </article>
+    </main>
+
+    <script>
+        function renderMath() {
+            if (typeof renderMathInElement !== 'function') return;
+            renderMathInElement(document.getElementById('article-content'), {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '\\[', right: '\\]', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false }
+                ],
+                throwOnError: false
+            });
+        }
+    </script>
+</body>
+
+</html>
