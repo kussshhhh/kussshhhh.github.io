@@ -93,7 +93,7 @@
         function mk(id, color) {
             var m = el('marker', {
                 id: id, viewBox: '0 0 10 10', refX: 8, refY: 5,
-                markerWidth: 6.5, markerHeight: 6.5, orient: 'auto-start-reverse'
+                markerWidth: 9, markerHeight: 9, markerUnits: 'userSpaceOnUse', orient: 'auto-start-reverse'
             });
             m.appendChild(el('path', { d: 'M0,0 L10,5 L0,10 z', fill: color }));
             return m;
@@ -234,9 +234,9 @@
 
         var winTag = el('text', {
             id: 'win-tag', x: RAXIS_END_X, y: RORIGIN.y - 36, 'font-size': 14, 'font-weight': 700,
-            fill: 'var(--diag-you)', 'text-anchor': 'end', opacity: 0
+            fill: 'var(--diag-you)', 'text-anchor': 'end'
         });
-        winTag.textContent = '✓ you win the projection';
+        winTag.textContent = 'w';
         svg.appendChild(winTag);
     }
 
@@ -280,13 +280,17 @@
             lLbl.setAttribute('x', overflowsRight ? lx - 8 : lx + 8);
             lLbl.setAttribute('text-anchor', overflowsRight ? 'end' : 'start');
         }
-        if (winTag) winTag.setAttribute('opacity', win ? 1 : 0);
+        if (winTag) {
+            winTag.textContent = win ? 'w' : 'possibility of being fucked';
+            winTag.setAttribute('fill', win ? 'var(--diag-you)' : 'var(--diag-neg)');
+            winTag.classList.toggle('diagram-pulse', win);
+        }
 
         svg.classList.toggle('diagram-winning', win);
 
         if (caption) {
             caption.textContent = win
-                ? 'l (' + l.toFixed(1) + ') clears D+A (' + threshold.toFixed(1) + ') — your local model wins the projection.'
+                ? 'l (' + l.toFixed(1) + ') clears D+A (' + threshold.toFixed(1) + ') — winning.'
                 : 'l (' + l.toFixed(1) + ') is still short of D+A (' + threshold.toFixed(1) + ') — the frontier lab’s net pull still dominates.';
         }
         if (lValue) lValue.textContent = l.toFixed(1);
