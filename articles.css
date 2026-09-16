@@ -145,6 +145,40 @@
     animation: diagram-pulse 1.6s ease-in-out infinite;
 }
 
+#scene-svg #goku-img {
+    transition: x 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#scene-svg #laser-beam,
+#scene-svg #laser-glow {
+    transition: x2 0.25s ease, y2 0.25s ease, opacity 0.2s ease;
+}
+
+@keyframes diagram-laser {
+    0% { stroke-dashoffset: 24; }
+    100% { stroke-dashoffset: 0; }
+}
+
+#scene-svg .diagram-laser {
+    stroke-dasharray: 8 6;
+    animation: diagram-laser 0.4s linear infinite;
+}
+
+@keyframes diagram-pop {
+    0% { transform: scale(0.4); opacity: 0; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#scene-svg #win-tag {
+    transform-origin: center;
+    transition: fill 0.2s ease;
+}
+
+#scene-svg.diagram-winning #win-tag {
+    animation: diagram-pop 0.35s ease-out;
+}
+
 .diagram-controls {
     display: flex;
     flex-wrap: wrap;
