@@ -257,20 +257,6 @@
         });
         winTag.textContent = 'w';
         svg.appendChild(winTag);
-
-        // goku, riding the l-arrow, fires a beam at "w" once you're winning
-        svg.appendChild(el('line', {
-            id: 'laser-glow', x1: RORIGIN.x, y1: RORIGIN.y - 30, x2: RORIGIN.x, y2: RORIGIN.y - 30,
-            stroke: '#ffd43b', 'stroke-width': 10, opacity: 0, filter: 'url(#glow-blur)'
-        }));
-        svg.appendChild(el('line', {
-            id: 'laser-beam', x1: RORIGIN.x, y1: RORIGIN.y - 30, x2: RORIGIN.x, y2: RORIGIN.y - 30,
-            stroke: '#ffd43b', 'stroke-width': 3, opacity: 0
-        }));
-        svg.appendChild(el('image', {
-            id: 'goku-img', href: '../goku.gif', x: RORIGIN.x - 28, y: RORIGIN.y - 72,
-            width: 56, height: 42, preserveAspectRatio: 'xMidYMid meet'
-        }));
     }
 
     function buildScene() {
@@ -321,23 +307,6 @@
             winTag.setAttribute('font-size', win ? 30 : 13);
             winTag.classList.toggle('diagram-pulse', win);
         }
-
-        var goku = document.getElementById('goku-img');
-        var laserBeam = document.getElementById('laser-beam');
-        var laserGlow = document.getElementById('laser-glow');
-        var gokuX = RAXIS_END_X - 100;
-        if (goku) { goku.setAttribute('x', gokuX - 28); goku.setAttribute('y', RORIGIN.y - 68); }
-        var beamStart = { x: gokuX + 20, y: RORIGIN.y - 40 };
-        var beamEnd = { x: RAXIS_END_X - 6, y: RORIGIN.y - 44 };
-        [laserBeam, laserGlow].forEach(function (beam) {
-            if (!beam) return;
-            beam.setAttribute('x1', beamStart.x);
-            beam.setAttribute('y1', beamStart.y);
-            beam.setAttribute('x2', win ? beamEnd.x : beamStart.x);
-            beam.setAttribute('y2', win ? beamEnd.y : beamStart.y);
-            beam.setAttribute('opacity', win ? (beam.id === 'laser-glow' ? 0.5 : 0.9) : 0);
-        });
-        if (laserBeam) laserBeam.classList.toggle('diagram-laser', win);
 
         svg.classList.toggle('diagram-winning', win);
 
