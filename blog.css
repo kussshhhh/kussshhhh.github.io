@@ -14,6 +14,9 @@
     --border: rgba(255, 255, 255, 0.1);
     --border-soft: rgba(255, 255, 255, 0.08);
     --shadow: rgba(0, 0, 0, 0.2);
+    --diag-pos: #8fb3c9;
+    --diag-neg: #d3a17e;
+    --diag-you: #93c2a3;
 }
 
 [data-theme="light"] {
@@ -29,6 +32,9 @@
     --border: rgba(30, 27, 23, 0.12);
     --border-soft: rgba(30, 27, 23, 0.08);
     --shadow: rgba(0, 0, 0, 0.06);
+    --diag-pos: #5c7e99;
+    --diag-neg: #b8724f;
+    --diag-you: #5f8f6e;
 }
 
 body {
