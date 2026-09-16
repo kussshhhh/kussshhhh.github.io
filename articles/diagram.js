@@ -199,8 +199,12 @@
         if (kLine) { kLine.setAttribute('x2', kTip.x); kLine.setAttribute('y2', kTip.y); }
         if (kDrop) { kDrop.setAttribute('x1', kTip.x); kDrop.setAttribute('y1', kTip.y); kDrop.setAttribute('x2', kTip.x); kDrop.setAttribute('y2', VORIGIN.y); }
         if (kLbl) {
-            kLbl.setAttribute('x', kTip.x);
-            kLbl.setAttribute('y', kTip.y - 10);
+            // fixed lane below the origin, clear of the segment cluster above —
+            // decoupled from k's actual angle so it never collides with segment labels
+            var lx = VORIGIN.x + Math.max(kLen, 40) * 0.6;
+            var ly = VORIGIN.y + 26;
+            kLbl.setAttribute('x', lx);
+            kLbl.setAttribute('y', ly);
             kLbl.textContent = 'you + l: ' + fmt(K.p * N * kc + l);
         }
     }
