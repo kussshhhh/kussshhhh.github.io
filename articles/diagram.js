@@ -1,15 +1,14 @@
 // diagram.js - interactive projection-model visual for the "in favour of local ai" article
 (function () {
     var svgNS = 'http://www.w3.org/2000/svg';
-    var svg = document.getElementById('proj-svg');
-    var threshSvg = document.getElementById('thresh-svg');
+    var svg = document.getElementById('scene-svg');
     var summaryEl = document.getElementById('diagram-summary');
     var caption = document.getElementById('diagram-caption');
     var lSlider = document.getElementById('l-slider');
     var lValue = document.getElementById('l-value');
     var regenBtn = document.getElementById('regen-btn');
 
-    if (!svg || !threshSvg) return;
+    if (!svg) return;
 
     var N = 100;
     var K = { name: 'you (segment k)', p: 0.05, angle: 15 };
@@ -21,10 +20,10 @@
 
     function defaultSegments() {
         return [
-            { name: 'ad engagement', p: 0.30, angle: 150 },
-            { name: "gov't compliance", p: 0.15, angle: 20 },
-            { name: 'other users', p: 0.30, angle: 95 },
-            { name: 'shareholder profit', p: 0.20, angle: 110 }
+            { name: 'ad engagement', p: 0.30, angle: 155 },
+            { name: "gov't compliance", p: 0.15, angle: 35 },
+            { name: 'other users', p: 0.30, angle: -70 },
+            { name: 'shareholder profit', p: 0.20, angle: -160 }
         ];
     }
 
@@ -37,14 +36,18 @@
     }
 
     function randomSegments() {
-        var count = 3 + Math.floor(Math.random() * 3);
+        var count = 3 + Math.floor(Math.random() * 2); // 3-4, kept spread out
         var names = shuffleArr(NAME_POOL.slice()).slice(0, count);
         var weights = names.map(function () { return 0.3 + Math.random(); });
         var total = weights.reduce(function (a, b) { return a + b; }, 0);
         var remaining = 1 - K.p;
         weights = weights.map(function (w) { return (w / total) * remaining; });
+        var base = Math.random() * 360;
+        var slice = 360 / count;
         return names.map(function (name, i) {
-            return { name: name, p: weights[i], angle: Math.round(Math.random() * 360 - 180) };
+            var angle = base + i * slice + (Math.random() * slice * 0.4 - slice * 0.2);
+            angle = ((angle + 180) % 360 + 360) % 360 - 180;
+            return { name: name, p: weights[i], angle: Math.round(angle) };
         });
     }
 
@@ -64,148 +67,229 @@
     function computeStats() {
         var contribs = segments.map(function (s) {
             var c = Math.cos(toRad(s.angle));
-            return { name: s.name, val: s.p * N * c, q: s.p * N, c: c };
+            return { name: s.name, val: s.p * N * c, q: s.p * N, c: c, angle: s.angle };
         });
         var rawD = contribs.reduce(function (sum, c) { return sum + c.val; }, 0);
         var cK = Math.cos(toRad(K.angle));
         var kVal = K.p * N * cK;
-        var A = kVal;
-        return { contribs: contribs, D: Math.abs(rawD), rawD: rawD, A: A, kVal: kVal, cK: cK };
+        return { contribs: contribs, D: Math.abs(rawD), rawD: rawD, A: kVal, kVal: kVal };
     }
 
-    // --- panel 1: contribution dot-plot on a single horizontal axis ---
-    function renderContribPlot(stats) {
-        clear(svg);
-        var W = 700, H = 280;
-        var axisY = 140;
-        var left = 70, right = W - 30;
+    var W = 820, H = 460;
 
-        var allVals = stats.contribs.map(function (c) { return c.val; }).concat([stats.kVal]);
-        var domainMax = Math.max(30, Math.max.apply(null, allVals.map(Math.abs)) * 1.3);
-        function px(v) { return W / 2 + v * ((right - left) / 2 / domainMax); }
+    // -- band 1: the vector geometry (origin, segment pushes, true projections) --
+    var VORIGIN = { x: 330, y: 150 };
+    var VSCALE = 2.2;
+    var VEC_MAX = 100;
+    var VAXIS_END_X = 700;
 
-        // baseline
-        svg.appendChild(el('line', { x1: left, y1: axisY, x2: right, y2: axisY, stroke: 'var(--border)', 'stroke-width': 1.5 }));
-        svg.appendChild(el('line', { x1: px(0), y1: axisY - 6, x2: px(0), y2: axisY + 6, stroke: 'var(--text-faint)', 'stroke-width': 1.5 }));
+    // -- band 2: the race (l vs. D+A threshold, same axis direction, dedicated lane) --
+    var RORIGIN = { x: 90, y: 400 };
+    var RSCALE = 3.6;
+    var RAXIS_END_X = 740;
 
-        var leftLabel = el('text', { x: left, y: axisY + 32, 'font-size': 11.5, fill: 'var(--diag-neg)', 'text-anchor': 'start' });
-        leftLabel.textContent = '← pulls away from you';
-        svg.appendChild(leftLabel);
-        var rightLabel = el('text', { x: right, y: axisY + 32, 'font-size': 11.5, fill: 'var(--diag-pos)', 'text-anchor': 'end' });
-        rightLabel.textContent = 'pulls toward you →';
-        svg.appendChild(rightLabel);
+    function addDefs() {
+        var defs = el('defs', {});
+        function mk(id, color) {
+            var m = el('marker', {
+                id: id, viewBox: '0 0 10 10', refX: 8, refY: 5,
+                markerWidth: 6.5, markerHeight: 6.5, orient: 'auto-start-reverse'
+            });
+            m.appendChild(el('path', { d: 'M0,0 L10,5 L0,10 z', fill: color }));
+            return m;
+        }
+        defs.appendChild(mk('m-axis', 'var(--text)'));
+        defs.appendChild(mk('m-pos', 'var(--diag-pos)'));
+        defs.appendChild(mk('m-neg', 'var(--diag-neg)'));
+        defs.appendChild(mk('m-you', 'var(--diag-you)'));
 
-        var items = stats.contribs.slice().sort(function (a, b) { return a.val - b.val; });
+        var glow = el('filter', { id: 'glow-blur', x: '-60%', y: '-60%', width: '220%', height: '220%' });
+        glow.appendChild(el('feGaussianBlur', { stdDeviation: '6', result: 'blur' }));
+        defs.appendChild(glow);
+        return defs;
+    }
 
-        // greedily assign each label to the first row (alternating above/below,
-        // stacking further out as needed) whose last-used x is far enough away
-        var MIN_GAP = 105;
-        var rowsAbove = []; // each entry: last x placed in that row
-        var rowsBelow = [];
-        var assignments = items.map(function (c) {
-            var x = px(c.val);
-            var tryRows = [];
-            for (var i = 0; i < 3; i++) { tryRows.push({ side: 'above', idx: i }); tryRows.push({ side: 'below', idx: i }); }
-            for (var t = 0; t < tryRows.length; t++) {
-                var arr = tryRows[t].side === 'above' ? rowsAbove : rowsBelow;
-                var i2 = tryRows[t].idx;
-                if (arr[i2] === undefined || Math.abs(x - arr[i2]) > MIN_GAP) {
-                    arr[i2] = x;
-                    return { c: c, x: x, side: tryRows[t].side, level: i2 };
-                }
-            }
-            var arr2 = rowsAbove;
-            arr2[0] = x;
-            return { c: c, x: x, side: 'above', level: 0 };
+    function addGuides() {
+        [35, 70, 100].forEach(function (r) {
+            svg.appendChild(el('circle', {
+                cx: VORIGIN.x, cy: VORIGIN.y, r: r, fill: 'none',
+                stroke: 'var(--border)', 'stroke-width': 1, opacity: 0.5
+            }));
         });
+    }
 
-        assignments.forEach(function (a) {
-            var c = a.c, x = a.x;
-            var positive = c.val >= 0;
+    function buildVectorBand(stats) {
+        svg.appendChild(el('line', {
+            x1: VORIGIN.x, y1: VORIGIN.y, x2: VAXIS_END_X - 12, y2: VORIGIN.y,
+            stroke: 'var(--text)', 'stroke-width': 2, 'marker-end': 'url(#m-axis)'
+        }));
+        var axisLabel = el('text', {
+            x: VAXIS_END_X + 4, y: VORIGIN.y + 5, 'font-style': 'italic', 'font-size': 16, fill: 'var(--text)'
+        });
+        axisLabel.textContent = 'â (you)';
+        svg.appendChild(axisLabel);
+        svg.appendChild(el('circle', { cx: VORIGIN.x, cy: VORIGIN.y, r: 3.5, fill: 'var(--text-faint)' }));
+
+        var placedLabelsX = [];
+        segments.forEach(function (s) {
+            var c = Math.cos(toRad(s.angle));
+            var rad = toRad(s.angle);
+            var rawLen = s.p * N * VSCALE;
+            var len = Math.min(rawLen, VEC_MAX);
+            var ux = Math.cos(rad), uy = -Math.sin(rad);
+            var tip = { x: VORIGIN.x + len * ux, y: VORIGIN.y + len * uy };
+            var positive = c >= 0;
             var color = positive ? 'var(--diag-pos)' : 'var(--diag-neg)';
-            var above = a.side === 'above';
-            var rowY = above ? axisY - 46 - a.level * 32 : axisY + 62 + a.level * 32;
-            var r = Math.max(4, Math.min(11, 3.5 + Math.sqrt(c.q) * 0.9));
+            var marker = positive ? 'm-pos' : 'm-neg';
 
             svg.appendChild(el('line', {
-                x1: x, y1: axisY, x2: x, y2: above ? rowY + 10 : rowY - 10,
-                stroke: color, 'stroke-width': 1, 'stroke-dasharray': '2,3', opacity: 0.5
+                x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
+                stroke: color, 'stroke-width': 2.25, 'marker-end': 'url(#' + marker + ')', opacity: 0.9
             }));
-            svg.appendChild(el('circle', { cx: x, cy: axisY, r: r, fill: color, opacity: 0.9 }));
+            svg.appendChild(el('line', {
+                x1: tip.x, y1: tip.y, x2: tip.x, y2: VORIGIN.y,
+                stroke: color, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.45
+            }));
+            svg.appendChild(el('circle', { cx: tip.x, cy: VORIGIN.y, r: 3, fill: color }));
 
-            var lx = Math.max(left + 10, Math.min(right - 10, x));
+            var labelDist = 18;
+            var tries = 0;
+            while (placedLabelsX.some(function (x) { return Math.abs(x - tip.x) < 55; }) && tries < 4) {
+                labelDist += 15; tries++;
+            }
+            placedLabelsX.push(tip.x);
+            var lx = tip.x + ux * labelDist;
+            var ly = Math.max(14, Math.min(310, tip.y + uy * labelDist));
+            var anchor = Math.abs(ux) < 0.2 ? 'middle' : (ux > 0 ? 'start' : 'end');
+            var clampedLx = anchor === 'end' ? Math.max(70, lx) : Math.min(W - 10, lx);
             var nameLbl = el('text', {
-                x: lx, y: above ? rowY - 4 : rowY + 14, 'font-size': 11.5,
-                fill: 'var(--text-faint)', 'text-anchor': 'middle'
+                x: clampedLx, y: ly, 'font-size': 12, fill: 'var(--text-faint)', 'text-anchor': anchor
             });
-            nameLbl.textContent = c.name;
+            nameLbl.textContent = s.name + '  ' + fmt(s.p * N * c);
             svg.appendChild(nameLbl);
-
-            var valLbl = el('text', {
-                x: lx, y: above ? rowY + 10 : rowY + 28, 'font-size': 11, 'font-weight': 700,
-                fill: color, 'text-anchor': 'middle'
-            });
-            valLbl.textContent = fmt(c.val);
-            svg.appendChild(valLbl);
         });
 
-        // segment k — you: distinct, always centered above axis at a fixed near row
-        var kx = px(stats.kVal);
-        svg.appendChild(el('line', { x1: kx, y1: axisY, x2: kx, y2: axisY - 14, stroke: 'var(--diag-you)', 'stroke-width': 1.5 }));
-        svg.appendChild(el('circle', { cx: kx, cy: axisY, r: 8, fill: 'none', stroke: 'var(--diag-you)', 'stroke-width': 2.5 }));
-        svg.appendChild(el('circle', { cx: kx, cy: axisY, r: 3, fill: 'var(--diag-you)' }));
+        var kc = Math.cos(toRad(K.angle));
+        var kLen = Math.min(K.p * N * VSCALE, VEC_MAX);
+        var kRad = toRad(K.angle);
+        var kux = Math.cos(kRad), kuy = -Math.sin(kRad);
+        var kTip = { x: VORIGIN.x + kLen * kux, y: VORIGIN.y + kLen * kuy };
+        svg.appendChild(el('line', {
+            x1: VORIGIN.x, y1: VORIGIN.y, x2: kTip.x, y2: kTip.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 2.5, 'marker-end': 'url(#m-you)'
+        }));
+        svg.appendChild(el('line', {
+            x1: kTip.x, y1: kTip.y, x2: kTip.x, y2: VORIGIN.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.5
+        }));
         var kLbl = el('text', {
-            x: Math.max(left + 10, Math.min(right - 10, kx)), y: axisY - 20, 'font-size': 12,
-            'font-weight': 700, fill: 'var(--diag-you)', 'text-anchor': 'middle'
+            x: kTip.x, y: kTip.y - 10, 'font-size': 12, 'font-weight': 700,
+            fill: 'var(--diag-you)', 'text-anchor': 'middle'
         });
-        kLbl.textContent = 'you (k): ' + fmt(stats.kVal);
+        kLbl.textContent = 'you: ' + fmt(K.p * N * kc);
         svg.appendChild(kLbl);
     }
 
-    // --- panel 2: threshold bar, l vs D + A ---
-    function renderThreshold(stats) {
-        clear(threshSvg);
-        var W = 700, zero = 60, right = W - 30;
-        var maxVal = 100;
-        function px(v) { return zero + v * ((right - zero) / maxVal); }
+    function buildRaceBand(stats) {
+        var caption1 = el('text', {
+            x: RORIGIN.x, y: RORIGIN.y - 62, 'font-size': 13, fill: 'var(--text-faint)', 'text-anchor': 'start'
+        });
+        caption1.textContent = 'the same axis — does l clear the frontier’s net pull?';
+        svg.appendChild(caption1);
 
-        threshSvg.appendChild(el('line', { x1: zero, y1: 45, x2: right, y2: 45, stroke: 'var(--border)', 'stroke-width': 1 }));
-        threshSvg.appendChild(el('line', { x1: zero, y1: 20, x2: zero, y2: 70, stroke: 'var(--text-faint)', 'stroke-width': 1 }));
+        svg.appendChild(el('line', {
+            x1: RORIGIN.x, y1: RORIGIN.y, x2: RAXIS_END_X, y2: RORIGIN.y,
+            stroke: 'var(--border)', 'stroke-width': 2
+        }));
+        svg.appendChild(el('circle', { cx: RORIGIN.x, cy: RORIGIN.y, r: 3.5, fill: 'var(--text-faint)' }));
 
         var threshold = stats.D + stats.A;
-        var thresholdX = px(Math.min(threshold, maxVal));
-        threshSvg.appendChild(el('line', {
-            x1: thresholdX, y1: 15, x2: thresholdX, y2: 75,
-            stroke: 'var(--diag-neg)', 'stroke-width': 1.5, 'stroke-dasharray': '4,3'
+        var tickX = RORIGIN.x + threshold * RSCALE;
+        svg.appendChild(el('line', {
+            x1: tickX, y1: RORIGIN.y - 28, x2: tickX, y2: RORIGIN.y + 28,
+            stroke: 'var(--diag-neg)', 'stroke-width': 2, 'stroke-dasharray': '5,3'
         }));
-        var tLabel = el('text', {
-            x: thresholdX, y: 12, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--diag-neg)'
+        var tickLbl = el('text', {
+            x: tickX, y: RORIGIN.y - 36, 'font-size': 13, 'font-weight': 700,
+            fill: 'var(--diag-neg)', 'text-anchor': 'middle'
         });
-        tLabel.textContent = 'D+A ≈ ' + threshold.toFixed(1);
-        threshSvg.appendChild(tLabel);
+        tickLbl.textContent = 'D+A = ' + threshold.toFixed(1);
+        svg.appendChild(tickLbl);
 
-        var l = parseFloat(lSlider.value);
-        var lX = px(Math.min(l, maxVal));
-        var win = l > threshold;
-        threshSvg.appendChild(el('rect', {
-            x: zero, y: 38, width: Math.max(0, lX - zero), height: 14,
-            fill: win ? 'var(--diag-you)' : 'var(--text-faint2)',
-            rx: 3, opacity: win ? 0.9 : 0.55
+        svg.appendChild(el('line', {
+            id: 'l-glow', x1: RORIGIN.x, y1: RORIGIN.y, x2: RORIGIN.x, y2: RORIGIN.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 11, opacity: 0, filter: 'url(#glow-blur)'
         }));
-        var overflowsRight = lX > right - 60;
-        var lLabel = el('text', {
-            x: overflowsRight ? lX - 6 : lX + 6, y: 49, 'font-size': 12, 'font-weight': 700,
-            'text-anchor': overflowsRight ? 'end' : 'start',
-            fill: overflowsRight ? 'var(--bg)' : (win ? 'var(--diag-you)' : 'var(--text-faint)')
+        svg.appendChild(el('line', {
+            id: 'l-line', x1: RORIGIN.x, y1: RORIGIN.y, x2: RORIGIN.x, y2: RORIGIN.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 6, 'marker-end': 'url(#m-you)'
+        }));
+        svg.appendChild(el('circle', { id: 'win-badge', cx: RORIGIN.x, cy: RORIGIN.y, r: 0, fill: 'var(--diag-you)' }));
+        var lLbl = el('text', {
+            id: 'l-label', x: RORIGIN.x, y: RORIGIN.y + 34, 'font-size': 14, 'font-weight': 700,
+            fill: 'var(--diag-you)', 'text-anchor': 'start'
         });
-        lLabel.textContent = 'l = ' + l.toFixed(1);
-        threshSvg.appendChild(lLabel);
+        lLbl.textContent = 'l';
+        svg.appendChild(lLbl);
+
+        var winTag = el('text', {
+            id: 'win-tag', x: RAXIS_END_X, y: RORIGIN.y - 36, 'font-size': 14, 'font-weight': 700,
+            fill: 'var(--diag-you)', 'text-anchor': 'end', opacity: 0
+        });
+        winTag.textContent = '✓ you win the projection';
+        svg.appendChild(winTag);
+    }
+
+    function buildScene() {
+        clear(svg);
+        svg.appendChild(addDefs());
+        addGuides();
+        var stats = computeStats();
+        buildVectorBand(stats);
+        buildRaceBand(stats);
+        return stats;
+    }
+
+    function updateDynamic(stats) {
+        var l = parseFloat(lSlider.value);
+        var threshold = stats.D + stats.A;
+        var win = l > threshold;
+        var lx = RORIGIN.x + l * RSCALE;
+
+        var lLine = document.getElementById('l-line');
+        var lGlow = document.getElementById('l-glow');
+        var badge = document.getElementById('win-badge');
+        var lLbl = document.getElementById('l-label');
+        var winTag = document.getElementById('win-tag');
+
+        if (lLine) { lLine.setAttribute('x2', lx); lLine.setAttribute('y2', RORIGIN.y); }
+        if (lGlow) {
+            lGlow.setAttribute('x2', lx);
+            lGlow.setAttribute('y2', RORIGIN.y);
+            lGlow.setAttribute('opacity', win ? 0.5 : 0);
+            lGlow.classList.toggle('diagram-pulse', win);
+        }
+        if (badge) {
+            badge.setAttribute('cx', lx);
+            badge.setAttribute('cy', RORIGIN.y);
+            badge.setAttribute('r', win ? 7 : 0);
+            badge.classList.toggle('diagram-pulse', win);
+        }
+        if (lLbl) {
+            var overflowsRight = lx > RAXIS_END_X - 40;
+            lLbl.setAttribute('x', overflowsRight ? lx - 8 : lx + 8);
+            lLbl.setAttribute('text-anchor', overflowsRight ? 'end' : 'start');
+        }
+        if (winTag) winTag.setAttribute('opacity', win ? 1 : 0);
+
+        svg.classList.toggle('diagram-winning', win);
 
         if (caption) {
             caption.textContent = win
                 ? 'l (' + l.toFixed(1) + ') clears D+A (' + threshold.toFixed(1) + ') — your local model wins the projection.'
                 : 'l (' + l.toFixed(1) + ') is still short of D+A (' + threshold.toFixed(1) + ') — the frontier lab’s net pull still dominates.';
         }
+        if (lValue) lValue.textContent = l.toFixed(1);
     }
 
     function renderSummary(stats) {
@@ -216,27 +300,20 @@
             '<span class="diagram-summary-item"><span class="diagram-var">D+A</span> = ' + (stats.D + stats.A).toFixed(1) + '</span>';
     }
 
-    function update() {
-        var stats = computeStats();
-        renderContribPlot(stats);
-        renderThreshold(stats);
-        renderSummary(stats);
-        if (lValue) lValue.textContent = parseFloat(lSlider.value).toFixed(1);
+    var currentStats;
+
+    function fullRender() {
+        currentStats = buildScene();
+        renderSummary(currentStats);
+        updateDynamic(currentStats);
     }
 
     if (lSlider) {
-        lSlider.addEventListener('input', function () {
-            renderThreshold(computeStats());
-            if (lValue) lValue.textContent = parseFloat(lSlider.value).toFixed(1);
-        });
+        lSlider.addEventListener('input', function () { updateDynamic(currentStats); });
     }
-
     if (regenBtn) {
-        regenBtn.addEventListener('click', function () {
-            segments = randomSegments();
-            update();
-        });
+        regenBtn.addEventListener('click', function () { segments = randomSegments(); fullRender(); });
     }
 
-    update();
+    fullRender();
 })();

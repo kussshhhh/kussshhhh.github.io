@@ -71,14 +71,11 @@
             <p>so basically all you gotta do is overpower projection of $n$ onto you.</p>
 
             <figure class="diagram-block">
-                <p class="diagram-title">where each segment's capability lands on your axis</p>
+                <p class="diagram-title">each segment's push, projected onto your axis &mdash; then your local ai races it</p>
                 <div class="diagram-svg-wrap">
-                    <svg id="proj-svg" viewBox="0 0 700 280" role="img" aria-label="Dot plot showing each segment's capability projected onto your alignment axis"></svg>
+                    <svg id="scene-svg" viewBox="0 0 820 460" role="img" aria-label="Vectors for each segment projected onto your alignment axis, with your local ai's capability racing a threshold along that axis"></svg>
                 </div>
                 <div class="diagram-summary" id="diagram-summary"></div>
-                <div class="diagram-svg-wrap">
-                    <svg id="thresh-svg" viewBox="0 0 700 90" role="img" aria-label="Bar comparing your local ai's capability l against the threshold D plus A"></svg>
-                </div>
                 <div class="diagram-controls">
                     <label for="l-slider">your local ai's capability, <span class="diagram-var">l</span>
                         <input type="range" id="l-slider" min="0" max="100" value="20" step="0.5">
@@ -89,9 +86,9 @@
                 <div class="diagram-legend">
                     <span class="legend-item"><i class="swatch swatch-pos"></i> pulls toward you (c<sub>i</sub> &ge; 0)</span>
                     <span class="legend-item"><i class="swatch swatch-neg"></i> pulls away from you (c<sub>i</sub> &lt; 0)</span>
-                    <span class="legend-item"><i class="swatch swatch-you"></i> segment k &mdash; you</span>
+                    <span class="legend-item"><i class="swatch swatch-you"></i> l &mdash; your local ai</span>
                 </div>
-                <figcaption id="diagram-caption" class="diagram-caption">drag the slider to see where your local model needs to land.</figcaption>
+                <figcaption id="diagram-caption" class="diagram-caption">drag the slider until l clears the line.</figcaption>
             </figure>
 
             <p>almost all of a frontier actor's capability points at things orthogonal to any given individual, protein folding, ad auctions, somebody else's segment. those terms have $c_i \approx 0$ and drop out of the sum.</p>

@@ -115,6 +115,28 @@
     min-width: 480px;
 }
 
+#scene-svg #l-line,
+#scene-svg #l-glow {
+    transition: x2 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#scene-svg #win-badge {
+    transition: r 0.3s ease, cx 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#scene-svg #l-label {
+    transition: x 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes diagram-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.85; }
+}
+
+.diagram-pulse {
+    animation: diagram-pulse 1.6s ease-in-out infinite;
+}
+
 .diagram-controls {
     display: flex;
     flex-wrap: wrap;
