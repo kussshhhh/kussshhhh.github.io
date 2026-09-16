@@ -127,6 +127,15 @@
     transition: x 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+#scene-svg #k-line,
+#scene-svg #k-drop {
+    transition: x2 0.35s cubic-bezier(0.22, 1, 0.36, 1), y2 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#scene-svg #k-label {
+    transition: x 0.35s cubic-bezier(0.22, 1, 0.36, 1), y 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @keyframes diagram-pulse {
     0%, 100% { opacity: 0.4; }
     50% { opacity: 0.85; }

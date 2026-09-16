@@ -169,25 +169,40 @@
             svg.appendChild(nameLbl);
         });
 
-        var kc = Math.cos(toRad(K.angle));
-        var kLen = Math.min(K.p * N * VSCALE, VEC_MAX);
-        var kRad = toRad(K.angle);
-        var kux = Math.cos(kRad), kuy = -Math.sin(kRad);
-        var kTip = { x: VORIGIN.x + kLen * kux, y: VORIGIN.y + kLen * kuy };
         svg.appendChild(el('line', {
-            x1: VORIGIN.x, y1: VORIGIN.y, x2: kTip.x, y2: kTip.y,
+            id: 'k-line', x1: VORIGIN.x, y1: VORIGIN.y, x2: VORIGIN.x, y2: VORIGIN.y,
             stroke: 'var(--diag-you)', 'stroke-width': 2.5, 'marker-end': 'url(#m-you)'
         }));
         svg.appendChild(el('line', {
-            x1: kTip.x, y1: kTip.y, x2: kTip.x, y2: VORIGIN.y,
+            id: 'k-drop', x1: VORIGIN.x, y1: VORIGIN.y, x2: VORIGIN.x, y2: VORIGIN.y,
             stroke: 'var(--diag-you)', 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.5
         }));
         var kLbl = el('text', {
-            x: kTip.x, y: kTip.y - 10, 'font-size': 12, 'font-weight': 700,
+            id: 'k-label', x: VORIGIN.x, y: VORIGIN.y - 10, 'font-size': 12, 'font-weight': 700,
             fill: 'var(--diag-you)', 'text-anchor': 'middle'
         });
-        kLbl.textContent = 'you: ' + fmt(K.p * N * kc);
         svg.appendChild(kLbl);
+    }
+
+    function updateKVector() {
+        var kc = Math.cos(toRad(K.angle));
+        var l = parseFloat(lSlider.value);
+        var kBase = K.p * N * VSCALE;
+        var kLen = Math.min(kBase + l * 0.85, VEC_MAX);
+        var kRad = toRad(K.angle);
+        var kux = Math.cos(kRad), kuy = -Math.sin(kRad);
+        var kTip = { x: VORIGIN.x + kLen * kux, y: VORIGIN.y + kLen * kuy };
+
+        var kLine = document.getElementById('k-line');
+        var kDrop = document.getElementById('k-drop');
+        var kLbl = document.getElementById('k-label');
+        if (kLine) { kLine.setAttribute('x2', kTip.x); kLine.setAttribute('y2', kTip.y); }
+        if (kDrop) { kDrop.setAttribute('x1', kTip.x); kDrop.setAttribute('y1', kTip.y); kDrop.setAttribute('x2', kTip.x); kDrop.setAttribute('y2', VORIGIN.y); }
+        if (kLbl) {
+            kLbl.setAttribute('x', kTip.x);
+            kLbl.setAttribute('y', kTip.y - 10);
+            kLbl.textContent = 'you + l: ' + fmt(K.p * N * kc + l);
+        }
     }
 
     function buildRaceBand(stats) {
@@ -255,6 +270,8 @@
         var threshold = stats.D + stats.A;
         var win = l > threshold;
         var lx = RORIGIN.x + l * RSCALE;
+
+        updateKVector();
 
         var lLine = document.getElementById('l-line');
         var lGlow = document.getElementById('l-glow');
