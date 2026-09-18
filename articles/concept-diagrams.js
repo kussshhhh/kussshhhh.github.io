@@ -242,7 +242,7 @@
             x: (PLOT.x0 + PLOT.x1) / 2, y: PLOT.y1 + 50, 'font-size': 12.5, 'font-weight': 700,
             fill: 'var(--text-soft)', 'text-anchor': 'middle'
         });
-        sumLbl.textContent = 'Σ p_i = 1.00  —  and note: weight is not headcount';
+        sumLbl.textContent = 'Σ p_i = 1.00   (weight is not headcount)';
         svg.appendChild(sumLbl);
     }
 
@@ -414,7 +414,7 @@
             x: (O.x + tip.x) / 2, y: by + 18, 'font-size': 12.5, 'font-weight': 700,
             fill: 'var(--diag-you)', 'text-anchor': 'middle'
         });
-        cLbl.textContent = 'cₖ — the part that actually lands on you';
+        cLbl.textContent = 'cₖ = the part that actually lands on you';
         svg.appendChild(cLbl);
     }
 

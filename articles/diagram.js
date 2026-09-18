@@ -13,7 +13,7 @@
     var N = 100;
     var K = { name: 'people like you (segment k)', p: 0.05, angle: 15 };
 
-    // segments are groups of people, not objectives — the objective is the
+    // segments are groups of people, not objectives. the objective is the
     // direction that group gets pushed, which is what the vector's angle encodes
     var NAME_POOL = [
         'teens & students', 'young professionals', 'everyone else', 'enterprise seats',
@@ -201,7 +201,7 @@
         if (kLine) { kLine.setAttribute('x2', kTip.x); kLine.setAttribute('y2', kTip.y); }
         if (kDrop) { kDrop.setAttribute('x1', kTip.x); kDrop.setAttribute('y1', kTip.y); kDrop.setAttribute('x2', kTip.x); kDrop.setAttribute('y2', VORIGIN.y); }
         if (kLbl) {
-            // fixed lane below the origin, clear of the segment cluster above —
+            // fixed lane below the origin, clear of the segment cluster above;
             // decoupled from k's actual angle so it never collides with segment labels
             var lx = VORIGIN.x + Math.max(kLen, 40) * 0.6;
             var ly = VORIGIN.y + 26;
@@ -215,7 +215,7 @@
         var caption1 = el('text', {
             x: RORIGIN.x, y: RORIGIN.y - 62, 'font-size': 13, fill: 'var(--text-faint)', 'text-anchor': 'start'
         });
-        caption1.textContent = 'the same axis — does l clear the frontier’s net pull?';
+        caption1.textContent = 'the same axis. does l clear the frontier’s net pull?';
         svg.appendChild(caption1);
 
         svg.appendChild(el('line', {
@@ -314,8 +314,8 @@
 
         if (caption) {
             caption.textContent = win
-                ? 'l (' + l.toFixed(1) + ') clears D+A (' + threshold.toFixed(1) + ') — winning.'
-                : 'l (' + l.toFixed(1) + ') is still short of D+A (' + threshold.toFixed(1) + ') — the frontier lab’s net pull still dominates.';
+                ? 'l (' + l.toFixed(1) + ') clears D+A (' + threshold.toFixed(1) + ') and winning.'
+                : 'l (' + l.toFixed(1) + ') is still short of D+A (' + threshold.toFixed(1) + '). the frontier lab’s net pull still dominates.';
         }
         if (lValue) lValue.textContent = l.toFixed(1);
     }

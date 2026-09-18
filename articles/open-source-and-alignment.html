@@ -71,7 +71,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-population" viewBox="0 0 820 300" role="img" aria-label="A population clustered into segments, with you as one point among them"></svg>
                 </div>
-                <figcaption>the users, spread over a couple of metrics that describe people &mdash; and the actor carves that distribution into S segments. you're one dot, in segment k</figcaption>
+                <figcaption>the users, spread over a couple of metrics that describe people. the actor carves that distribution into S segments, and you're one dot, in segment k</figcaption>
             </figure>
 
             <p>$p_i$ : the weightage they give segment $i$ due to profitability, government enforcement, their own moral policy, whatever.</p>
@@ -81,7 +81,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-weights" viewBox="0 0 820 300" role="img" aria-label="The same clusters, now sized by each segment's weight p_i"></svg>
                 </div>
-                <figcaption>same people, now shaded by p<sub>i</sub> &mdash; how much the actor weights that segment. notice it doesn't track headcount: enterprise seats are few and heavy, teens are many and light. your own segment is the palest thing on the board</figcaption>
+                <figcaption>same people, now shaded by p<sub>i</sub>, how much the actor weights that segment. notice it doesn't track headcount: enterprise seats are few and heavy, teens are many and light. your own segment is the palest thing on the board</figcaption>
             </figure>
 
             <p>$q_i = p_i \cdot n$ (capability actually aimed at segment $i$)</p>
@@ -91,7 +91,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-vectors" viewBox="0 0 820 300" role="img" aria-label="Each segment's weight turned into a vector: length is q_i, angle is the direction it gets pushed"></svg>
                 </div>
-                <figcaption>each segment becomes a vector &mdash; length is q<sub>i</sub> (capability aimed at those people), angle is x&#770;<sub>i</sub>, the direction they get pushed. this is where things like government enforcement actually live: a regulation isn't a segment, it's a force bending some segment's arrow</figcaption>
+                <figcaption>each segment becomes a vector. length is q<sub>i</sub> (capability aimed at those people), angle is x&#770;<sub>i</sub>, the direction they get pushed. this is where things like government enforcement actually live: a regulation isn't a segment, it's a force bending some segment's arrow</figcaption>
             </figure>
 
             <p>$\hat{a}$ : your true alignment direction, at any given moment.</p>
@@ -100,7 +100,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-axis" viewBox="0 0 820 300" role="img" aria-label="Your alignment axis â added to the diagram"></svg>
                 </div>
-                <figcaption>now add â &mdash; the direction that's actually good for you</figcaption>
+                <figcaption>now add â, the direction that's actually good for you</figcaption>
             </figure>
 
             <p>$c_i = \hat{x}_i \cdot \hat{a}$ (the component of segment $i$'s push that lands on your axis. prolly positive)</p>
@@ -109,7 +109,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-projection" viewBox="0 0 820 300" role="img" aria-label="Each vector projected onto â, colored by whether it lands toward or away from you"></svg>
                 </div>
-                <figcaption>drop each vector onto â &mdash; that's c<sub>i</sub>. this is where blue (toward you) and orange (away) start meaning something</figcaption>
+                <figcaption>drop each vector onto â and you get c<sub>i</sub>. this is where blue (toward you) and orange (away) start meaning something</figcaption>
             </figure>
 
             <p>note that $c_i$ is a component, not a verdict on the whole vector. no segment has to be wholly hostile. what matters is only how much of its push projects onto you, and in which direction.</p>
@@ -118,7 +118,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-approx" viewBox="0 0 820 280" role="img" aria-label="Your segment's push pointing close to your alignment axis but not exactly, with the projection and the leftover component marked"></svg>
                 </div>
-                <figcaption>even your own segment is only an approximation of you &mdash; it points close to â, not along it. the angle &theta; is everything they got slightly wrong about you, and only c<sub>k</sub> survives the projection</figcaption>
+                <figcaption>even your own segment is only an approximation of you. it points close to â, not along it. the angle &theta; is everything they got slightly wrong about you, and only c<sub>k</sub> survives the projection</figcaption>
             </figure>
             <p>suppose you're in segment $k$. every other segment's optimization carries some anti-alignment component wrt you, and those components sum:</p>
             <p>$$D = \left| \sum_{i \neq k} q_i c_i \right|$$</p>
@@ -127,7 +127,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-d" viewBox="0 0 820 300" role="img" aria-label="Every segment except you, summed along the axis to get D"></svg>
                 </div>
-                <figcaption>everyone except you (segment k), summed along â &mdash; that net pull is D</figcaption>
+                <figcaption>everyone except you (segment k), summed along â. that net pull is D</figcaption>
             </figure>
 
             <p>some segments may even help you incidentally ($c_i > 0$). the claim survives that it only needs the weighted sum to come out against you.</p>
@@ -138,7 +138,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-a" viewBox="0 0 820 300" role="img" aria-label="Just your own segment k, projected along the axis, to get A"></svg>
                 </div>
-                <figcaption>just your own segment, k &mdash; whatever the actor happens to do for you is A</figcaption>
+                <figcaption>just your own segment, k. whatever the actor happens to do for you is A</figcaption>
             </figure>
 
             <p>so i want opensource to reach a stage where</p>
@@ -147,7 +147,7 @@
             <p>so basically all you gotta do is overpower projection of $n$ onto you.</p>
 
             <figure class="diagram-block">
-                <p class="diagram-title">each segment's push, projected onto your axis &mdash; then your local ai races it</p>
+                <p class="diagram-title">each segment's push, projected onto your axis, then your local ai races it</p>
                 <div class="diagram-svg-wrap">
                     <svg id="scene-svg" viewBox="0 0 820 460" role="img" aria-label="Vectors for each segment projected onto your alignment axis, with your local ai's capability racing a threshold along that axis"></svg>
                 </div>
@@ -162,7 +162,7 @@
                 <div class="diagram-legend">
                     <span class="legend-item"><i class="swatch swatch-pos"></i> pulls toward you (c<sub>i</sub> &ge; 0)</span>
                     <span class="legend-item"><i class="swatch swatch-neg"></i> pulls away from you (c<sub>i</sub> &lt; 0)</span>
-                    <span class="legend-item"><i class="swatch swatch-you"></i> l &mdash; your local ai</span>
+                    <span class="legend-item"><i class="swatch swatch-you"></i> l, your local ai</span>
                 </div>
                 <figcaption id="diagram-caption" class="diagram-caption">drag the slider until l clears the line.</figcaption>
             </figure>
@@ -172,7 +172,7 @@
         </article>
     </main>
 
-    <script src="concept-diagrams.js?v=7" defer></script>
+    <script src="concept-diagrams.js?v=8" defer></script>
     <script src="diagram.js" defer></script>
     <script>
         function renderMath() {
