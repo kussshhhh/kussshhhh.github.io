@@ -304,7 +304,7 @@
         if (winTag) {
             winTag.textContent = win ? 'w' : 'possibility of being fucked';
             winTag.setAttribute('fill', win ? 'var(--diag-you)' : 'var(--diag-neg)');
-            winTag.setAttribute('font-size', win ? 30 : 13);
+            winTag.setAttribute('font-size', win ? 30 : 18);
             winTag.classList.toggle('diagram-pulse', win);
         }
 

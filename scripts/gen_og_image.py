@@ -71,12 +71,15 @@ label = f"D+A = {THRESHOLD:.1f}"
 tw = d.textlength(label, font=smallbold)
 d.text((tick_x - tw / 2, RORIGIN[1] - 48), label, font=smallbold, fill=DIAG_NEG)
 
-l_val = 40.0
+l_val = 12.0
 lx = RORIGIN[0] + l_val * 5.2
 draw_arrow(d, RORIGIN[0], RORIGIN[1], lx, RORIGIN[1], DIAG_YOU, width=7, head=10)
 d.text((lx - 30, RORIGIN[1] + 16), f"l = {l_val:.0f}", font=smallbold, fill=DIAG_YOU)
 
-d.text((RAXIS_END_X - 60, RORIGIN[1] - 100), "w", font=bigw, fill=DIAG_YOU)
+tag = "possibility of being fucked"
+tagfont = ImageFont.truetype(f"{FONT_DIR}/Inconsolata-Bold.ttf", 32)
+tw = d.textlength(tag, font=tagfont)
+d.text((RAXIS_END_X - tw, RORIGIN[1] - 68), tag, font=tagfont, fill=DIAG_NEG)
 
 # footer
 d.text((70, 570), "kussshhhh.github.io/articles", font=small, fill=(120, 115, 105))
