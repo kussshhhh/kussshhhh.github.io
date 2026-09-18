@@ -18,9 +18,15 @@
     ];
 
     var VORIGIN = { x: 330, y: 150 };
-    var VSCALE = 2.2;
-    var VEC_MAX = 100;
+    var VSCALE = 3.0;
+    var VEC_MAX = 110;
     var VAXIS_END_X = 700;
+    // every segment's direction x̂_i is drawn out to this common radius as a
+    // dotted ray, so direction stays legible even when q_i is tiny. the solid
+    // part of the arrow is still the magnitude. labels ride the same circle,
+    // which also keeps them from colliding.
+    var UNIT_R = 132;
+    var LABEL_R = UNIT_R + 16;
 
     function toRad(d) { return d * Math.PI / 180; }
 
@@ -133,6 +139,9 @@
         });
     }
 
+    // every population dot, so they can be given a slow idle drift
+    var driftDots = [];
+
     function drawRegionDots(svg, region, seedBase, dotOpacity) {
         var b = region.box, m = 10;
         var w = b[2] - b[0] - m * 2, h = b[3] - b[1] - m * 2;
@@ -143,11 +152,20 @@
             var isYou = region.isK && i === 0;
             var cx = b[0] + m + rx * w;
             var cy = b[1] + m + ry * h;
-            svg.appendChild(el('circle', {
+            var dot = el('circle', {
                 cx: cx, cy: cy, r: isYou ? 5.5 : 3,
                 fill: isYou ? 'var(--diag-you)' : 'var(--text-faint2)',
                 opacity: isYou ? 1 : dotOpacity
-            }));
+            });
+            svg.appendChild(dot);
+            driftDots.push({
+                node: dot, x: cx, y: cy,
+                px: seededRand(seedBase + i * 3.1) * 6.28,
+                py: seededRand(seedBase + i * 5.9) * 6.28,
+                sx: 0.25 + seededRand(seedBase + i * 8.3) * 0.35,
+                sy: 0.25 + seededRand(seedBase + i * 11.2) * 0.35,
+                amp: isYou ? 1.2 : 1.8 + seededRand(seedBase + i * 6.1) * 1.6
+            });
             if (isYou) {
                 var youLbl = el('text', {
                     x: cx + 10, y: cy + 4,
@@ -157,6 +175,21 @@
                 svg.appendChild(youLbl);
             }
         }
+    }
+
+    function startDrift() {
+        if (!driftDots.length) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        function frame(ts) {
+            var t = ts / 1000;
+            for (var i = 0; i < driftDots.length; i++) {
+                var d = driftDots[i];
+                d.node.setAttribute('cx', d.x + Math.sin(t * d.sx + d.px) * d.amp);
+                d.node.setAttribute('cy', d.y + Math.cos(t * d.sy + d.py) * d.amp);
+            }
+            requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
     }
 
     function regionLabel(svg, region, text, color, weight) {
@@ -217,19 +250,13 @@
     // vector stages (same geometry as the final interactive diagram)
     // ---------------------------------------------------------------
 
-    // greedy label placement: push a label further out along its vector's own
-    // direction until it clears any label already placed nearby
-    function placeLabel(svg, tip, u, text, color, placedX, fontWeight) {
-        var dist = 16;
-        var tries = 0;
-        while (placedX.some(function (x) { return Math.abs(x - tip.x) < 60; }) && tries < 4) {
-            dist += 15; tries++;
-        }
-        placedX.push(tip.x);
-        var lx = tip.x + u.x * dist;
-        var ly = Math.max(14, Math.min(286, tip.y + u.y * dist));
+    // labels ride the common unit-ray circle, so their spacing follows the
+    // angular spread of the segments and never needs collision nudging
+    function placeLabel(svg, u, text, color, fontWeight, opacity) {
         var lbl = el('text', {
-            x: lx, y: ly, 'font-size': 12, fill: color,
+            x: VORIGIN.x + LABEL_R * u.x,
+            y: Math.max(14, Math.min(292, VORIGIN.y + LABEL_R * u.y + 4)),
+            'font-size': 12, fill: color, opacity: opacity === undefined ? 1 : opacity,
             'font-weight': fontWeight || 400,
             'text-anchor': u.x < -0.2 ? 'end' : (u.x > 0.2 ? 'start' : 'middle')
         });
@@ -237,46 +264,54 @@
         svg.appendChild(lbl);
     }
 
-    // K always gets its own fixed lane below the origin for its label, rather than
-    // competing in the segments' angle-based collision system (k=15° sits too close
-    // to eu/regulated=35° for that to ever separate them cleanly)
-    function drawKVector(svg, markerId) {
-        var u = unit(K.angle);
-        var len = Math.min(K.p * N * VSCALE, VEC_MAX);
+    // one segment's arrow: a dotted ray all the way out to UNIT_R showing x̂_i,
+    // with the solid arrow on top of it carrying the magnitude q_i
+    function drawSegVector(svg, seg, opt) {
+        var u = unit(seg.angle);
+        var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
         var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
+        var op = opt.dim ? 0.18 : 0.95;
+
+        svg.appendChild(el('line', {
+            x1: VORIGIN.x, y1: VORIGIN.y,
+            x2: VORIGIN.x + UNIT_R * u.x, y2: VORIGIN.y + UNIT_R * u.y,
+            stroke: opt.color, 'stroke-width': 1.25, 'stroke-dasharray': '2,5',
+            opacity: opt.dim ? 0.12 : 0.4
+        }));
         svg.appendChild(el('line', {
             x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-            stroke: 'var(--diag-you)', 'stroke-width': 3, 'marker-end': 'url(#' + markerId + ')', opacity: 0.9
+            stroke: opt.color, 'stroke-width': opt.bold ? 3.5 : 2.75,
+            'marker-end': 'url(#' + opt.marker + ')', opacity: op
         }));
-        return tip;
-    }
 
-    function kLabelLane(svg, text) {
-        var lbl = el('text', {
-            x: VORIGIN.x, y: VORIGIN.y + 26, 'font-size': 12, 'font-weight': 700,
-            fill: 'var(--diag-you)', 'text-anchor': 'middle'
-        });
-        lbl.textContent = text;
-        svg.appendChild(lbl);
+        if (opt.drop) {
+            svg.appendChild(el('line', {
+                x1: tip.x, y1: tip.y, x2: tip.x, y2: VORIGIN.y,
+                stroke: opt.color, 'stroke-width': 1, 'stroke-dasharray': '3,3',
+                opacity: opt.dim ? 0.1 : 0.45
+            }));
+            svg.appendChild(el('circle', {
+                cx: tip.x, cy: VORIGIN.y, r: 3, fill: opt.color, opacity: op
+            }));
+        }
+        if (opt.label) placeLabel(svg, u, opt.label, opt.color, opt.bold ? 700 : 400, opt.dim ? 0.3 : 1);
+        return tip;
     }
 
     // --- stage 3: vectors, length = q_i, direction = x̂_i, still sentiment-neutral ---
     function renderVectors(svg) {
         addDefs(svg);
         drawOrigin(svg);
-        var placedX = [];
         SEGMENTS.forEach(function (seg) {
-            var u = unit(seg.angle);
-            var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
-            var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
-            svg.appendChild(el('line', {
-                x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: 'var(--accent2)', 'stroke-width': 2.25, 'marker-end': 'url(#cdm-neutral)', opacity: 0.9
-            }));
-            placeLabel(svg, tip, u, seg.name + ' → ' + seg.push, 'var(--accent2)', placedX, 400);
+            drawSegVector(svg, seg, {
+                color: 'var(--accent2)', marker: 'cdm-neutral',
+                label: seg.name + ' → ' + seg.push
+            });
         });
-        drawKVector(svg, 'cdm-you');
-        kLabelLane(svg, 'people like you  q=' + (K.p * N).toFixed(0));
+        drawSegVector(svg, K, {
+            color: 'var(--diag-you)', marker: 'cdm-you', bold: true,
+            label: 'people like you  q=' + (K.p * N).toFixed(0)
+        });
     }
 
     // --- stage 4: add â, vectors still neutral ---
@@ -285,15 +320,9 @@
         drawOrigin(svg);
         drawAxis(svg);
         SEGMENTS.forEach(function (seg) {
-            var u = unit(seg.angle);
-            var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
-            var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
-            svg.appendChild(el('line', {
-                x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: 'var(--accent2)', 'stroke-width': 2.25, 'marker-end': 'url(#cdm-neutral)', opacity: 0.9
-            }));
+            drawSegVector(svg, seg, { color: 'var(--accent2)', marker: 'cdm-neutral' });
         });
-        drawKVector(svg, 'cdm-you');
+        drawSegVector(svg, K, { color: 'var(--diag-you)', marker: 'cdm-you', bold: true });
     }
 
     // --- stage 5: projections + the colour reveal (c_i determines pos/neg) ---
@@ -301,33 +330,20 @@
         addDefs(svg);
         drawOrigin(svg);
         drawAxis(svg);
-        var placedX = [];
         SEGMENTS.forEach(function (seg) {
-            var u = unit(seg.angle);
             var c = Math.cos(toRad(seg.angle));
-            var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
-            var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
             var positive = c >= 0;
-            var color = positive ? 'var(--diag-pos)' : 'var(--diag-neg)';
-            var marker = positive ? 'cdm-pos' : 'cdm-neg';
-            svg.appendChild(el('line', {
-                x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: color, 'stroke-width': 2.25, 'marker-end': 'url(#' + marker + ')', opacity: 0.9
-            }));
-            svg.appendChild(el('line', {
-                x1: tip.x, y1: tip.y, x2: tip.x, y2: VORIGIN.y,
-                stroke: color, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.45
-            }));
-            svg.appendChild(el('circle', { cx: tip.x, cy: VORIGIN.y, r: 3, fill: color }));
-            placeLabel(svg, tip, u, seg.name + ' c=' + c.toFixed(2), color, placedX, 400);
+            drawSegVector(svg, seg, {
+                color: positive ? 'var(--diag-pos)' : 'var(--diag-neg)',
+                marker: positive ? 'cdm-pos' : 'cdm-neg',
+                drop: true,
+                label: seg.name + ' c=' + c.toFixed(2)
+            });
         });
-        var kTip = drawKVector(svg, 'cdm-you');
-        svg.appendChild(el('line', {
-            x1: kTip.x, y1: kTip.y, x2: kTip.x, y2: VORIGIN.y,
-            stroke: 'var(--diag-you)', 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.5
-        }));
-        svg.appendChild(el('circle', { cx: kTip.x, cy: VORIGIN.y, r: 3, fill: 'var(--diag-you)' }));
-        kLabelLane(svg, 'people like you c=' + Math.cos(toRad(K.angle)).toFixed(2));
+        drawSegVector(svg, K, {
+            color: 'var(--diag-you)', marker: 'cdm-you', bold: true, drop: true,
+            label: 'people like you c=' + Math.cos(toRad(K.angle)).toFixed(2)
+        });
     }
 
     // --- the approximation: x̂_k points almost at â, and almost isn't all ---
@@ -410,26 +426,16 @@
         SEGMENTS.concat([K]).forEach(function (seg) {
             var isK = seg === K;
             var include = highlightK ? isK : !isK;
-            var u = unit(seg.angle);
             var c = Math.cos(toRad(seg.angle));
-            var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
-            var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
             var positive = c >= 0;
-            var color = isK ? 'var(--diag-you)' : (positive ? 'var(--diag-pos)' : 'var(--diag-neg)');
-            var marker = isK ? 'cdm-you' : (positive ? 'cdm-pos' : 'cdm-neg');
-            var op = include ? 0.95 : 0.18;
-            svg.appendChild(el('line', {
-                x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: color, 'stroke-width': isK ? 3 : 2.25, 'marker-end': 'url(#' + marker + ')', opacity: op
-            }));
-            svg.appendChild(el('line', {
-                x1: tip.x, y1: tip.y, x2: tip.x, y2: VORIGIN.y,
-                stroke: color, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: include ? 0.45 : 0.1
-            }));
-            svg.appendChild(el('circle', { cx: tip.x, cy: VORIGIN.y, r: 3, fill: color, opacity: op }));
+            drawSegVector(svg, seg, {
+                color: isK ? 'var(--diag-you)' : (positive ? 'var(--diag-pos)' : 'var(--diag-neg)'),
+                marker: isK ? 'cdm-you' : (positive ? 'cdm-pos' : 'cdm-neg'),
+                drop: true, dim: !include, bold: isK
+            });
         });
         var lbl = el('text', {
-            x: VORIGIN.x, y: 280, 'font-size': 15, 'font-weight': 700,
+            x: VORIGIN.x, y: 288, 'font-size': 15, 'font-weight': 700,
             fill: 'var(--text-strong)', 'text-anchor': 'middle'
         });
         lbl.textContent = readoutLabel + ' = ' + readoutValue.toFixed(1);
@@ -462,4 +468,6 @@
         var svg = document.getElementById(id);
         if (svg) RENDERERS[id](svg);
     });
+
+    startDrift();
 })();
