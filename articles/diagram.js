@@ -71,10 +71,14 @@
             var c = Math.cos(toRad(s.angle));
             return { name: s.name, val: s.p * N * c, q: s.p * N, c: c, angle: s.angle };
         });
-        var rawD = contribs.reduce(function (sum, c) { return sum + c.val; }, 0);
         var cK = Math.cos(toRad(K.angle));
         var kVal = K.p * N * cK;
-        return { contribs: contribs, D: Math.abs(rawD), rawD: rawD, A: kVal, kVal: kVal };
+        // D is everything landing against you, A is everything landing with you
+        var against = 0, with_ = 0;
+        contribs.map(function (x) { return x.val; }).concat([kVal]).forEach(function (v) {
+            if (v < 0) against += v; else with_ += v;
+        });
+        return { contribs: contribs, D: Math.abs(against), A: with_, kVal: kVal };
     }
 
     var W = 820, H = 460;
@@ -323,8 +327,8 @@
     function renderSummary(stats) {
         if (!summaryEl) return;
         summaryEl.innerHTML =
-            '<span class="diagram-summary-item"><span class="diagram-var">D</span> = |Σ q<sub>i</sub>c<sub>i</sub>| = ' + stats.D.toFixed(1) + '</span>' +
-            '<span class="diagram-summary-item"><span class="diagram-var">A</span> = q<sub>k</sub>c<sub>k</sub> = ' + stats.A.toFixed(1) + '</span>' +
+            '<span class="diagram-summary-item"><span class="diagram-var">D</span> (against you) = ' + stats.D.toFixed(1) + '</span>' +
+            '<span class="diagram-summary-item"><span class="diagram-var">A</span> (with you) = ' + stats.A.toFixed(1) + '</span>' +
             '<span class="diagram-summary-item"><span class="diagram-var">D+A</span> = ' + (stats.D + stats.A).toFixed(1) + '</span>';
     }
 

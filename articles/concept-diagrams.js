@@ -418,16 +418,18 @@
         svg.appendChild(cLbl);
     }
 
-    // shared "highlight subset, dim the rest" renderer for D and A stages
-    function renderHighlight(svg, highlightK, readoutLabel, readoutValue) {
+    // shared "highlight subset, dim the rest" renderer for D and A stages.
+    // the split is by sign, not by segment membership: D is everything landing
+    // against you, A is everything landing with you.
+    function renderHighlight(svg, wantAgainst, readoutLabel, readoutValue) {
         addDefs(svg);
         drawOrigin(svg);
         drawAxis(svg);
         SEGMENTS.concat([K]).forEach(function (seg) {
             var isK = seg === K;
-            var include = highlightK ? isK : !isK;
             var c = Math.cos(toRad(seg.angle));
             var positive = c >= 0;
+            var include = wantAgainst ? !positive : positive;
             drawSegVector(svg, seg, {
                 color: isK ? 'var(--diag-you)' : (positive ? 'var(--diag-pos)' : 'var(--diag-neg)'),
                 marker: isK ? 'cdm-you' : (positive ? 'cdm-pos' : 'cdm-neg'),
@@ -442,16 +444,16 @@
         svg.appendChild(lbl);
     }
 
-    function computeD() {
-        var raw = SEGMENTS.reduce(function (s, seg) {
-            return s + seg.p * N * Math.cos(toRad(seg.angle));
+    function signedSum(keepNegative) {
+        return SEGMENTS.concat([K]).reduce(function (s, seg) {
+            var v = seg.p * N * Math.cos(toRad(seg.angle));
+            var isNeg = v < 0;
+            return isNeg === keepNegative ? s + v : s;
         }, 0);
-        return Math.abs(raw);
     }
 
-    function computeA() {
-        return K.p * N * Math.cos(toRad(K.angle));
-    }
+    function computeD() { return Math.abs(signedSum(true)); }
+    function computeA() { return signedSum(false); }
 
     var RENDERERS = {
         'cd-population': renderPopulation,
@@ -460,8 +462,8 @@
         'cd-axis': renderAxis,
         'cd-projection': renderProjection,
         'cd-approx': renderApprox,
-        'cd-d': function (svg) { renderHighlight(svg, false, 'D', computeD()); },
-        'cd-a': function (svg) { renderHighlight(svg, true, 'A', computeA()); }
+        'cd-d': function (svg) { renderHighlight(svg, true, 'D', computeD()); },
+        'cd-a': function (svg) { renderHighlight(svg, false, 'A', computeA()); }
     };
 
     Object.keys(RENDERERS).forEach(function (id) {

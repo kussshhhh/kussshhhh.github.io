@@ -120,25 +120,25 @@
                 </div>
                 <figcaption>even your own segment is only an approximation of you. it points close to â, not along it. the angle &theta; is everything they got slightly wrong about you, and only c<sub>k</sub> survives the projection</figcaption>
             </figure>
-            <p>suppose you're in segment $k$. every other segment's optimization carries some anti-alignment component wrt you, and those components sum:</p>
-            <p>$$D = \left| \sum_{i \neq k} q_i c_i \right|$$</p>
+            <p>you're in segment $k$, but what matters isn't which segment you're in, it's which way each one lands on your axis. some of it points against you, some with you, and most of it misses you entirely.</p>
+            <p>everything against you sums to:</p>
+            <p>$$D = \left| \sum_{c_i < 0} q_i c_i \right|$$</p>
 
             <figure class="concept-diagram">
                 <div class="diagram-svg-wrap">
-                    <svg id="cd-d" viewBox="0 0 820 300" role="img" aria-label="Every segment except you, summed along the axis to get D"></svg>
+                    <svg id="cd-d" viewBox="0 0 820 300" role="img" aria-label="Every push that lands against you, summed along the axis to get D"></svg>
                 </div>
-                <figcaption>everyone except you (segment k), summed along â. that net pull is D</figcaption>
+                <figcaption>every push that lands against you, summed. that's D</figcaption>
             </figure>
 
-            <p>some segments may even help you incidentally ($c_i > 0$). the claim survives that it only needs the weighted sum to come out against you.</p>
-            <p>what the actor does for you along $\hat{a}$:</p>
-            <p>$$A = q_k c_k$$</p>
+            <p>and everything with you, including whatever your own segment happens to get:</p>
+            <p>$$A = \sum_{c_i \geq 0} q_i c_i$$</p>
 
             <figure class="concept-diagram">
                 <div class="diagram-svg-wrap">
-                    <svg id="cd-a" viewBox="0 0 820 300" role="img" aria-label="Just your own segment k, projected along the axis, to get A"></svg>
+                    <svg id="cd-a" viewBox="0 0 820 300" role="img" aria-label="Every push that lands with you, summed along the axis, to get A"></svg>
                 </div>
-                <figcaption>just your own segment, k. whatever the actor happens to do for you is A</figcaption>
+                <figcaption>every push that lands with you, summed. that's A, your own segment included</figcaption>
             </figure>
 
             <p>so i want opensource to reach a stage where</p>
@@ -172,7 +172,7 @@
         </article>
     </main>
 
-    <script src="concept-diagrams.js?v=9" defer></script>
+    <script src="concept-diagrams.js?v=10" defer></script>
     <script src="diagram.js" defer></script>
     <script>
         function renderMath() {
