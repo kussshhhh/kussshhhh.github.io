@@ -11,19 +11,21 @@
     if (!svg) return;
 
     var N = 100;
-    var K = { name: 'you (segment k)', p: 0.05, angle: 15 };
+    var K = { name: 'people like you (segment k)', p: 0.05, angle: 15 };
 
+    // segments are groups of people, not objectives — the objective is the
+    // direction that group gets pushed, which is what the vector's angle encodes
     var NAME_POOL = [
-        'ad engagement', "gov't compliance", 'other users', 'shareholder profit',
-        'content moderation', 'ai safety research', 'enterprise contracts', 'brand trust'
+        'free tier', 'eu / regulated', 'everyone else', 'enterprise',
+        'power users', 'students', 'api developers', 'gov contracts'
     ];
 
     function defaultSegments() {
         return [
-            { name: 'ad engagement', p: 0.30, angle: 155 },
-            { name: "gov't compliance", p: 0.15, angle: 35 },
-            { name: 'other users', p: 0.30, angle: -70 },
-            { name: 'shareholder profit', p: 0.20, angle: -160 }
+            { name: 'free tier', p: 0.30, angle: 155 },
+            { name: 'eu / regulated', p: 0.15, angle: 35 },
+            { name: 'everyone else', p: 0.30, angle: -70 },
+            { name: 'enterprise', p: 0.20, angle: -160 }
         ];
     }
 

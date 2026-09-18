@@ -1,16 +1,18 @@
 // concept-diagrams.js - a build-up sequence of static diagrams for "the model" section.
-// Each stage reuses the exact same origin/geometry/colors as the final interactive
-// diagram (diagram.js) so the sequence reads as one image gaining detail, ending in it.
+// Segments are groups of PEOPLE (regions of the user distribution); x̂_i is the
+// direction that group gets pushed. Later stages reuse the exact same
+// origin/geometry/colors as the final interactive diagram (diagram.js), so the
+// sequence reads as one image gaining detail, ending in it.
 (function () {
     var svgNS = 'http://www.w3.org/2000/svg';
 
     var N = 100;
-    var K = { name: 'you', p: 0.05, angle: 15 };
+    var K = { name: 'people like you', p: 0.05, angle: 15 };
     var SEGMENTS = [
-        { name: 'ad engagement', p: 0.30, angle: 155 },
-        { name: "gov't compliance", p: 0.15, angle: 35 },
-        { name: 'other users', p: 0.30, angle: -70 },
-        { name: 'shareholder profit', p: 0.20, angle: -160 }
+        { name: 'free tier', push: 'engagement', p: 0.30, angle: 155 },
+        { name: 'eu / regulated', push: 'compliance', p: 0.15, angle: 35 },
+        { name: 'everyone else', push: 'generic helpfulness', p: 0.30, angle: -70 },
+        { name: 'enterprise', push: 'revenue', p: 0.20, angle: -160 }
     ];
 
     var VORIGIN = { x: 330, y: 150 };
@@ -19,7 +21,6 @@
     var VAXIS_END_X = 700;
 
     function toRad(d) { return d * Math.PI / 180; }
-    function fmt(v) { return (v >= 0 ? '+' : '') + v.toFixed(1); }
 
     function el(tag, attrs) {
         var e = document.createElementNS(svgNS, tag);
@@ -71,9 +72,150 @@
         return { x: Math.cos(rad), y: -Math.sin(rad) };
     }
 
+    // ---------------------------------------------------------------
+    // the user distribution, and the segmentation drawn over it
+    // ---------------------------------------------------------------
+    // one 2d slice of a much higher-dimensional feature space. the actor draws
+    // the boundaries; population density and the actor's weight p_i are
+    // deliberately not the same thing.
+    var PLOT = { x0: 150, y0: 40, x1: 690, y1: 214 };
+    var SPLIT = { vx: 390, leftY: 132, rightY1: 102, rightY2: 166 };
+
+    var REGIONS = [
+        { seg: SEGMENTS[1], box: [PLOT.x0, PLOT.y0, SPLIT.vx, SPLIT.leftY], pop: 18 },
+        { seg: SEGMENTS[0], box: [PLOT.x0, SPLIT.leftY, SPLIT.vx, PLOT.y1], pop: 46 },
+        { seg: SEGMENTS[3], box: [SPLIT.vx, PLOT.y0, PLOT.x1, SPLIT.rightY1], pop: 12 },
+        { seg: K, box: [SPLIT.vx, SPLIT.rightY1, PLOT.x1, SPLIT.rightY2], pop: 9, isK: true },
+        { seg: SEGMENTS[2], box: [SPLIT.vx, SPLIT.rightY2, PLOT.x1, PLOT.y1], pop: 30 }
+    ];
+
+    function drawPlotFrame(svg) {
+        svg.appendChild(el('rect', {
+            x: PLOT.x0, y: PLOT.y0, width: PLOT.x1 - PLOT.x0, height: PLOT.y1 - PLOT.y0,
+            fill: 'none', stroke: 'var(--border)', 'stroke-width': 1
+        }));
+        var xl = el('text', {
+            x: (PLOT.x0 + PLOT.x1) / 2, y: PLOT.y1 + 26, 'font-size': 12,
+            fill: 'var(--text-faint)', 'text-anchor': 'middle'
+        });
+        xl.textContent = 'spend per user →';
+        svg.appendChild(xl);
+        var cy = (PLOT.y0 + PLOT.y1) / 2;
+        var yl = el('text', {
+            x: PLOT.x0 - 16, y: cy, 'font-size': 12,
+            fill: 'var(--text-faint)', 'text-anchor': 'middle',
+            transform: 'rotate(-90 ' + (PLOT.x0 - 16) + ' ' + cy + ')'
+        });
+        yl.textContent = 'regulatory exposure →';
+        svg.appendChild(yl);
+        var note = el('text', {
+            x: PLOT.x1, y: PLOT.y0 - 12, 'font-size': 11,
+            fill: 'var(--text-faint2)', 'text-anchor': 'end'
+        });
+        note.textContent = '(one 2d slice of many metrics)';
+        svg.appendChild(note);
+    }
+
+    function drawSegmentBoundaries(svg) {
+        [
+            [SPLIT.vx, PLOT.y0, SPLIT.vx, PLOT.y1],
+            [PLOT.x0, SPLIT.leftY, SPLIT.vx, SPLIT.leftY],
+            [SPLIT.vx, SPLIT.rightY1, PLOT.x1, SPLIT.rightY1],
+            [SPLIT.vx, SPLIT.rightY2, PLOT.x1, SPLIT.rightY2]
+        ].forEach(function (l) {
+            svg.appendChild(el('line', {
+                x1: l[0], y1: l[1], x2: l[2], y2: l[3],
+                stroke: 'var(--text-faint2)', 'stroke-width': 1.25, 'stroke-dasharray': '5,4'
+            }));
+        });
+    }
+
+    function drawRegionDots(svg, region, seedBase, dotOpacity) {
+        var b = region.box, m = 10;
+        var w = b[2] - b[0] - m * 2, h = b[3] - b[1] - m * 2;
+        for (var i = 0; i < region.pop; i++) {
+            // average of two randoms -> soft centre-weighted density, reads like a cloud
+            var rx = (seededRand(seedBase + i * 13.7) + seededRand(seedBase + i * 4.1)) / 2;
+            var ry = (seededRand(seedBase + i * 7.3) + seededRand(seedBase + i * 2.9)) / 2;
+            var isYou = region.isK && i === 0;
+            var cx = b[0] + m + rx * w;
+            var cy = b[1] + m + ry * h;
+            svg.appendChild(el('circle', {
+                cx: cx, cy: cy, r: isYou ? 5.5 : 3,
+                fill: isYou ? 'var(--diag-you)' : 'var(--text-faint2)',
+                opacity: isYou ? 1 : dotOpacity
+            }));
+            if (isYou) {
+                var youLbl = el('text', {
+                    x: cx + 10, y: cy + 4,
+                    'font-size': 11.5, 'font-weight': 700, fill: 'var(--diag-you)'
+                });
+                youLbl.textContent = 'you';
+                svg.appendChild(youLbl);
+            }
+        }
+    }
+
+    function regionLabel(svg, region, text, color, weight) {
+        var b = region.box;
+        var lbl = el('text', {
+            x: b[0] + 8, y: b[1] + 16, 'font-size': 11.5,
+            'font-weight': weight || 400, fill: color
+        });
+        lbl.textContent = text;
+        svg.appendChild(lbl);
+    }
+
+    // --- stage 1: the distribution, carved into segments ---
+    function renderPopulation(svg) {
+        addDefs(svg);
+        drawPlotFrame(svg);
+        drawSegmentBoundaries(svg);
+        REGIONS.forEach(function (region, i) {
+            drawRegionDots(svg, region, i * 131 + 5, 0.75);
+            regionLabel(
+                svg, region,
+                region.isK ? region.seg.name + ' (segment k)' : region.seg.name,
+                region.isK ? 'var(--diag-you)' : 'var(--text-faint)',
+                region.isK ? 700 : 400
+            );
+        });
+    }
+
+    // --- stage 2: same people, shaded by the weight the actor gives them ---
+    function renderWeights(svg) {
+        addDefs(svg);
+        drawPlotFrame(svg);
+        REGIONS.forEach(function (region, i) {
+            var b = region.box;
+            svg.appendChild(el('rect', {
+                x: b[0], y: b[1], width: b[2] - b[0], height: b[3] - b[1],
+                fill: region.isK ? 'var(--diag-you)' : 'var(--accent2)',
+                opacity: 0.04 + region.seg.p * 1.15
+            }));
+            drawRegionDots(svg, region, i * 131 + 5, 0.4);
+            regionLabel(
+                svg, region,
+                region.seg.name + '   p=' + region.seg.p.toFixed(2),
+                region.isK ? 'var(--diag-you)' : 'var(--text-soft)',
+                700
+            );
+        });
+        drawSegmentBoundaries(svg);
+        var sumLbl = el('text', {
+            x: (PLOT.x0 + PLOT.x1) / 2, y: PLOT.y1 + 50, 'font-size': 12.5, 'font-weight': 700,
+            fill: 'var(--text-soft)', 'text-anchor': 'middle'
+        });
+        sumLbl.textContent = 'Σ p_i = 1.00  —  and note: weight is not headcount';
+        svg.appendChild(sumLbl);
+    }
+
+    // ---------------------------------------------------------------
+    // vector stages (same geometry as the final interactive diagram)
+    // ---------------------------------------------------------------
+
     // greedy label placement: push a label further out along its vector's own
-    // direction until it clears any label already placed nearby (same approach
-    // as the final interactive diagram) so close angles (k=15°, gov't=35°) don't collide
+    // direction until it clears any label already placed nearby
     function placeLabel(svg, tip, u, text, color, placedX, fontWeight) {
         var dist = 16;
         var tries = 0;
@@ -92,72 +234,9 @@
         svg.appendChild(lbl);
     }
 
-    // slots: 5 evenly spaced, non-overlapping positions for the pre-vector stages.
-    // direction/angle isn't introduced until x̂_i, so population and weights use a
-    // plain left-to-right layout rather than the final diagram's angles.
-    var SLOTS = (function () {
-        var all = SEGMENTS.concat([K]);
-        var margin = 90, usable = 820 - margin * 2, step = usable / (all.length - 1);
-        return all.map(function (seg, i) { return { seg: seg, x: margin + step * i, y: 130 }; });
-    })();
-
-    function drawSlotDots(svg, slot, seedBase, radius, count) {
-        var isK = slot.seg === K;
-        for (var i = 0; i < count; i++) {
-            var a = seededRand(seedBase + i * 13.7) * Math.PI * 2;
-            var r = Math.sqrt(seededRand(seedBase + i * 7.3)) * radius;
-            var dx = slot.x + Math.cos(a) * r;
-            var dy = slot.y + Math.sin(a) * r;
-            svg.appendChild(el('circle', {
-                cx: dx, cy: dy, r: isK ? 5 : 3.2,
-                fill: isK ? 'var(--diag-you)' : 'var(--text-faint2)',
-                opacity: isK ? 1 : 0.8
-            }));
-        }
-    }
-
-    // --- stage 1: population, clustered into segments (no weights, no vectors) ---
-    function renderPopulation(svg) {
-        addDefs(svg);
-        SLOTS.forEach(function (slot, si) {
-            var isK = slot.seg === K;
-            drawSlotDots(svg, slot, si * 97 + 1, 26, isK ? 6 : 10);
-            var lbl = el('text', {
-                x: slot.x, y: slot.y + 26 + 22, 'font-size': 12, 'font-weight': isK ? 700 : 400,
-                fill: isK ? 'var(--diag-you)' : 'var(--text-faint)', 'text-anchor': 'middle'
-            });
-            lbl.textContent = isK ? 'you (segment k)' : slot.seg.name;
-            svg.appendChild(lbl);
-        });
-    }
-
-    // --- stage 2: same slots, blob size now scales with weight p_i, summing to 1 ---
-    function renderWeights(svg) {
-        addDefs(svg);
-        SLOTS.forEach(function (slot, si) {
-            var isK = slot.seg === K;
-            var radius = 12 + slot.seg.p * 90;
-            var count = Math.max(3, Math.round(slot.seg.p * 40));
-            drawSlotDots(svg, slot, si * 97 + 2, radius, count);
-            var lbl = el('text', {
-                x: slot.x, y: slot.y + radius + 22, 'font-size': 12, 'font-weight': isK ? 700 : 400,
-                fill: isK ? 'var(--diag-you)' : 'var(--text-faint)', 'text-anchor': 'middle'
-            });
-            lbl.textContent = (isK ? 'you  p=' : slot.seg.name + '  p=') + slot.seg.p.toFixed(2);
-            svg.appendChild(lbl);
-        });
-        var sumLbl = el('text', {
-            x: 410, y: 285, 'font-size': 13, 'font-weight': 700,
-            fill: 'var(--text-soft)', 'text-anchor': 'middle'
-        });
-        var total = SEGMENTS.concat([K]).reduce(function (s, x) { return s + x.p; }, 0);
-        sumLbl.textContent = 'Σ p_i = ' + total.toFixed(2);
-        svg.appendChild(sumLbl);
-    }
-
     // K always gets its own fixed lane below the origin for its label, rather than
     // competing in the segments' angle-based collision system (k=15° sits too close
-    // to gov't compliance=35° for that to ever separate them cleanly)
+    // to eu/regulated=35° for that to ever separate them cleanly)
     function drawKVector(svg, markerId) {
         var u = unit(K.angle);
         var len = Math.min(K.p * N * VSCALE, VEC_MAX);
@@ -191,10 +270,10 @@
                 x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
                 stroke: 'var(--accent2)', 'stroke-width': 2.25, 'marker-end': 'url(#cdm-neutral)', opacity: 0.9
             }));
-            placeLabel(svg, tip, u, seg.name + ' q=' + (seg.p * N).toFixed(0), 'var(--accent2)', placedX, 400);
+            placeLabel(svg, tip, u, seg.name + ' → ' + seg.push, 'var(--accent2)', placedX, 400);
         });
         drawKVector(svg, 'cdm-you');
-        kLabelLane(svg, 'you: q=' + (K.p * N).toFixed(0));
+        kLabelLane(svg, 'people like you  q=' + (K.p * N).toFixed(0));
     }
 
     // --- stage 4: add â, vectors still neutral ---
@@ -202,21 +281,19 @@
         addDefs(svg);
         drawOrigin(svg);
         drawAxis(svg);
-        SEGMENTS.concat([K]).forEach(function (seg) {
-            var isK = seg === K;
+        SEGMENTS.forEach(function (seg) {
             var u = unit(seg.angle);
             var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
             var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
-            var color = isK ? 'var(--diag-you)' : 'var(--accent2)';
-            var marker = isK ? 'cdm-you' : 'cdm-neutral';
             svg.appendChild(el('line', {
                 x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: color, 'stroke-width': isK ? 3 : 2.25, 'marker-end': 'url(#' + marker + ')', opacity: 0.9
+                stroke: 'var(--accent2)', 'stroke-width': 2.25, 'marker-end': 'url(#cdm-neutral)', opacity: 0.9
             }));
         });
+        drawKVector(svg, 'cdm-you');
     }
 
-    // --- stage 5: projections + the color reveal (c_i determines pos/neg) ---
+    // --- stage 5: projections + the colour reveal (c_i determines pos/neg) ---
     function renderProjection(svg) {
         addDefs(svg);
         drawOrigin(svg);
@@ -247,7 +324,79 @@
             stroke: 'var(--diag-you)', 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.5
         }));
         svg.appendChild(el('circle', { cx: kTip.x, cy: VORIGIN.y, r: 3, fill: 'var(--diag-you)' }));
-        kLabelLane(svg, 'you c=' + Math.cos(toRad(K.angle)).toFixed(2));
+        kLabelLane(svg, 'people like you c=' + Math.cos(toRad(K.angle)).toFixed(2));
+    }
+
+    // --- the approximation: x̂_k points almost at â, and almost isn't all ---
+    function renderApprox(svg) {
+        addDefs(svg);
+        var O = { x: 190, y: 206 };
+        var AXIS_END = 690;
+        var LEN = 300;
+        var u = unit(K.angle);
+        var tip = { x: O.x + LEN * u.x, y: O.y + LEN * u.y };
+
+        svg.appendChild(el('line', {
+            x1: O.x, y1: O.y, x2: AXIS_END - 12, y2: O.y,
+            stroke: 'var(--text)', 'stroke-width': 2, 'marker-end': 'url(#cdm-axis)'
+        }));
+        var aLbl = el('text', {
+            x: AXIS_END + 4, y: O.y + 5, 'font-style': 'italic', 'font-size': 15, fill: 'var(--text)'
+        });
+        aLbl.textContent = 'â';
+        svg.appendChild(aLbl);
+        svg.appendChild(el('circle', { cx: O.x, cy: O.y, r: 3.5, fill: 'var(--text-faint)' }));
+
+        svg.appendChild(el('line', {
+            x1: O.x, y1: O.y, x2: tip.x, y2: tip.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 3, 'marker-end': 'url(#cdm-you)'
+        }));
+        var xLbl = el('text', {
+            x: tip.x + 12, y: tip.y - 4, 'font-size': 12.5, 'font-weight': 700, fill: 'var(--diag-you)'
+        });
+        xLbl.textContent = 'what they do for your segment';
+        svg.appendChild(xLbl);
+
+        var arcR = 64;
+        svg.appendChild(el('path', {
+            d: 'M ' + (O.x + arcR) + ' ' + O.y +
+                ' A ' + arcR + ' ' + arcR + ' 0 0 0 ' +
+                (O.x + arcR * u.x) + ' ' + (O.y + arcR * u.y),
+            fill: 'none', stroke: 'var(--text-faint)', 'stroke-width': 1.25
+        }));
+        var thetaLbl = el('text', {
+            x: O.x + 80, y: O.y - 10, 'font-size': 13, 'font-style': 'italic', fill: 'var(--text-faint)'
+        });
+        thetaLbl.textContent = 'θ';
+        svg.appendChild(thetaLbl);
+
+        svg.appendChild(el('line', {
+            x1: tip.x, y1: tip.y, x2: tip.x, y2: O.y,
+            stroke: 'var(--diag-neg)', 'stroke-width': 1.5, 'stroke-dasharray': '4,3'
+        }));
+        svg.appendChild(el('circle', { cx: tip.x, cy: O.y, r: 3.5, fill: 'var(--diag-you)' }));
+        svg.appendChild(el('path', {
+            d: 'M ' + (tip.x - 9) + ' ' + O.y + ' L ' + (tip.x - 9) + ' ' + (O.y - 9) + ' L ' + tip.x + ' ' + (O.y - 9),
+            fill: 'none', stroke: 'var(--text-faint2)', 'stroke-width': 1
+        }));
+        var residLbl = el('text', {
+            x: tip.x + 12, y: (tip.y + O.y) / 2 + 4, 'font-size': 12, fill: 'var(--diag-neg)'
+        });
+        residLbl.textContent = 'the part that misses you';
+        svg.appendChild(residLbl);
+
+        var by = O.y + 28;
+        svg.appendChild(el('path', {
+            d: 'M ' + O.x + ' ' + (by - 6) + ' L ' + O.x + ' ' + by +
+                ' L ' + tip.x + ' ' + by + ' L ' + tip.x + ' ' + (by - 6),
+            fill: 'none', stroke: 'var(--diag-you)', 'stroke-width': 1.25
+        }));
+        var cLbl = el('text', {
+            x: (O.x + tip.x) / 2, y: by + 18, 'font-size': 12.5, 'font-weight': 700,
+            fill: 'var(--diag-you)', 'text-anchor': 'middle'
+        });
+        cLbl.textContent = 'cₖ — the part that actually lands on you';
+        svg.appendChild(cLbl);
     }
 
     // shared "highlight subset, dim the rest" renderer for D and A stages
@@ -255,7 +404,6 @@
         addDefs(svg);
         drawOrigin(svg);
         drawAxis(svg);
-        var sumVal = 0;
         SEGMENTS.concat([K]).forEach(function (seg) {
             var isK = seg === K;
             var include = highlightK ? isK : !isK;
@@ -276,7 +424,6 @@
                 stroke: color, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: include ? 0.45 : 0.1
             }));
             svg.appendChild(el('circle', { cx: tip.x, cy: VORIGIN.y, r: 3, fill: color, opacity: op }));
-            if (!isK) sumVal += seg.p * N * c;
         });
         var lbl = el('text', {
             x: VORIGIN.x, y: 280, 'font-size': 15, 'font-weight': 700,
@@ -303,6 +450,7 @@
         'cd-vectors': renderVectors,
         'cd-axis': renderAxis,
         'cd-projection': renderProjection,
+        'cd-approx': renderApprox,
         'cd-d': function (svg) { renderHighlight(svg, false, 'D', computeD()); },
         'cd-a': function (svg) { renderHighlight(svg, true, 'A', computeA()); }
     };
