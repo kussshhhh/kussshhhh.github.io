@@ -8,11 +8,13 @@
 
     var N = 100;
     var K = { name: 'people like you', p: 0.05, angle: 15 };
+    // segments are groups of people. what pushes them (regulation, revenue,
+    // engagement targets) is the direction x̂_i, never the segment itself.
     var SEGMENTS = [
-        { name: 'free tier', push: 'engagement', p: 0.30, angle: 155 },
-        { name: 'eu / regulated', push: 'compliance', p: 0.15, angle: 35 },
+        { name: 'teens & students', push: 'safety rails', p: 0.30, angle: 155 },
+        { name: 'young professionals', push: 'conversion', p: 0.15, angle: 35 },
         { name: 'everyone else', push: 'generic helpfulness', p: 0.30, angle: -70 },
-        { name: 'enterprise', push: 'revenue', p: 0.20, angle: -160 }
+        { name: 'enterprise seats', push: 'revenue', p: 0.20, angle: -160 }
     ];
 
     var VORIGIN = { x: 330, y: 150 };
@@ -81,6 +83,7 @@
     var PLOT = { x0: 150, y0: 40, x1: 690, y1: 214 };
     var SPLIT = { vx: 390, leftY: 132, rightY1: 102, rightY2: 166 };
 
+    // left = younger, right = older; top = higher spend
     var REGIONS = [
         { seg: SEGMENTS[1], box: [PLOT.x0, PLOT.y0, SPLIT.vx, SPLIT.leftY], pop: 18 },
         { seg: SEGMENTS[0], box: [PLOT.x0, SPLIT.leftY, SPLIT.vx, PLOT.y1], pop: 46 },
@@ -98,7 +101,7 @@
             x: (PLOT.x0 + PLOT.x1) / 2, y: PLOT.y1 + 26, 'font-size': 12,
             fill: 'var(--text-faint)', 'text-anchor': 'middle'
         });
-        xl.textContent = 'spend per user →';
+        xl.textContent = 'age →';
         svg.appendChild(xl);
         var cy = (PLOT.y0 + PLOT.y1) / 2;
         var yl = el('text', {
@@ -106,7 +109,7 @@
             fill: 'var(--text-faint)', 'text-anchor': 'middle',
             transform: 'rotate(-90 ' + (PLOT.x0 - 16) + ' ' + cy + ')'
         });
-        yl.textContent = 'regulatory exposure →';
+        yl.textContent = 'spend per user →';
         svg.appendChild(yl);
         var note = el('text', {
             x: PLOT.x1, y: PLOT.y0 - 12, 'font-size': 11,

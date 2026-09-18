@@ -16,16 +16,16 @@
     // segments are groups of people, not objectives — the objective is the
     // direction that group gets pushed, which is what the vector's angle encodes
     var NAME_POOL = [
-        'free tier', 'eu / regulated', 'everyone else', 'enterprise',
-        'power users', 'students', 'api developers', 'gov contracts'
+        'teens & students', 'young professionals', 'everyone else', 'enterprise seats',
+        'eu users', 'power users', 'api developers', 'retirees'
     ];
 
     function defaultSegments() {
         return [
-            { name: 'free tier', p: 0.30, angle: 155 },
-            { name: 'eu / regulated', p: 0.15, angle: 35 },
+            { name: 'teens & students', p: 0.30, angle: 155 },
+            { name: 'young professionals', p: 0.15, angle: 35 },
             { name: 'everyone else', p: 0.30, angle: -70 },
-            { name: 'enterprise', p: 0.20, angle: -160 }
+            { name: 'enterprise seats', p: 0.20, angle: -160 }
         ];
     }
 

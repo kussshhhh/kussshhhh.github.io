@@ -71,7 +71,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-population" viewBox="0 0 820 300" role="img" aria-label="A population clustered into segments, with you as one point among them"></svg>
                 </div>
-                <figcaption>the users, spread over some metrics &mdash; and the actor carves that distribution into S segments. you're one dot, in segment k</figcaption>
+                <figcaption>the users, spread over a couple of metrics that describe people &mdash; and the actor carves that distribution into S segments. you're one dot, in segment k</figcaption>
             </figure>
 
             <p>$p_i$ : the weightage they give segment $i$ due to profitability, government enforcement, their own moral policy, whatever.</p>
@@ -81,7 +81,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-weights" viewBox="0 0 820 300" role="img" aria-label="The same clusters, now sized by each segment's weight p_i"></svg>
                 </div>
-                <figcaption>same people, now shaded by p<sub>i</sub> &mdash; how much the actor weights that segment. notice it doesn't track headcount: enterprise is tiny and heavy, free tier is huge and light</figcaption>
+                <figcaption>same people, now shaded by p<sub>i</sub> &mdash; how much the actor weights that segment. notice it doesn't track headcount: enterprise seats are few and heavy, teens are many and light. your own segment is the palest thing on the board</figcaption>
             </figure>
 
             <p>$q_i = p_i \cdot n$ (capability actually aimed at segment $i$)</p>
@@ -91,7 +91,7 @@
                 <div class="diagram-svg-wrap">
                     <svg id="cd-vectors" viewBox="0 0 820 300" role="img" aria-label="Each segment's weight turned into a vector: length is q_i, angle is the direction it gets pushed"></svg>
                 </div>
-                <figcaption>each segment becomes a vector &mdash; length is q<sub>i</sub> (capability aimed at those people), angle is x&#770;<sub>i</sub>, the direction they get pushed. no good or bad yet, just capability going somewhere</figcaption>
+                <figcaption>each segment becomes a vector &mdash; length is q<sub>i</sub> (capability aimed at those people), angle is x&#770;<sub>i</sub>, the direction they get pushed. this is where things like government enforcement actually live: a regulation isn't a segment, it's a force bending some segment's arrow</figcaption>
             </figure>
 
             <p>$\hat{a}$ : your true alignment direction, at any given moment.</p>
@@ -172,7 +172,7 @@
         </article>
     </main>
 
-    <script src="concept-diagrams.js?v=5" defer></script>
+    <script src="concept-diagrams.js?v=6" defer></script>
     <script src="diagram.js" defer></script>
     <script>
         function renderMath() {
