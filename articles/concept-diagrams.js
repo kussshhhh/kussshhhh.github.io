@@ -71,71 +71,83 @@
         return { x: Math.cos(rad), y: -Math.sin(rad) };
     }
 
+    // greedy label placement: push a label further out along its vector's own
+    // direction until it clears any label already placed nearby (same approach
+    // as the final interactive diagram) so close angles (k=15°, gov't=35°) don't collide
+    function placeLabel(svg, tip, u, text, color, placedX, fontWeight) {
+        var dist = 16;
+        var tries = 0;
+        while (placedX.some(function (x) { return Math.abs(x - tip.x) < 60; }) && tries < 4) {
+            dist += 15; tries++;
+        }
+        placedX.push(tip.x);
+        var lx = tip.x + u.x * dist;
+        var ly = Math.max(14, Math.min(286, tip.y + u.y * dist));
+        var lbl = el('text', {
+            x: lx, y: ly, 'font-size': 12, fill: color,
+            'font-weight': fontWeight || 400,
+            'text-anchor': u.x < -0.2 ? 'end' : (u.x > 0.2 ? 'start' : 'middle')
+        });
+        lbl.textContent = text;
+        svg.appendChild(lbl);
+    }
+
+    // slots: 5 evenly spaced, non-overlapping positions for the pre-vector stages.
+    // direction/angle isn't introduced until x̂_i, so population and weights use a
+    // plain left-to-right layout rather than the final diagram's angles.
+    var SLOTS = (function () {
+        var all = SEGMENTS.concat([K]);
+        var margin = 90, usable = 820 - margin * 2, step = usable / (all.length - 1);
+        return all.map(function (seg, i) { return { seg: seg, x: margin + step * i, y: 130 }; });
+    })();
+
+    function drawSlotDots(svg, slot, seedBase, radius, count) {
+        var isK = slot.seg === K;
+        for (var i = 0; i < count; i++) {
+            var a = seededRand(seedBase + i * 13.7) * Math.PI * 2;
+            var r = Math.sqrt(seededRand(seedBase + i * 7.3)) * radius;
+            var dx = slot.x + Math.cos(a) * r;
+            var dy = slot.y + Math.sin(a) * r;
+            svg.appendChild(el('circle', {
+                cx: dx, cy: dy, r: isK ? 5 : 3.2,
+                fill: isK ? 'var(--diag-you)' : 'var(--text-faint2)',
+                opacity: isK ? 1 : 0.8
+            }));
+        }
+    }
+
     // --- stage 1: population, clustered into segments (no weights, no vectors) ---
     function renderPopulation(svg) {
         addDefs(svg);
-        drawOrigin(svg);
-        var seedBase = 1;
-        SEGMENTS.concat([K]).forEach(function (seg, si) {
-            var u = unit(seg.angle);
-            var clusterR = 95;
-            var cx = VORIGIN.x + clusterR * u.x;
-            var cy = VORIGIN.y + clusterR * u.y;
-            var isK = seg === K;
-            var count = isK ? 1 : 11;
-            for (var i = 0; i < count; i++) {
-                var a = seededRand(seedBase + si * 97 + i * 13.7) * Math.PI * 2;
-                var r = seededRand(seedBase + si * 51 + i * 7.3) * 24;
-                var dx = cx + Math.cos(a) * r;
-                var dy = cy + Math.sin(a) * r * 0.75;
-                svg.appendChild(el('circle', {
-                    cx: dx, cy: dy, r: isK ? 5 : 3.2,
-                    fill: isK ? 'var(--diag-you)' : 'var(--text-faint2)',
-                    opacity: isK ? 1 : 0.8
-                }));
-            }
+        SLOTS.forEach(function (slot, si) {
+            var isK = slot.seg === K;
+            drawSlotDots(svg, slot, si * 97 + 1, 26, isK ? 6 : 10);
             var lbl = el('text', {
-                x: cx, y: cy - 34, 'font-size': 12.5, 'font-weight': isK ? 700 : 400,
+                x: slot.x, y: slot.y + 26 + 22, 'font-size': 12, 'font-weight': isK ? 700 : 400,
                 fill: isK ? 'var(--diag-you)' : 'var(--text-faint)', 'text-anchor': 'middle'
             });
-            lbl.textContent = isK ? 'you (segment k)' : seg.name;
+            lbl.textContent = isK ? 'you (segment k)' : slot.seg.name;
             svg.appendChild(lbl);
         });
     }
 
-    // --- stage 2: same clusters, sized by weight p_i, summing to 1 ---
+    // --- stage 2: same slots, blob size now scales with weight p_i, summing to 1 ---
     function renderWeights(svg) {
         addDefs(svg);
-        drawOrigin(svg);
-        var seedBase = 2;
-        SEGMENTS.concat([K]).forEach(function (seg, si) {
-            var u = unit(seg.angle);
-            var clusterR = 95;
-            var cx = VORIGIN.x + clusterR * u.x;
-            var cy = VORIGIN.y + clusterR * u.y;
-            var isK = seg === K;
-            var count = Math.max(2, Math.round(seg.p * 45));
-            var spread = 14 + seg.p * 55;
-            for (var i = 0; i < count; i++) {
-                var a = seededRand(seedBase + si * 97 + i * 13.7) * Math.PI * 2;
-                var r = seededRand(seedBase + si * 51 + i * 7.3) * spread;
-                var dx = cx + Math.cos(a) * r;
-                var dy = cy + Math.sin(a) * r * 0.75;
-                svg.appendChild(el('circle', {
-                    cx: dx, cy: dy, r: isK ? 5 : 3.2,
-                    fill: isK ? 'var(--diag-you)' : 'var(--text-faint2)',
-                    opacity: isK ? 1 : 0.75
-                }));
-            }
+        SLOTS.forEach(function (slot, si) {
+            var isK = slot.seg === K;
+            var radius = 12 + slot.seg.p * 90;
+            var count = Math.max(3, Math.round(slot.seg.p * 40));
+            drawSlotDots(svg, slot, si * 97 + 2, radius, count);
             var lbl = el('text', {
-                x: cx, y: cy - spread - 14, 'font-size': 12.5, 'font-weight': isK ? 700 : 400,
+                x: slot.x, y: slot.y + radius + 22, 'font-size': 12, 'font-weight': isK ? 700 : 400,
                 fill: isK ? 'var(--diag-you)' : 'var(--text-faint)', 'text-anchor': 'middle'
             });
-            lbl.textContent = (isK ? 'you: p=' : seg.name + '  p=') + seg.p.toFixed(2);
+            lbl.textContent = (isK ? 'you  p=' : slot.seg.name + '  p=') + slot.seg.p.toFixed(2);
             svg.appendChild(lbl);
         });
         var sumLbl = el('text', {
-            x: VORIGIN.x, y: 285, 'font-size': 13, 'font-weight': 700,
+            x: 410, y: 285, 'font-size': 13, 'font-weight': 700,
             fill: 'var(--text-soft)', 'text-anchor': 'middle'
         });
         var total = SEGMENTS.concat([K]).reduce(function (s, x) { return s + x.p; }, 0);
@@ -143,29 +155,46 @@
         svg.appendChild(sumLbl);
     }
 
+    // K always gets its own fixed lane below the origin for its label, rather than
+    // competing in the segments' angle-based collision system (k=15° sits too close
+    // to gov't compliance=35° for that to ever separate them cleanly)
+    function drawKVector(svg, markerId) {
+        var u = unit(K.angle);
+        var len = Math.min(K.p * N * VSCALE, VEC_MAX);
+        var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
+        svg.appendChild(el('line', {
+            x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 3, 'marker-end': 'url(#' + markerId + ')', opacity: 0.9
+        }));
+        return tip;
+    }
+
+    function kLabelLane(svg, text) {
+        var lbl = el('text', {
+            x: VORIGIN.x, y: VORIGIN.y + 26, 'font-size': 12, 'font-weight': 700,
+            fill: 'var(--diag-you)', 'text-anchor': 'middle'
+        });
+        lbl.textContent = text;
+        svg.appendChild(lbl);
+    }
+
     // --- stage 3: vectors, length = q_i, direction = x̂_i, still sentiment-neutral ---
     function renderVectors(svg) {
         addDefs(svg);
         drawOrigin(svg);
-        SEGMENTS.concat([K]).forEach(function (seg) {
-            var isK = seg === K;
+        var placedX = [];
+        SEGMENTS.forEach(function (seg) {
             var u = unit(seg.angle);
             var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
             var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
-            var color = isK ? 'var(--diag-you)' : 'var(--accent2)';
-            var marker = isK ? 'cdm-you' : 'cdm-neutral';
             svg.appendChild(el('line', {
                 x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: color, 'stroke-width': isK ? 3 : 2.25, 'marker-end': 'url(#' + marker + ')', opacity: 0.9
+                stroke: 'var(--accent2)', 'stroke-width': 2.25, 'marker-end': 'url(#cdm-neutral)', opacity: 0.9
             }));
-            var lx = tip.x + u.x * 16;
-            var ly = tip.y + u.y * 16;
-            var lbl = el('text', {
-                x: lx, y: ly, 'font-size': 12, fill: color, 'text-anchor': u.x < -0.2 ? 'end' : (u.x > 0.2 ? 'start' : 'middle')
-            });
-            lbl.textContent = (isK ? 'you: q=' : seg.name + ' q=') + (seg.p * N).toFixed(0);
-            svg.appendChild(lbl);
+            placeLabel(svg, tip, u, seg.name + ' q=' + (seg.p * N).toFixed(0), 'var(--accent2)', placedX, 400);
         });
+        drawKVector(svg, 'cdm-you');
+        kLabelLane(svg, 'you: q=' + (K.p * N).toFixed(0));
     }
 
     // --- stage 4: add â, vectors still neutral ---
@@ -192,32 +221,33 @@
         addDefs(svg);
         drawOrigin(svg);
         drawAxis(svg);
-        SEGMENTS.concat([K]).forEach(function (seg) {
-            var isK = seg === K;
+        var placedX = [];
+        SEGMENTS.forEach(function (seg) {
             var u = unit(seg.angle);
             var c = Math.cos(toRad(seg.angle));
             var len = Math.min(seg.p * N * VSCALE, VEC_MAX);
             var tip = { x: VORIGIN.x + len * u.x, y: VORIGIN.y + len * u.y };
             var positive = c >= 0;
-            var color = isK ? 'var(--diag-you)' : (positive ? 'var(--diag-pos)' : 'var(--diag-neg)');
-            var marker = isK ? 'cdm-you' : (positive ? 'cdm-pos' : 'cdm-neg');
+            var color = positive ? 'var(--diag-pos)' : 'var(--diag-neg)';
+            var marker = positive ? 'cdm-pos' : 'cdm-neg';
             svg.appendChild(el('line', {
                 x1: VORIGIN.x, y1: VORIGIN.y, x2: tip.x, y2: tip.y,
-                stroke: color, 'stroke-width': isK ? 3 : 2.25, 'marker-end': 'url(#' + marker + ')', opacity: 0.9
+                stroke: color, 'stroke-width': 2.25, 'marker-end': 'url(#' + marker + ')', opacity: 0.9
             }));
             svg.appendChild(el('line', {
                 x1: tip.x, y1: tip.y, x2: tip.x, y2: VORIGIN.y,
                 stroke: color, 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.45
             }));
             svg.appendChild(el('circle', { cx: tip.x, cy: VORIGIN.y, r: 3, fill: color }));
-            var lx = tip.x + u.x * 16;
-            var ly = tip.y + u.y * 16;
-            var lbl = el('text', {
-                x: lx, y: ly, 'font-size': 12, fill: color, 'text-anchor': u.x < -0.2 ? 'end' : (u.x > 0.2 ? 'start' : 'middle')
-            });
-            lbl.textContent = (isK ? 'you c=' : seg.name + ' c=') + c.toFixed(2);
-            svg.appendChild(lbl);
+            placeLabel(svg, tip, u, seg.name + ' c=' + c.toFixed(2), color, placedX, 400);
         });
+        var kTip = drawKVector(svg, 'cdm-you');
+        svg.appendChild(el('line', {
+            x1: kTip.x, y1: kTip.y, x2: kTip.x, y2: VORIGIN.y,
+            stroke: 'var(--diag-you)', 'stroke-width': 1, 'stroke-dasharray': '3,3', opacity: 0.5
+        }));
+        svg.appendChild(el('circle', { cx: kTip.x, cy: VORIGIN.y, r: 3, fill: 'var(--diag-you)' }));
+        kLabelLane(svg, 'you c=' + Math.cos(toRad(K.angle)).toFixed(2));
     }
 
     // shared "highlight subset, dim the rest" renderer for D and A stages
