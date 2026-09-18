@@ -94,6 +94,21 @@
     text-align: initial;
 }
 
+/* Build-up concept diagrams, one per point in the model */
+.concept-diagram {
+    margin: 1.75rem 0;
+    padding: 1rem 1rem 0.75rem;
+    border-left: 2px solid var(--border);
+}
+
+.concept-diagram figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text-faint);
+    font-style: italic;
+    text-align: center;
+}
+
 /* Interactive projection diagram */
 .diagram-block {
     margin: 2.5rem 0;

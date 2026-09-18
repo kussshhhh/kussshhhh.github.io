@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../blog.css?v=10">
-    <link rel="stylesheet" href="../articles.css?v=7">
+    <link rel="stylesheet" href="../articles.css?v=8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMath()"></script>
@@ -66,18 +66,74 @@
 
             <h2>the model</h2>
             <p>an actor holds $n$ units of capability, deployed across a population of $m$ people, which lets say can be segmented into $S$ segments.</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-population" viewBox="0 0 820 300" role="img" aria-label="A population clustered into segments, with you as one point among them"></svg>
+                </div>
+                <figcaption>the population, clustered into segments &mdash; you're one point in one of them</figcaption>
+            </figure>
+
             <p>$p_i$ : the weightage they give segment $i$ due to profitability, government enforcement, their own moral policy, whatever.</p>
             <p>$$\sum_i p_i = 1$$</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-weights" viewBox="0 0 820 300" role="img" aria-label="The same clusters, now sized by each segment's weight p_i"></svg>
+                </div>
+                <figcaption>same clusters, now sized by weight &mdash; bigger p<sub>i</sub> means the actor cares more about that segment</figcaption>
+            </figure>
+
             <p>$q_i = p_i \cdot n$ (capability actually aimed at segment $i$)</p>
             <p>$\hat{x}_i$ : the direction segment $i$ gets pushed.</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-vectors" viewBox="0 0 820 300" role="img" aria-label="Each segment's weight turned into a vector: length is q_i, angle is the direction it gets pushed"></svg>
+                </div>
+                <figcaption>weight becomes a vector &mdash; length is q<sub>i</sub>, angle is the direction it pushes. no good or bad yet, just capability going somewhere</figcaption>
+            </figure>
+
             <p>$\hat{a}$ : your true alignment direction, at any given moment.</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-axis" viewBox="0 0 820 300" role="img" aria-label="Your alignment axis â added to the diagram"></svg>
+                </div>
+                <figcaption>now add â &mdash; the direction that's actually good for you</figcaption>
+            </figure>
+
             <p>$c_i = \hat{x}_i \cdot \hat{a}$ (the component of segment $i$'s push that lands on your axis. prolly positive)</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-projection" viewBox="0 0 820 300" role="img" aria-label="Each vector projected onto â, colored by whether it lands toward or away from you"></svg>
+                </div>
+                <figcaption>drop each vector onto â &mdash; that's c<sub>i</sub>. this is where blue (toward you) and orange (away) start meaning something</figcaption>
+            </figure>
+
             <p>note that $c_i$ is a component, not a verdict on the whole vector. no segment has to be wholly hostile. what matters is only how much of its push projects onto you, and in which direction.</p>
             <p>suppose you're in segment $k$. every other segment's optimization carries some anti-alignment component wrt you, and those components sum:</p>
             <p>$$D = \left| \sum_{i \neq k} q_i c_i \right|$$</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-d" viewBox="0 0 820 300" role="img" aria-label="Every segment except you, summed along the axis to get D"></svg>
+                </div>
+                <figcaption>everyone except you (segment k), summed along â &mdash; that net pull is D</figcaption>
+            </figure>
+
             <p>some segments may even help you incidentally ($c_i > 0$). the claim survives that it only needs the weighted sum to come out against you.</p>
             <p>what the actor does for you along $\hat{a}$:</p>
             <p>$$A = q_k c_k$$</p>
+
+            <figure class="concept-diagram">
+                <div class="diagram-svg-wrap">
+                    <svg id="cd-a" viewBox="0 0 820 300" role="img" aria-label="Just your own segment k, projected along the axis, to get A"></svg>
+                </div>
+                <figcaption>just your own segment, k &mdash; whatever the actor happens to do for you is A</figcaption>
+            </figure>
+
             <p>so i want opensource to reach a stage where</p>
             <p>$$l > D + A$$</p>
             <p>here $l$ being the intelligence quanta that is locally running that is yours, aligned totally w u.</p>
@@ -109,6 +165,7 @@
         </article>
     </main>
 
+    <script src="concept-diagrams.js" defer></script>
     <script src="diagram.js" defer></script>
     <script>
         function renderMath() {
