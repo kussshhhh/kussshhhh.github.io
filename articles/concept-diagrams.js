@@ -150,6 +150,9 @@
             var rx = (seededRand(seedBase + i * 13.7) + seededRand(seedBase + i * 4.1)) / 2;
             var ry = (seededRand(seedBase + i * 7.3) + seededRand(seedBase + i * 2.9)) / 2;
             var isYou = region.isK && i === 0;
+            // pin "you" to the edge of your segment nearest young professionals,
+            // rather than letting the scatter drop it wherever
+            if (isYou) { rx = 0.08; ry = 0.62; }
             var cx = b[0] + m + rx * w;
             var cy = b[1] + m + ry * h;
             var dot = el('circle', {
