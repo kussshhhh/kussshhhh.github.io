@@ -373,7 +373,7 @@
         var xLbl = el('text', {
             x: tip.x + 12, y: tip.y - 4, 'font-size': 12.5, 'font-weight': 700, fill: 'var(--diag-you)'
         });
-        xLbl.textContent = 'what they do for your segment';
+        xLbl.textContent = 'x̂ₖ = the direction your segment gets pushed';
         svg.appendChild(xLbl);
 
         var arcR = 64;
