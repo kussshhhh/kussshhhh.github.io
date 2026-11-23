@@ -34,6 +34,24 @@ BLOG_DATA_FILE = ROOT_DIR / "blog_data.json"
 PROCESSED_FILE = SCRIPT_DIR / "processed.json"
 
 
+# Links to my own X/Twitter account are stripped so the site never points there.
+_OWN_TWITTER_URL = r"https?://(?:www\.)?(?:x|twitter)\.com/kucchi09\b[^\s)\]]*"
+
+
+def strip_own_twitter_links(text: str) -> str:
+    """Remove links to my own X/Twitter posts, keeping any non-URL link text."""
+    if not re.search(_OWN_TWITTER_URL, text, re.I):
+        return text
+
+    def replace_md_link(m):
+        label = m.group(1).strip()
+        return "" if re.fullmatch(_OWN_TWITTER_URL, label, re.I) else label
+
+    text = re.sub(r"\[([^\]]*)\]\(" + _OWN_TWITTER_URL + r"\)", replace_md_link, text, flags=re.I)
+    text = re.sub(_OWN_TWITTER_URL, "", text, flags=re.I)
+    return re.sub(r"[ \t]{2,}", " ", text).strip()
+
+
 def get_credentials():
     """Get Google API credentials from environment or file."""
     # First try environment variable (for GitHub Actions)
@@ -199,6 +217,7 @@ def parse_document(document: dict) -> list[dict]:
         
         elif current_entry is not None:
             # Add content to current entry
+            para_text = strip_own_twitter_links(para_text)
             if para_text:
                 current_content.append({
                     "type": "text",
